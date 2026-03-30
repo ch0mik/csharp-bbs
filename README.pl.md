@@ -1,6 +1,6 @@
-# CsharpBbs (tylko PETSCII)
+# C# PETSCII BBS (tylko PETSCII)
 
-CsharpBbs to serwer BBS nastawiony na klienty PETSCII (styl Commodore 64).
+C# PETSCII BBS to serwer BBS nastawiony na klienty PETSCII (styl Commodore 64).
 Projekt wzorowany na https://github.com/sblendorio/petscii-bbs zostal sportowany do C#/.NET 10 i dziala tylko w trybie PETSCII.
 Aktualna konfiguracja dziala w trybie tylko PETSCII i wystawia:
 - `6510/tcp` dla sesji BBS (telnet)
