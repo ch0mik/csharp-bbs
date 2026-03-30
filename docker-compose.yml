@@ -1,0 +1,24 @@
+services:
+  csharp-bbs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "6510:6510"
+      - "9090:9090"
+    command: ["--bbs", "StdChoice:6510", "-s", "9090", "-t", "3600000"]
+    environment:
+      - PETSCII_GALLERY_ROOT=/app/petscii-art-gallery
+      - ZMACHINE_STORY_ROOT=/app/zmpp
+      - ZMACHINE_COLUMNS=39
+    volumes:
+      - ./petscii-art-gallery:/app/petscii-art-gallery:ro
+      - ./zmpp:/app/zmpp:ro
+    networks:
+      - bbs_net
+    restart: unless-stopped
+
+
+networks:
+  bbs_net:
+    driver: bridge

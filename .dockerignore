@@ -1,0 +1,19 @@
+# Build output
+**/bin/
+**/obj/
+
+# Local tooling
+.dotnet/
+
+# VCS and IDE
+.git/
+.gitignore
+.vs/
+.vscode/
+.idea/
+
+# Logs / diagnostics
+*.log
+
+# Docs/artifacts not needed in runtime image
+*.md

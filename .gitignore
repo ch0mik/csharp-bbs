@@ -1,0 +1,9 @@
+# Local secrets / env
+.env
+
+# Local .NET CLI home used in sandbox/dev
+.dotnet/
+
+# Build artifacts
+**/bin/
+**/obj/

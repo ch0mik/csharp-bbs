@@ -1,0 +1,32 @@
+# Source files
+*.cs text eol=lf
+*.csproj text eol=lf
+*.slnx text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf
+*.xml text eol=lf
+
+# PETSCII / retro binary assets
+*.seq binary
+*.prg binary
+*.p00 binary
+*.t64 binary
+*.d64 binary
+*.d71 binary
+*.d81 binary
+*.d82 binary
+
+# Z-machine story binaries
+*.z1 binary
+*.z2 binary
+*.z3 binary
+*.z4 binary
+*.z5 binary
+*.z6 binary
+*.z7 binary
+*.z8 binary
+
+# Gallery content may contain extensionless binary PETSCII files
+petscii-art-gallery/** binary

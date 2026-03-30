@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <Reference Include="Bbs.Core">
+      <HintPath>..\Bbs.Core\bin\Debug\net10.0\Bbs.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Bbs.Terminals">
+      <HintPath>..\Bbs.Terminals\bin\Debug\net10.0\Bbs.Terminals.dll</HintPath>
+    </Reference>
+    <Reference Include="Bbs.Persistence">
+      <HintPath>..\Bbs.Persistence\bin\Debug\net10.0\Bbs.Persistence.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>
