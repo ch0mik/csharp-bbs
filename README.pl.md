@@ -1,4 +1,4 @@
-# C# PETSCII BBS (tylko PETSCII)
+# C# PETSCII BBS
 
 C# PETSCII BBS to serwer BBS nastawiony na klienty PETSCII (styl Commodore 64).
 Projekt wzorowany na https://github.com/sblendorio/petscii-bbs zostal sportowany do C#/.NET 10 i dziala tylko w trybie PETSCII.
