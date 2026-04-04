@@ -11,14 +11,45 @@ services:
       - PETSCII_GALLERY_ROOT=/app/petscii-art-gallery
       - ZMACHINE_STORY_ROOT=/app/zmpp
       - ZMACHINE_COLUMNS=39
+      - BBS_SESSION_STORE=${BBS_SESSION_STORE:-inmemory}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - BBS_INSTANCE_ID=${HOSTNAME:-csharp-bbs}
     volumes:
       - ./petscii-art-gallery:/app/petscii-art-gallery:ro
       - ./zmpp:/app/zmpp:ro
     networks:
       - bbs_net
+      - redis_net
     restart: unless-stopped
 
+  redis:
+    image: redis:7.4-alpine
+    command:
+      - redis-server
+      - --appendonly
+      - "yes"
+      - --save
+      - "60"
+      - "1000"
+      - --requirepass
+      - ${REDIS_PASSWORD}
+    expose:
+      - "6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - redis_net
+    restart: unless-stopped
 
 networks:
   bbs_net:
     driver: bridge
+  redis_net:
+    driver: bridge
+    internal: true
+
+volumes:
+  redis-data:
+

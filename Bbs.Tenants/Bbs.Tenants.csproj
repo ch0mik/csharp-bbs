@@ -18,4 +18,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Bbs.Petsciiator\Bbs.Petsciiator.csproj" />
+  </ItemGroup>
+
 </Project>

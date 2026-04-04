@@ -1,5 +1,7 @@
 <Solution>
   <Project Path="Bbs.Core/Bbs.Core.csproj" />
+  <Project Path="Bbs.Petsciiator/Bbs.Petsciiator.csproj" />
+  <Project Path="Bbs.PetsciiTool/Bbs.PetsciiTool.csproj" />
   <Project Path="Bbs.Persistence/Bbs.Persistence.csproj" />
   <Project Path="Bbs.Server/Bbs.Server.csproj" />
   <Project Path="Bbs.Tenants/Bbs.Tenants.csproj" />

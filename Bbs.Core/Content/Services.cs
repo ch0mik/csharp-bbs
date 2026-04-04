@@ -1,4 +1,5 @@
 using Bbs.Core.Net;
+using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Globalization;
 using System.Text;
@@ -208,18 +209,179 @@ public sealed class WikipediaService : IWikipediaService
     public async Task<string> GetArticleHtmlAsync(string language, long pageId, CancellationToken cancellationToken = default)
     {
         var lang = NormalizeLang(language);
-        var url = $"https://{lang}.wikipedia.org/w/api.php?format=json&action=parse&prop=text&pageid={pageId}";
+        var url = $"https://{lang}.wikipedia.org/w/api.php?format=json&formatversion=2&action=parse&prop=text&pageid={pageId}&mobileformat=true&disableeditsection=true&disabletoc=true";
         var json = await _http.GetStringAsync(url, cancellationToken: cancellationToken).ConfigureAwait(false);
 
         using var doc = JsonDocument.Parse(json);
         if (!doc.RootElement.TryGetProperty("parse", out var parseObj)
-            || !parseObj.TryGetProperty("text", out var textObj)
-            || !textObj.TryGetProperty("*", out var htmlObj))
+            || !parseObj.TryGetProperty("text", out var textObj))
         {
             return string.Empty;
         }
 
-        return htmlObj.GetString() ?? string.Empty;
+        if (textObj.ValueKind == JsonValueKind.String)
+        {
+            return textObj.GetString() ?? string.Empty;
+        }
+
+        if (textObj.ValueKind == JsonValueKind.Object
+            && textObj.TryGetProperty("*", out var htmlObj))
+        {
+            return htmlObj.GetString() ?? string.Empty;
+        }
+
+        return string.Empty;
+    }
+
+    public async Task<IReadOnlyList<string>> GetArticleImageUrlsAsync(string language, long pageId, int limit = 24, CancellationToken cancellationToken = default)
+    {
+        var lang = NormalizeLang(language);
+        var max = Math.Clamp(limit, 1, 100);
+        var orderedTitles = new List<string>(max);
+        string? imContinue = null;
+
+        while (orderedTitles.Count < max)
+        {
+            var url = $"https://{lang}.wikipedia.org/w/api.php?format=json&formatversion=2&action=query&prop=images&pageids={pageId}&imlimit=50";
+            if (!string.IsNullOrWhiteSpace(imContinue))
+            {
+                url += $"&imcontinue={Uri.EscapeDataString(imContinue)}";
+            }
+
+            var json = await _http.GetStringAsync(url, cancellationToken: cancellationToken).ConfigureAwait(false);
+            using var doc = JsonDocument.Parse(json);
+            if (!doc.RootElement.TryGetProperty("query", out var queryObj)
+                || !queryObj.TryGetProperty("pages", out var pagesObj)
+                || pagesObj.ValueKind != JsonValueKind.Array
+                || pagesObj.GetArrayLength() == 0)
+            {
+                break;
+            }
+
+            var page = pagesObj[0];
+            if (page.TryGetProperty("images", out var images) && images.ValueKind == JsonValueKind.Array)
+            {
+                foreach (var img in images.EnumerateArray())
+                {
+                    if (!img.TryGetProperty("title", out var titleEl))
+                    {
+                        continue;
+                    }
+
+                    var title = titleEl.GetString();
+                    if (string.IsNullOrWhiteSpace(title))
+                    {
+                        continue;
+                    }
+
+                    orderedTitles.Add(title);
+                    if (orderedTitles.Count >= max)
+                    {
+                        break;
+                    }
+                }
+            }
+
+            if (!doc.RootElement.TryGetProperty("continue", out var contObj)
+                || !contObj.TryGetProperty("imcontinue", out var imcontEl))
+            {
+                break;
+            }
+
+            imContinue = imcontEl.GetString();
+            if (string.IsNullOrWhiteSpace(imContinue))
+            {
+                break;
+            }
+        }
+
+        if (orderedTitles.Count == 0)
+        {
+            return Array.Empty<string>();
+        }
+
+        var distinctTitles = orderedTitles.Distinct(StringComparer.OrdinalIgnoreCase).Take(max).ToArray();
+        var imageByTitle = new Dictionary<string, (string Url, int Width, int Height)>(StringComparer.OrdinalIgnoreCase);
+
+        for (var i = 0; i < distinctTitles.Length; i += 50)
+        {
+            var chunk = distinctTitles.Skip(i).Take(50).ToArray();
+            var titlesArg = string.Join("|", chunk.Select(Uri.EscapeDataString));
+            var iiUrl = $"https://{lang}.wikipedia.org/w/api.php?format=json&formatversion=2&action=query&prop=imageinfo&iiprop=url|size&titles={titlesArg}";
+            var iiJson = await _http.GetStringAsync(iiUrl, cancellationToken: cancellationToken).ConfigureAwait(false);
+            using var iiDoc = JsonDocument.Parse(iiJson);
+
+            if (!iiDoc.RootElement.TryGetProperty("query", out var q)
+                || !q.TryGetProperty("pages", out var pages)
+                || pages.ValueKind != JsonValueKind.Array)
+            {
+                continue;
+            }
+
+            foreach (var p in pages.EnumerateArray())
+            {
+                if (!p.TryGetProperty("title", out var titleEl))
+                {
+                    continue;
+                }
+
+                var title = titleEl.GetString();
+                if (string.IsNullOrWhiteSpace(title))
+                {
+                    continue;
+                }
+
+                if (!p.TryGetProperty("imageinfo", out var infos)
+                    || infos.ValueKind != JsonValueKind.Array
+                    || infos.GetArrayLength() == 0)
+                {
+                    continue;
+                }
+
+                var info = infos[0];
+                var imgUrl = info.TryGetProperty("url", out var urlEl) ? urlEl.GetString() : null;
+                var width = info.TryGetProperty("width", out var wEl) ? wEl.GetInt32() : 0;
+                var height = info.TryGetProperty("height", out var hEl) ? hEl.GetInt32() : 0;
+                if (string.IsNullOrWhiteSpace(imgUrl))
+                {
+                    continue;
+                }
+
+                imageByTitle[title] = (imgUrl, width, height);
+            }
+        }
+
+        var result = new List<string>(max);
+        var seenUrls = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var title in orderedTitles)
+        {
+            if (!imageByTitle.TryGetValue(title, out var img))
+            {
+                continue;
+            }
+
+            // Wiki-specific minimum: skip tiny icon-like assets.
+            if (img.Width > 0 && img.Width < 320)
+            {
+                continue;
+            }
+
+            if (img.Height > 0 && img.Height < 200)
+            {
+                continue;
+            }
+
+            if (seenUrls.Add(img.Url))
+            {
+                result.Add(img.Url);
+                if (result.Count >= max)
+                {
+                    break;
+                }
+            }
+        }
+
+        return result;
     }
 
     private static string NormalizeLang(string language)
@@ -351,6 +513,9 @@ public sealed class CsdbService : ICsdbService
 
 public sealed class PetsciiGalleryService : IPetsciiGalleryService
 {
+    private static readonly ConcurrentDictionary<string, ImageCacheEntry> ImageCache = new(StringComparer.OrdinalIgnoreCase);
+
+    private sealed record ImageCacheEntry(DateTime LastWriteUtc, long Length, byte[] Data);
     public Task<IReadOnlyList<string>> ListAuthorsAsync(string rootPath, CancellationToken cancellationToken = default)
     {
         if (!Directory.Exists(rootPath))
@@ -385,8 +550,12 @@ public sealed class PetsciiGalleryService : IPetsciiGalleryService
                 return !fileName.Equals("README", StringComparison.OrdinalIgnoreCase)
                     && !fileName.Equals("README.md", StringComparison.OrdinalIgnoreCase)
                     && !fileName.EndsWith(".md", StringComparison.OrdinalIgnoreCase)
+                    && !fileName.EndsWith(".bas", StringComparison.OrdinalIgnoreCase)
                     && !fileName.EndsWith(".txt", StringComparison.OrdinalIgnoreCase)
-                    && !fileName.EndsWith(".log", StringComparison.OrdinalIgnoreCase);
+                    && !fileName.EndsWith(".log", StringComparison.OrdinalIgnoreCase)
+                    && !fileName.EndsWith("_screen.seq", StringComparison.OrdinalIgnoreCase)
+                    && !fileName.EndsWith("_color.seq", StringComparison.OrdinalIgnoreCase)
+                    && !fileName.EndsWith("_bgcolor.seq", StringComparison.OrdinalIgnoreCase);
             })
             .OrderBy(f => f, StringComparer.OrdinalIgnoreCase)
             .ToArray();
@@ -396,6 +565,25 @@ public sealed class PetsciiGalleryService : IPetsciiGalleryService
 
     public async Task<byte[]> ReadDrawingAsync(string drawingPath, CancellationToken cancellationToken = default)
     {
+        if (PetsciiImageConverter.IsSupportedImage(drawingPath))
+        {
+            var fullPath = Path.GetFullPath(drawingPath);
+            var info = new FileInfo(fullPath);
+            if (info.Exists)
+            {
+                if (ImageCache.TryGetValue(fullPath, out var cached)
+                    && cached.LastWriteUtc == info.LastWriteTimeUtc
+                    && cached.Length == info.Length)
+                {
+                    return cached.Data;
+                }
+
+                var converted = await PetsciiImageConverter.ConvertFileAsync(fullPath, cancellationToken).ConfigureAwait(false);
+                ImageCache[fullPath] = new ImageCacheEntry(info.LastWriteTimeUtc, info.Length, converted);
+                return converted;
+            }
+        }
+
         return await File.ReadAllBytesAsync(drawingPath, cancellationToken).ConfigureAwait(false);
     }
 }
@@ -725,6 +913,7 @@ public sealed class ZMachineService : IZMachineService
         }
     }
 }
+
 
 
 

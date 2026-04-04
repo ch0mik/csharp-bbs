@@ -8,7 +8,7 @@ public sealed record CommodoreNewsItem(string Title, string Url);
 
 public sealed record CommodoreNewsBlock(string Kind, string Text);
 
-public sealed record CommodoreNewsArticle(string Title, string Url, IReadOnlyList<CommodoreNewsBlock> Blocks);
+public sealed record CommodoreNewsArticle(string Title, string Url, IReadOnlyList<CommodoreNewsBlock> Blocks, IReadOnlyList<string> ImageUrls);
 
 public sealed class CommodoreNewsService
 {
@@ -18,6 +18,10 @@ public sealed class CommodoreNewsService
 
     private static readonly Regex PostLinkWithTitleRegex = new(
         "<a[^>]+href\\s*=\\s*['\"](?<href>(?:https?:\\/\\/www\\.commodore\\.net)?\\/post\\/[^'\"#?]+)['\"][^>]*>(?<title>.*?)</a>",
+        RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
+
+    private static readonly Regex ImageTagRegex = new(
+        "<img[^>]+(?:src|data-src|srcset|data-srcset)\\s*=\\s*['\"](?<src>[^'\"]+)['\"][^>]*>",
         RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
 
     private static readonly Regex PostUrlRegex = new(
@@ -46,6 +50,10 @@ public sealed class CommodoreNewsService
 
     private static readonly Regex CssDeclarationRegex = new(
         "\\b[a-z-]{2,}\\s*:\\s*[^;]{1,80};",
+        RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+    private static readonly Regex DirectImageUrlRegex = new(
+        "(?<url>https?:\\\\?/\\\\?/(?:static\\.)?wixstatic\\.com/media/[^\"'\\s<>]+\\.(?:png|jpe?g|gif|webp)[^\"'\\s<>]*)",
         RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
     private readonly IHttpService _http;
@@ -149,7 +157,21 @@ public sealed class CommodoreNewsService
         var contentHtml = ExtractArticleSection(html);
         var blocks = ExtractBlocks(contentHtml, title);
 
-        return new CommodoreNewsArticle(title, url, blocks);
+        var images = ExtractImageUrls(contentHtml, url);
+        DebugLog($"Extract images from article section: url='{url}', count={images.Count}");
+        if (images.Count == 0)
+        {
+            images = ExtractImageUrls(html, url);
+            DebugLog($"Extract images from full HTML fallback: url='{url}', count={images.Count}");
+        }
+
+        if (images.Count > 0)
+        {
+            var preview = string.Join(" | ", images.Take(3));
+            DebugLog($"Image URL preview (max 3): {preview}");
+        }
+
+        return new CommodoreNewsArticle(title, url, blocks, images);
     }
 
     private static string ExtractArticleSection(string html)
@@ -244,6 +266,80 @@ public sealed class CommodoreNewsService
         }
 
         return blocks;
+    }
+
+    private static IReadOnlyList<string> ExtractImageUrls(string html, string articleUrl)
+    {
+        if (string.IsNullOrWhiteSpace(html) || string.IsNullOrWhiteSpace(articleUrl))
+        {
+            return Array.Empty<string>();
+        }
+
+        if (!Uri.TryCreate(articleUrl, UriKind.Absolute, out var baseUri))
+        {
+            baseUri = new Uri(BaseUrl);
+        }
+
+        var urls = new List<string>();
+        var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        foreach (Match match in ImageTagRegex.Matches(html))
+        {
+            var raw = match.Groups["src"].Value;
+            if (string.IsNullOrWhiteSpace(raw))
+            {
+                continue;
+            }
+
+            var candidate = WebUtility.HtmlDecode(raw.Trim()).Replace("\\/", "/", StringComparison.Ordinal);
+            if (candidate.Contains(',', StringComparison.Ordinal))
+            {
+                candidate = candidate.Split(',', StringSplitOptions.RemoveEmptyEntries).FirstOrDefault()?.Trim() ?? candidate;
+            }
+
+            if (candidate.Contains(' ', StringComparison.Ordinal))
+            {
+                candidate = candidate.Split(' ', StringSplitOptions.RemoveEmptyEntries).FirstOrDefault() ?? candidate;
+            }
+
+            var normalized = NormalizeImageUrl(candidate, baseUri);
+            if (string.IsNullOrWhiteSpace(normalized))
+            {
+                continue;
+            }
+
+            if (seen.Add(normalized))
+            {
+                urls.Add(normalized);
+            }
+        }
+
+
+        if (urls.Count == 0)
+        {
+            foreach (Match match in DirectImageUrlRegex.Matches(html))
+            {
+                var raw = match.Groups["url"].Value;
+                if (string.IsNullOrWhiteSpace(raw))
+                {
+                    continue;
+                }
+
+                var candidate = WebUtility.HtmlDecode(raw.Trim()).Replace("\\/", "/", StringComparison.Ordinal);
+                var normalized = NormalizeImageUrl(candidate, baseUri);
+                if (string.IsNullOrWhiteSpace(normalized))
+                {
+                    continue;
+                }
+
+                if (seen.Add(normalized))
+                {
+                    urls.Add(normalized);
+                }
+            }
+        }
+
+        return urls;
     }
 
     private static bool LooksLikeReadableSpan(string text)
@@ -403,6 +499,88 @@ public sealed class CommodoreNewsService
         return string.Empty;
     }
 
+    private static string? NormalizeImageUrl(string raw, Uri baseUri)
+    {
+        if (string.IsNullOrWhiteSpace(raw))
+        {
+            return null;
+        }
+
+        var value = raw.Trim();
+        if (value.StartsWith("//", StringComparison.Ordinal))
+        {
+            value = baseUri.Scheme + ":" + value;
+        }
+
+        if (!Uri.TryCreate(value, UriKind.Absolute, out var absolute))
+        {
+            if (!Uri.TryCreate(baseUri, value, out absolute))
+            {
+                return null;
+            }
+        }
+
+        if (absolute.Scheme != Uri.UriSchemeHttp && absolute.Scheme != Uri.UriSchemeHttps)
+        {
+            return null;
+        }
+
+        return NormalizeWixMediaUrl(absolute.AbsoluteUri);
+    }
+
+    private static string NormalizeWixMediaUrl(string url)
+    {
+        if (string.IsNullOrWhiteSpace(url))
+        {
+            return string.Empty;
+        }
+
+        // Wix often serves transformed URLs like:
+        // .../image.jpg/v1/fill/w_147,h_97,al_c,q_80,enc_avif,quality_auto/...
+        // For our converter we want the original image URL ending with extension.
+        if (!url.Contains("wixstatic.com/media/", StringComparison.OrdinalIgnoreCase))
+        {
+            return url;
+        }
+
+        var markerPos = url.IndexOf("/v1/", StringComparison.OrdinalIgnoreCase);
+        if (markerPos < 0)
+        {
+            return url;
+        }
+
+        var prefix = url[..markerPos];
+        var extPos = LastImageExtensionEnd(prefix);
+        if (extPos <= 0)
+        {
+            return url;
+        }
+
+        return prefix[..extPos];
+    }
+
+    private static int LastImageExtensionEnd(string urlPart)
+    {
+        ReadOnlySpan<string> exts = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
+        var best = -1;
+        foreach (var ext in exts)
+        {
+            var idx = urlPart.LastIndexOf(ext, StringComparison.OrdinalIgnoreCase);
+            if (idx < 0)
+            {
+                continue;
+            }
+
+            var end = idx + ext.Length;
+            if (end > best)
+            {
+                best = end;
+            }
+        }
+
+        return best;
+    }
+
     private static string NormalizeTitle(string raw)
     {
         var title = CleanBlockText(raw);
@@ -458,7 +636,14 @@ public sealed class CommodoreNewsService
         var fallback = TextRender.TrimTo(all, 64);
         return string.IsNullOrWhiteSpace(fallback) ? "Commodore News" : fallback;
     }
+
+    private static void DebugLog(string message)
+    {
+        Console.WriteLine($"[{DateTimeOffset.UtcNow:yyyy-MM-dd HH:mm:ss}][CommodoreNewsService] {message}");
+    }
 }
+
+
 
 
 

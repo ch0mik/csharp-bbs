@@ -3,7 +3,12 @@
 
 # Local .NET CLI home used in sandbox/dev
 .dotnet/
+.dotnet-home/
+.tmp/
 
 # Build artifacts
 **/bin/
 **/obj/
+
+#nuget packages
+artifacts/

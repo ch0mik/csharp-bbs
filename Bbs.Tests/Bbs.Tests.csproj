@@ -30,4 +30,9 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Bbs.Petsciiator\Bbs.Petsciiator.csproj" />
+  </ItemGroup>
+
 </Project>
+

@@ -62,6 +62,8 @@ public interface IWikipediaService
     Task<WikipediaSearchItem?> PickRandomAsync(string language, CancellationToken cancellationToken = default);
 
     Task<string> GetArticleHtmlAsync(string language, long pageId, CancellationToken cancellationToken = default);
+
+    Task<IReadOnlyList<string>> GetArticleImageUrlsAsync(string language, long pageId, int limit = 24, CancellationToken cancellationToken = default);
 }
 
 public interface ICsdbService

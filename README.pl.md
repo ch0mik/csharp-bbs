@@ -1,8 +1,7 @@
 # C# PETSCII BBS
 
 C# PETSCII BBS to serwer BBS nastawiony na klienty PETSCII (styl Commodore 64).
-Projekt wzorowany na https://github.com/sblendorio/petscii-bbs zostal sportowany do C#/.NET 10 i dziala tylko w trybie PETSCII.
-Aktualna konfiguracja dziala w trybie tylko PETSCII i wystawia:
+Projekt wzorowany na https://github.com/sblendorio/petscii-bbs zostal sportowany do C#/.NET 10 i dziala w trybie tylko PETSCII i wystawia:
 - `6510/tcp` dla sesji BBS (telnet)
 - `9090/tcp` dla diagnostyki/statusu
 
@@ -20,7 +19,12 @@ Aktualna konfiguracja dziala w trybie tylko PETSCII i wystawia:
   - CommodoreNews (newsy z `https://www.commodore.net/news` + fallback przez sitemap) - to unikalna, calkowicie nowa funkcjonalnosc w tym projekcie
   - 8-bitz blog
 - Galeria PETSCII oparta o pliki z dysku
+- Konwersja PNG/JPEG do PETSCII w locie w galerii
 - Opcjonalny backend sesji w Redis
+- Konwersja online obrazkow do PETSCII w:
+  - CommodoreNews
+  - WikipediaPetscii
+- Opcjonalny cache Redis dla online PETSCII (TTL: 7 dni)
 - Uruchamianie przez Docker i `docker compose`
 
 ## Konfiguracja
@@ -38,9 +42,19 @@ Glowna konfiguracja runtime jest przekazywana przez argumenty startowe i zmienne
 - `BBS_SESSION_STORE`
   - Tryb backendu sesji: `inmemory` (domyslnie) albo `redis`
 - `REDIS_HOST`, `REDIS_PORT`, `REDIS_PASSWORD`
-  - Uzywane tylko gdy `BBS_SESSION_STORE=redis`
+  - Uzywane dla backendu sesji (`BBS_SESSION_STORE=redis`)
+  - Uzywane tez przez cache obrazkow PETSCII online (CommodoreNews/Wikipedia)
 - `BBS_INSTANCE_ID`
   - Opcjonalny identyfikator instancji (do kluczy Redis)
+- `BBS_INLINE_PETSCII_IMAGES`
+  - Globalny przelacznik obrazkow PETSCII online w tenantach contentowych
+  - Domyslnie: `true`
+- `BBS_COMMODORENEWS_INLINE_PETSCII_IMAGES`
+  - Nadpisanie tylko dla CommodoreNews
+  - Domyslnie: dziedziczone z `BBS_INLINE_PETSCII_IMAGES`
+- `BBS_WIKI_INLINE_PETSCII_IMAGES`
+  - Nadpisanie tylko dla WikipediaPetscii
+  - Domyslnie: dziedziczone z `BBS_INLINE_PETSCII_IMAGES`
 
 ### Docker Compose
 
@@ -86,6 +100,9 @@ services:
       - REDIS_PORT=6379
       - REDIS_PASSWORD=${REDIS_PASSWORD}
       - BBS_INSTANCE_ID=${HOSTNAME:-csharp-bbs}
+      - BBS_INLINE_PETSCII_IMAGES=true
+      - BBS_COMMODORENEWS_INLINE_PETSCII_IMAGES=true
+      - BBS_WIKI_INLINE_PETSCII_IMAGES=true
     volumes:
       - ./petscii-art-gallery:/app/petscii-art-gallery:ro
       - ./zmpp:/app/zmpp:ro
@@ -162,6 +179,7 @@ docker compose down
 ```powershell
 dotnet build Bbs.Server\Bbs.Server.csproj
 ```
+
 
 
 

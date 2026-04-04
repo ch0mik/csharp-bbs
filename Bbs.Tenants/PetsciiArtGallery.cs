@@ -46,6 +46,7 @@ public sealed class PetsciiArtGallery : PetsciiThread
 
         while (!cancellationToken.IsCancellationRequested)
         {
+            await NormalizeTextModeAsync(cancellationToken).ConfigureAwait(false);
             var authors = await _gallery.ListAuthorsAsync(GalleryRoot, cancellationToken).ConfigureAwait(false);
 
             Cls();
@@ -141,6 +142,9 @@ public sealed class PetsciiArtGallery : PetsciiThread
 
             Cls();
             Write(data);
+            // Artwork streams may leave reverse/case/color state changed.
+            // Normalize before printing interactive prompt text.
+            await NormalizeTextModeAsync(cancellationToken).ConfigureAwait(false);
             Println();
             Println($"[{i + 1}/{drawings.Count}] {TextRender.TrimTo(Path.GetFileName(file), 30)}");
             Print("N=Next  -=Prev  .=Back");
@@ -181,6 +185,17 @@ public sealed class PetsciiArtGallery : PetsciiThread
                 }
             }
         }
+    }
+
+    private async Task NormalizeTextModeAsync(CancellationToken cancellationToken)
+    {
+        // SyncTERM-compatible reset after raw SEQ playback:
+        // reverse off, white, force lowercase/uppercase charset.
+        Write(
+            PetsciiKeys.ReverseOff,
+            PetsciiKeys.White,
+            PetsciiKeys.Lowercase);
+        await FlushAsync(cancellationToken).ConfigureAwait(false);
     }
 }
 

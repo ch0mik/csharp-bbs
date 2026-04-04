@@ -7,8 +7,11 @@ public sealed class CommodoreNews : PetsciiThread
 {
     private const int MenuPageSize = 9;
     private const int ReaderRows = 19;
+    private const int MaxInlineImages = 1;
 
     private readonly CommodoreNewsService _service = new();
+    private readonly CommodoreNewsImageRenderer _imageRenderer = new();
+    private readonly bool _inlineImagesEnabled = InlinePetsciiFeatureFlags.IsCommodoreNewsEnabled();
 
     private sealed record StyledLine(string Text, int Color);
 
@@ -18,6 +21,7 @@ public sealed class CommodoreNews : PetsciiThread
 
         while (!cancellationToken.IsCancellationRequested)
         {
+            await NormalizeTextModeAsync(cancellationToken).ConfigureAwait(false);
             IReadOnlyList<CommodoreNewsItem> allItems;
             try
             {
@@ -112,9 +116,15 @@ public sealed class CommodoreNews : PetsciiThread
         try
         {
             article = await _service.GetArticleAsync(item.Url, cancellationToken).ConfigureAwait(false);
+            DebugLog($"Article loaded: url='{item.Url}', title='{article.Title}', images_found={article.ImageUrls.Count}");
+            if (article.ImageUrls.Count > 0)
+            {
+                DebugLog($"First image candidate: {article.ImageUrls[0]}");
+            }
         }
         catch (Exception ex)
         {
+            DebugLog($"Open article failed for '{item.Url}': {ex.Message}");
             Cls();
             Println("Open article failed:");
             Println(TextRender.TrimTo(ex.Message, 39));
@@ -125,11 +135,25 @@ public sealed class CommodoreNews : PetsciiThread
             return;
         }
 
+        if (!_inlineImagesEnabled)
+        {
+            DebugLog("Inline PETSCII images disabled by config for CommodoreNews.");
+        }
+        else
+        {
+            var continueToArticle = await RenderInlineImagesAsync(article.ImageUrls, cancellationToken).ConfigureAwait(false);
+            if (!continueToArticle)
+            {
+                return;
+            }
+        }
+
         var lines = BuildStyledLines(article);
         var offset = 0;
 
         while (!cancellationToken.IsCancellationRequested)
         {
+            await NormalizeTextModeAsync(cancellationToken).ConfigureAwait(false);
             Cls();
             foreach (var row in lines.Skip(offset).Take(ReaderRows))
             {
@@ -164,6 +188,64 @@ public sealed class CommodoreNews : PetsciiThread
                 offset += ReaderRows;
             }
         }
+    }
+
+    private async Task<bool> RenderInlineImagesAsync(IReadOnlyList<string> imageUrls, CancellationToken cancellationToken)
+    {
+        if (imageUrls.Count == 0)
+        {
+            DebugLog("No inline images found for article.");
+            return true;
+        }
+
+        var shown = 0;
+        for (var i = 0; i < imageUrls.Count && shown < MaxInlineImages; i++)
+        {
+            var url = imageUrls[i];
+            DebugLog($"Inline image candidate {i + 1}/{imageUrls.Count}: {url}");
+            byte[] data;
+            try
+            {
+                data = await _imageRenderer.RenderAsync(url, cancellationToken).ConfigureAwait(false);
+                DebugLog($"Image render attempt: url='{url}', petscii_bytes={data.Length}");
+            }
+            catch (Exception ex)
+            {
+                DebugLog($"Image render failed: url='{url}', error='{ex.Message}'");
+                continue;
+            }
+
+            if (data.Length == 0)
+            {
+                DebugLog($"Image rendered empty output: url='{url}'");
+                continue;
+            }
+
+            Cls();
+            Write(data);
+            await NormalizeTextModeAsync(cancellationToken).ConfigureAwait(false);
+            Write(PetsciiKeys.Return);
+            Println();
+            Print("ENTER=Tekst  .=Back > ");
+            await FlushAsync(cancellationToken).ConfigureAwait(false);
+
+            var key = (await ReadLineAsync(maxLength: 2, cancellationToken: cancellationToken).ConfigureAwait(false)).Trim().ToUpperInvariant();
+            if (key is "." or "Q")
+            {
+                return false;
+            }
+
+            await NormalizeTextModeAsync(cancellationToken).ConfigureAwait(false);
+
+            shown++;
+        }
+
+        if (shown == 0)
+        {
+            DebugLog("No inline image candidate produced a non-empty PETSCII result.");
+        }
+
+        return true;
     }
 
     private static List<StyledLine> BuildStyledLines(CommodoreNewsArticle article)
@@ -206,10 +288,20 @@ public sealed class CommodoreNews : PetsciiThread
             lines.Add(new StyledLine(string.Empty, PetsciiKeys.White));
         }
 
-
         return lines;
     }
+
+    private static void DebugLog(string message)
+    {
+        Console.WriteLine($"[{DateTimeOffset.UtcNow:yyyy-MM-dd HH:mm:ss}][CommodoreNews] {message}");
+    }
+
+    private async Task NormalizeTextModeAsync(CancellationToken cancellationToken)
+    {
+        Write(
+            PetsciiKeys.ReverseOff,
+            PetsciiKeys.White,
+            PetsciiKeys.Lowercase);
+        await FlushAsync(cancellationToken).ConfigureAwait(false);
+    }
 }
-
-
-

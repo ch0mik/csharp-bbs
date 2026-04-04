@@ -20,7 +20,12 @@ The current setup runs in PETSCII-only mode and exposes:
   - CommodoreNews (news list from `https://www.commodore.net/news` with sitemap fallback) - unique, completely new functionality in this project
   - 8-bitz blog
 - Filesystem-driven PETSCII art gallery
+- PNG/JPEG to PETSCII conversion on the fly in gallery
 - Optional Redis-backed session presence tracking
+- Online image-to-PETSCII rendering in:
+  - CommodoreNews
+  - WikipediaPetscii
+- Optional Redis cache for online PETSCII images (TTL: 7 days)
 - Dockerized runtime with `docker compose`
 
 ## Configuration
@@ -38,9 +43,19 @@ Main runtime configuration is passed by command-line arguments and environment v
 - `BBS_SESSION_STORE`
   - Session backend mode: `inmemory` (default) or `redis`
 - `REDIS_HOST`, `REDIS_PORT`, `REDIS_PASSWORD`
-  - Used only when `BBS_SESSION_STORE=redis`
+  - Used for Redis session store (`BBS_SESSION_STORE=redis`)
+  - Also used by online PETSCII image cache in CommodoreNews/Wikipedia
 - `BBS_INSTANCE_ID`
   - Optional instance id used in Redis keys
+- `BBS_INLINE_PETSCII_IMAGES`
+  - Global switch for online PETSCII images in content tenants
+  - Default: `true`
+- `BBS_COMMODORENEWS_INLINE_PETSCII_IMAGES`
+  - CommodoreNews-specific override
+  - Default: inherited from `BBS_INLINE_PETSCII_IMAGES`
+- `BBS_WIKI_INLINE_PETSCII_IMAGES`
+  - Wikipedia-specific override
+  - Default: inherited from `BBS_INLINE_PETSCII_IMAGES`
 
 ### Docker Compose
 
@@ -86,6 +101,9 @@ services:
       - REDIS_PORT=6379
       - REDIS_PASSWORD=${REDIS_PASSWORD}
       - BBS_INSTANCE_ID=${HOSTNAME:-csharp-bbs}
+      - BBS_INLINE_PETSCII_IMAGES=true
+      - BBS_COMMODORENEWS_INLINE_PETSCII_IMAGES=true
+      - BBS_WIKI_INLINE_PETSCII_IMAGES=true
     volumes:
       - ./petscii-art-gallery:/app/petscii-art-gallery:ro
       - ./zmpp:/app/zmpp:ro
@@ -162,6 +180,7 @@ docker compose down
 ```powershell
 dotnet build Bbs.Server\Bbs.Server.csproj
 ```
+
 
 
 

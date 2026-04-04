@@ -12,6 +12,7 @@ public static class PetsciiKeys
     public const int Home = 19;
     public const int Up = 145;
     public const int Down = 17;
+    public const int ReverseOff = 146;
     
     // Case control codes
     public const int CaseUnlock = 9;
