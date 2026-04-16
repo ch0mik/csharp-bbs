@@ -5,6 +5,8 @@ namespace Bbs.Server;
 
 public sealed class StdChoice : PetsciiThread
 {
+    private const string SessionInlineImagesKey = "session:inline-petscii-images";
+
     public override async Task DoLoopAsync(CancellationToken cancellationToken = default)
     {
         while (!cancellationToken.IsCancellationRequested)
@@ -19,6 +21,7 @@ public sealed class StdChoice : PetsciiThread
             Println("5) ZorkMachine");
             Println("6) CommodoreNews");
             Println("B) 8-Bitz blog (polish)");
+            Println($"I) Inline IMG: {(IsSessionInlineImagesEnabled() ? "ON" : "OFF")}");
             Println("Q) Quit");
             Println();
             Print("Choice: ");
@@ -73,6 +76,20 @@ public sealed class StdChoice : PetsciiThread
             if (choice is "B" or "8BITZ" or "8-BITZ" or "EIGHTBITZ")
             {
                 await LaunchAsync(new Tenant.EightBitz(), cancellationToken).ConfigureAwait(false);
+                continue;
+            }
+
+            if (choice is "I" or "IMG" or "IMAGES")
+            {
+                ToggleSessionInlineImages();
+                Cls();
+                PrintEightBitzHeader();
+                Println();
+                Println($"Inline images: {(IsSessionInlineImagesEnabled() ? "ON" : "OFF")} (session)");
+                Println();
+                Println("Press ENTER...");
+                await FlushAsync(cancellationToken).ConfigureAwait(false);
+                await ReadLineAsync(maxLength: 1, cancellationToken: cancellationToken).ConfigureAwait(false);
                 continue;
             }
 
@@ -169,6 +186,17 @@ public sealed class StdChoice : PetsciiThread
         }
 
         return trimmed;
+    }
+
+    private bool IsSessionInlineImagesEnabled()
+    {
+        var value = GetCustomObject(SessionInlineImagesKey);
+        return value is not bool b || b;
+    }
+
+    private void ToggleSessionInlineImages()
+    {
+        SetCustomObject(SessionInlineImagesKey, !IsSessionInlineImagesEnabled());
     }
 }
 

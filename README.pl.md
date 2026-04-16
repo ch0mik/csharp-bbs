@@ -24,6 +24,8 @@ Projekt wzorowany na https://github.com/sblendorio/petscii-bbs zostal sportowany
 - Konwersja online obrazkow do PETSCII w:
   - CommodoreNews
   - WikipediaPetscii
+  - WordPress / 8-bitz
+  - Globalny przelacznik sesyjny w menu glownym do wylaczenia obrazkow PETSCII (`I`)
 - Opcjonalny cache Redis dla online PETSCII (TTL: 7 dni)
 - Uruchamianie przez Docker i `docker compose`
 
@@ -43,7 +45,7 @@ Glowna konfiguracja runtime jest przekazywana przez argumenty startowe i zmienne
   - Tryb backendu sesji: `inmemory` (domyslnie) albo `redis`
 - `REDIS_HOST`, `REDIS_PORT`, `REDIS_PASSWORD`
   - Uzywane dla backendu sesji (`BBS_SESSION_STORE=redis`)
-  - Uzywane tez przez cache obrazkow PETSCII online (CommodoreNews/Wikipedia)
+  - Uzywane tez przez cache obrazkow PETSCII online (CommodoreNews/Wikipedia/WordPress)
 - `BBS_INSTANCE_ID`
   - Opcjonalny identyfikator instancji (do kluczy Redis)
 - `BBS_INLINE_PETSCII_IMAGES`
@@ -54,6 +56,9 @@ Glowna konfiguracja runtime jest przekazywana przez argumenty startowe i zmienne
   - Domyslnie: dziedziczone z `BBS_INLINE_PETSCII_IMAGES`
 - `BBS_WIKI_INLINE_PETSCII_IMAGES`
   - Nadpisanie tylko dla WikipediaPetscii
+  - Domyslnie: dziedziczone z `BBS_INLINE_PETSCII_IMAGES`
+- `BBS_WORDPRESS_INLINE_PETSCII_IMAGES`
+  - Nadpisanie tylko dla WordPress / 8-bitz
   - Domyslnie: dziedziczone z `BBS_INLINE_PETSCII_IMAGES`
 
 ### Docker Compose
@@ -103,6 +108,7 @@ services:
       - BBS_INLINE_PETSCII_IMAGES=true
       - BBS_COMMODORENEWS_INLINE_PETSCII_IMAGES=true
       - BBS_WIKI_INLINE_PETSCII_IMAGES=true
+      - BBS_WORDPRESS_INLINE_PETSCII_IMAGES=true
     volumes:
       - ./petscii-art-gallery:/app/petscii-art-gallery:ro
       - ./zmpp:/app/zmpp:ro
@@ -173,6 +179,17 @@ Polacz sie klientem PETSCII (np. SyncTERM):
 ```powershell
 docker compose down
 ```
+
+## Sterowanie Obrazkami Inline
+
+W menu glownym (`StdChoice`):
+- `I` przelacza obrazki PETSCII na biezaca sesje we wszystkich wspieranych tenantach (`Inline IMG: ON/OFF`).
+  - Dotyczy: `8-bitz blog`, `CommodoreNews`, `WikipediaPetscii`.
+
+W tenantcie `8-bitz blog`:
+- `N+` / `N-` zmienia strone listy wpisow.
+- Id wpisu (np. `1259`) otwiera artykul.
+- Podczas ogladania obrazka: `ENTER=Next`, `T=Text`, `.=Back`.
 
 ## Lokalny build .NET (opcjonalnie)
 

@@ -111,7 +111,8 @@ public sealed class WordpressService : IWordpressService
             item.TryGetProperty("content", out var contentObj) && contentObj.TryGetProperty("rendered", out var content) ? content.GetString() ?? string.Empty : string.Empty,
             item.TryGetProperty("excerpt", out var excerptObj) && excerptObj.TryGetProperty("rendered", out var excerpt) ? excerpt.GetString() ?? string.Empty : string.Empty,
             item.TryGetProperty("date", out var date) && DateTimeOffset.TryParse(date.GetString(), out var parsedDate) ? parsedDate : null,
-            item.TryGetProperty("author", out var author) ? author.GetInt64() : null);
+            item.TryGetProperty("author", out var author) ? author.GetInt64() : null,
+            item.TryGetProperty("featured_media", out var featuredMedia) ? featuredMedia.GetInt64() : null);
     }
 
     public async Task<string?> GetAuthorNameAsync(string domain, long authorId, string? userAgent = null, CancellationToken cancellationToken = default)
@@ -126,6 +127,43 @@ public sealed class WordpressService : IWordpressService
         var json = await _http.GetStringAsync(url, userAgent, cancellationToken).ConfigureAwait(false);
         using var doc = JsonDocument.Parse(json);
         return doc.RootElement.TryGetProperty("name", out var name) ? name.GetString() : null;
+    }
+
+    public async Task<string?> GetMediaUrlAsync(string domain, long mediaId, string? userAgent = null, CancellationToken cancellationToken = default)
+    {
+        if (mediaId <= 0)
+        {
+            return null;
+        }
+
+        var safeDomain = NormalizeDomain(domain);
+        var url = $"{safeDomain}/wp-json/wp/v2/media/{mediaId}?context=view";
+        var json = await _http.GetStringAsync(url, userAgent, cancellationToken).ConfigureAwait(false);
+        using var doc = JsonDocument.Parse(json);
+
+        if (doc.RootElement.TryGetProperty("source_url", out var sourceUrl))
+        {
+            var value = sourceUrl.GetString();
+            if (!string.IsNullOrWhiteSpace(value))
+            {
+                return value;
+            }
+        }
+
+        if (doc.RootElement.TryGetProperty("media_details", out var mediaDetails)
+            && mediaDetails.TryGetProperty("sizes", out var sizes)
+            && sizes.ValueKind == JsonValueKind.Object
+            && sizes.TryGetProperty("full", out var full)
+            && full.TryGetProperty("source_url", out var fullSourceUrl))
+        {
+            var value = fullSourceUrl.GetString();
+            if (!string.IsNullOrWhiteSpace(value))
+            {
+                return value;
+            }
+        }
+
+        return null;
     }
 
     private static string NormalizeDomain(string domain)

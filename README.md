@@ -25,6 +25,8 @@ The current setup runs in PETSCII-only mode and exposes:
 - Online image-to-PETSCII rendering in:
   - CommodoreNews
   - WikipediaPetscii
+  - WordPress / 8-bitz
+  - Global per-session toggle from main menu to disable inline PETSCII images (`I`)
 - Optional Redis cache for online PETSCII images (TTL: 7 days)
 - Dockerized runtime with `docker compose`
 
@@ -44,7 +46,7 @@ Main runtime configuration is passed by command-line arguments and environment v
   - Session backend mode: `inmemory` (default) or `redis`
 - `REDIS_HOST`, `REDIS_PORT`, `REDIS_PASSWORD`
   - Used for Redis session store (`BBS_SESSION_STORE=redis`)
-  - Also used by online PETSCII image cache in CommodoreNews/Wikipedia
+  - Also used by online PETSCII image cache in CommodoreNews/Wikipedia/WordPress
 - `BBS_INSTANCE_ID`
   - Optional instance id used in Redis keys
 - `BBS_INLINE_PETSCII_IMAGES`
@@ -55,6 +57,9 @@ Main runtime configuration is passed by command-line arguments and environment v
   - Default: inherited from `BBS_INLINE_PETSCII_IMAGES`
 - `BBS_WIKI_INLINE_PETSCII_IMAGES`
   - Wikipedia-specific override
+  - Default: inherited from `BBS_INLINE_PETSCII_IMAGES`
+- `BBS_WORDPRESS_INLINE_PETSCII_IMAGES`
+  - WordPress / 8-bitz-specific override
   - Default: inherited from `BBS_INLINE_PETSCII_IMAGES`
 
 ### Docker Compose
@@ -104,6 +109,7 @@ services:
       - BBS_INLINE_PETSCII_IMAGES=true
       - BBS_COMMODORENEWS_INLINE_PETSCII_IMAGES=true
       - BBS_WIKI_INLINE_PETSCII_IMAGES=true
+      - BBS_WORDPRESS_INLINE_PETSCII_IMAGES=true
     volumes:
       - ./petscii-art-gallery:/app/petscii-art-gallery:ro
       - ./zmpp:/app/zmpp:ro
@@ -174,6 +180,17 @@ Use a PETSCII-capable client (for example SyncTERM):
 ```powershell
 docker compose down
 ```
+
+## Inline Image Controls
+
+In main menu (`StdChoice`):
+- `I` toggles inline PETSCII images for current session in all supported tenants (`Inline IMG: ON/OFF`).
+  - Affects: `8-bitz blog`, `CommodoreNews`, `WikipediaPetscii`.
+
+Inside `8-bitz blog` tenant:
+- `N+` / `N-` switch post list page.
+- Post id (for example `1259`) opens article.
+- While viewing an inline image: `ENTER=Next`, `T=Text`, `.=Back`.
 
 ## Local .NET build (optional)
 

@@ -19,7 +19,8 @@ public sealed record WordpressPostDetails(
     string Content,
     string Excerpt,
     DateTimeOffset? PublishedAt,
-    long? AuthorId);
+    long? AuthorId,
+    long? FeaturedMediaId);
 
 public sealed record WikipediaSearchItem(
     string Language,
@@ -53,6 +54,8 @@ public interface IWordpressService
     Task<WordpressPostDetails> GetPostAsync(string domain, long postId, string? userAgent = null, CancellationToken cancellationToken = default);
 
     Task<string?> GetAuthorNameAsync(string domain, long authorId, string? userAgent = null, CancellationToken cancellationToken = default);
+
+    Task<string?> GetMediaUrlAsync(string domain, long mediaId, string? userAgent = null, CancellationToken cancellationToken = default);
 }
 
 public interface IWikipediaService

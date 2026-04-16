@@ -14,6 +14,12 @@ internal static class InlinePetsciiFeatureFlags
         return ReadBool("BBS_WIKI_INLINE_PETSCII_IMAGES", defaultValue: global);
     }
 
+    public static bool IsWordpressEnabled()
+    {
+        var global = ReadBool("BBS_INLINE_PETSCII_IMAGES", defaultValue: true);
+        return ReadBool("BBS_WORDPRESS_INLINE_PETSCII_IMAGES", defaultValue: global);
+    }
+
     private static bool ReadBool(string name, bool defaultValue)
     {
         var raw = Environment.GetEnvironmentVariable(name);

@@ -10,6 +10,7 @@ public sealed class WikipediaPetscii : PetsciiThread
 {
     private const int MinInlineImageWidth = 320;
     private const int MinInlineImageHeight = 200;
+    private const string SessionInlineImagesKey = "session:inline-petscii-images";
 
     private static readonly Regex ImageTagRegex = new(
         "<img(?<tag>[^>]*)>",
@@ -169,6 +170,10 @@ public sealed class WikipediaPetscii : PetsciiThread
         if (!_inlineImagesEnabled)
         {
             DebugLog("Inline PETSCII images disabled by config for Wikipedia.");
+        }
+        else if (!IsSessionInlineImagesEnabled())
+        {
+            DebugLog("Inline PETSCII images disabled by session toggle for Wikipedia.");
         }
         else
         {
@@ -734,5 +739,11 @@ public sealed class WikipediaPetscii : PetsciiThread
             PetsciiKeys.White,
             PetsciiKeys.Lowercase);
         await FlushAsync(cancellationToken).ConfigureAwait(false);
+    }
+
+    private bool IsSessionInlineImagesEnabled()
+    {
+        var value = GetCustomObject(SessionInlineImagesKey);
+        return value is not bool b || b;
     }
 }

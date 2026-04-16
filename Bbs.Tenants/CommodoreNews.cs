@@ -8,6 +8,7 @@ public sealed class CommodoreNews : PetsciiThread
     private const int MenuPageSize = 9;
     private const int ReaderRows = 19;
     private const int MaxInlineImages = 1;
+    private const string SessionInlineImagesKey = "session:inline-petscii-images";
 
     private readonly CommodoreNewsService _service = new();
     private readonly CommodoreNewsImageRenderer _imageRenderer = new();
@@ -138,6 +139,10 @@ public sealed class CommodoreNews : PetsciiThread
         if (!_inlineImagesEnabled)
         {
             DebugLog("Inline PETSCII images disabled by config for CommodoreNews.");
+        }
+        else if (!IsSessionInlineImagesEnabled())
+        {
+            DebugLog("Inline PETSCII images disabled by session toggle.");
         }
         else
         {
@@ -303,5 +308,11 @@ public sealed class CommodoreNews : PetsciiThread
             PetsciiKeys.White,
             PetsciiKeys.Lowercase);
         await FlushAsync(cancellationToken).ConfigureAwait(false);
+    }
+
+    private bool IsSessionInlineImagesEnabled()
+    {
+        var value = GetCustomObject(SessionInlineImagesKey);
+        return value is not bool b || b;
     }
 }
