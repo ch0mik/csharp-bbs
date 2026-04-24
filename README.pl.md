@@ -18,6 +18,7 @@ Projekt wzorowany na https://github.com/sblendorio/petscii-bbs zostal sportowany
   - ZorkMachine
   - CommodoreNews (newsy z `https://www.commodore.net/news` + fallback przez sitemap) - to unikalna, calkowicie nowa funkcjonalnosc w tym projekcie
   - 8-bitz blog
+  - QuizPetscii (quiz w stylu Milionerzy: sesja, wznowienie, JSON, A/B/C/D, paginacja N/P)
 - Galeria PETSCII oparta o pliki z dysku
 - Konwersja PNG/JPEG do PETSCII w locie w galerii
 - Opcjonalny backend sesji w Redis
@@ -41,6 +42,10 @@ Glowna konfiguracja runtime jest przekazywana przez argumenty startowe i zmienne
 - `ZMACHINE_STORY_ROOT`
   - Sciezka do katalogu plikow Z-machine.
   - Fallback: `AppContext.BaseDirectory/zmpp`
+- `QUIZ_PACKS_ROOT`
+  - Sciezka do zewnetrznego katalogu paczek quizu (`*.json`).
+  - Rekomendowany mount docker: `./quiz-packs:/app/quiz-packs:ro`
+  - Fallback: automatyczne wykrycie lokalnego katalogu `quiz-packs`.
 - `BBS_SESSION_STORE`
   - Tryb backendu sesji: `inmemory` (domyslnie) albo `redis`
 - `REDIS_HOST`, `REDIS_PORT`, `REDIS_PASSWORD`
@@ -78,10 +83,12 @@ services:
     environment:
       - PETSCII_GALLERY_ROOT=/app/petscii-art-gallery
       - ZMACHINE_STORY_ROOT=/app/zmpp
+      - QUIZ_PACKS_ROOT=/app/quiz-packs
       - BBS_SESSION_STORE=inmemory
     volumes:
       - ./petscii-art-gallery:/app/petscii-art-gallery:ro
       - ./zmpp:/app/zmpp:ro
+      - ./quiz-packs:/app/quiz-packs:ro
     restart: unless-stopped
 ```
 
@@ -100,6 +107,7 @@ services:
     environment:
       - PETSCII_GALLERY_ROOT=/app/petscii-art-gallery
       - ZMACHINE_STORY_ROOT=/app/zmpp
+      - QUIZ_PACKS_ROOT=/app/quiz-packs
       - BBS_SESSION_STORE=redis
       - REDIS_HOST=redis
       - REDIS_PORT=6379
@@ -112,6 +120,7 @@ services:
     volumes:
       - ./petscii-art-gallery:/app/petscii-art-gallery:ro
       - ./zmpp:/app/zmpp:ro
+      - ./quiz-packs:/app/quiz-packs:ro
     networks:
       - bbs_net
       - redis_net
@@ -185,11 +194,58 @@ docker compose down
 W menu glownym (`StdChoice`):
 - `I` przelacza obrazki PETSCII na biezaca sesje we wszystkich wspieranych tenantach (`Inline IMG: ON/OFF`).
   - Dotyczy: `8-bitz blog`, `CommodoreNews`, `WikipediaPetscii`.
+- `7` uruchamia `QuizPetscii`.
 
 W tenantcie `8-bitz blog`:
 - `N+` / `N-` zmienia strone listy wpisow.
 - Id wpisu (np. `1259`) otwiera artykul.
 - Podczas ogladania obrazka: `ENTER=Next`, `T=Text`, `.=Back`.
+
+## Format JSON Quizu
+
+Paczki quizu to zwykle pliki JSON w katalogu `QUIZ_PACKS_ROOT`.
+
+```json
+{
+  "header": {
+    "id": "quiz_pl_8bit_v1",
+    "language": "pl",
+    "title": "Quiz 8-bit PL v1",
+    "description": "Krotki quiz o komputerach 8-bit i klasycznych grach.",
+    "version": "1.0.0",
+    "author": "CsharpBbs",
+    "createdAt": "2026-04-23",
+    "tags": ["8-bit", "retro", "gry"]
+  },
+  "questions": [
+    {
+      "id": "PL001",
+      "q": "Kto wyprodukowal C64?",
+      "a": "Commodore",
+      "b": "Atari",
+      "c": "Sinclair",
+      "d": "Apple",
+      "correct": "A"
+    }
+  ]
+}
+```
+
+Walidacja:
+- `header` jest wymagany.
+- `header.description` jest wymagany.
+- minimum `25` pytan.
+- kazde pytanie musi miec `a/b/c/d`.
+- `correct` musi byc jednym z `A/B/C/D`.
+
+## Podsumowanie Quizu
+
+- Przeplyw startu: jezyk -> paczka quizu -> naglowek quizu -> gra.
+- Dlugosc rundy: `25` losowych pytan z wybranej paczki.
+- Sterowanie w pytaniu: `A/B/C/D` odpowiedz, `N/P` nawigacja stron dla dlugich pytan, `.` wyjscie z potwierdzeniem.
+- Zachowanie sesji: niedokonczona gra moze byc wznowiona w tej samej sesji BBS.
+- Punktacja: wynik jest pokazywany tylko na koncu (`score` + `%`), bez podpowiedzi per pytanie w trakcie gry.
+- Ekran koncowy zawiera buzie PETSCII wg progu wyniku: `0-30`, `31-50`, `51-70`, `71-90`, `91-100`.
 
 ## Lokalny build .NET (opcjonalnie)
 

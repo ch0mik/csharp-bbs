@@ -1,0 +1,920 @@
+{
+    "header":  {
+                   "id":  "quiz_en_8bit_v1",
+                   "language":  "en",
+                   "title":  "8-bit Quiz EN v1",
+                   "description":  "Short quiz about 8-bit computers and classic games. 100 questions with A/B/C/D answers.",
+                   "version":  "1.0.0",
+                   "author":  "CsharpBbs",
+                   "createdAt":  "2026-04-24",
+                   "tags":  [
+                                "8-bit",
+                                "retro",
+                                "games",
+                                "commodore",
+                                "atari"
+                            ]
+               },
+    "questions":  [
+                      {
+                          "id":  "EN001",
+                          "q":  "Who made C64?",
+                          "a":  "Tangerine",
+                          "b":  "Sinclair",
+                          "c":  "Atari",
+                          "d":  "Commodore",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN002",
+                          "q":  "Who made C128?",
+                          "a":  "Enterprise",
+                          "b":  "Dragon Data",
+                          "c":  "Commodore",
+                          "d":  "Atari",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "EN003",
+                          "q":  "Who made VIC-20?",
+                          "a":  "Commodore",
+                          "b":  "Atari",
+                          "c":  "Tangerine",
+                          "d":  "Dragon Data",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN004",
+                          "q":  "Who made C16?",
+                          "a":  "Commodore",
+                          "b":  "Tangerine",
+                          "c":  "Acorn",
+                          "d":  "Dragon Data",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN005",
+                          "q":  "Who made Plus/4?",
+                          "a":  "MGT",
+                          "b":  "Commodore",
+                          "c":  "Tangerine",
+                          "d":  "Apple",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "EN006",
+                          "q":  "Who made Atari 800?",
+                          "a":  "Tangerine",
+                          "b":  "Amstrad",
+                          "c":  "Atari",
+                          "d":  "Apple",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "EN007",
+                          "q":  "Who made Atari XL?",
+                          "a":  "Nintendo",
+                          "b":  "Atari",
+                          "c":  "Dragon Data",
+                          "d":  "Acorn",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "EN008",
+                          "q":  "Who made Atari XE?",
+                          "a":  "Amstrad",
+                          "b":  "Atari",
+                          "c":  "Enterprise",
+                          "d":  "Commodore",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "EN009",
+                          "q":  "Who made ZX Spectrum?",
+                          "a":  "Tangerine",
+                          "b":  "Apple",
+                          "c":  "Acorn",
+                          "d":  "Sinclair",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN010",
+                          "q":  "Who made ZX81?",
+                          "a":  "Atari",
+                          "b":  "Tangerine",
+                          "c":  "Amstrad",
+                          "d":  "Sinclair",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN011",
+                          "q":  "Who made Amstrad CPC?",
+                          "a":  "Amstrad",
+                          "b":  "Nintendo",
+                          "c":  "Commodore",
+                          "d":  "Atari",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN012",
+                          "q":  "Who made ColecoVision?",
+                          "a":  "Enterprise",
+                          "b":  "Acorn",
+                          "c":  "Tangerine",
+                          "d":  "Coleco",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN013",
+                          "q":  "Who made NES?",
+                          "a":  "Nintendo",
+                          "b":  "MGT",
+                          "c":  "Acorn",
+                          "d":  "Coleco",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN014",
+                          "q":  "Who made Game Boy?",
+                          "a":  "MGT",
+                          "b":  "Nintendo",
+                          "c":  "Atari",
+                          "d":  "Commodore",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "EN015",
+                          "q":  "Who made Apple II?",
+                          "a":  "Apple",
+                          "b":  "Coleco",
+                          "c":  "Atari",
+                          "d":  "Sinclair",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN016",
+                          "q":  "Who made BBC Micro?",
+                          "a":  "Dragon Data",
+                          "b":  "Coleco",
+                          "c":  "Acorn",
+                          "d":  "Apple",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "EN017",
+                          "q":  "Who made Oric-1?",
+                          "a":  "MGT",
+                          "b":  "Apple",
+                          "c":  "Atari",
+                          "d":  "Tangerine",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN018",
+                          "q":  "Who made Enterprise 128?",
+                          "a":  "Acorn",
+                          "b":  "Dragon Data",
+                          "c":  "Apple",
+                          "d":  "Enterprise",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN019",
+                          "q":  "Who made SAM Coupe?",
+                          "a":  "Acorn",
+                          "b":  "Coleco",
+                          "c":  "Dragon Data",
+                          "d":  "MGT",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN020",
+                          "q":  "Who made Dragon 32?",
+                          "a":  "Dragon Data",
+                          "b":  "Nintendo",
+                          "c":  "MGT",
+                          "d":  "Amstrad",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN021",
+                          "q":  "CPU in C64?",
+                          "a":  "6510",
+                          "b":  "7501",
+                          "c":  "Z80",
+                          "d":  "2A03",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN022",
+                          "q":  "CPU in C128 (native mode)?",
+                          "a":  "2A03",
+                          "b":  "8502",
+                          "c":  "6809",
+                          "d":  "Z80",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "EN023",
+                          "q":  "CPU in VIC-20?",
+                          "a":  "2A03",
+                          "b":  "6510",
+                          "c":  "LR35902",
+                          "d":  "6502",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN024",
+                          "q":  "CPU in C16?",
+                          "a":  "7501",
+                          "b":  "8502",
+                          "c":  "6502",
+                          "d":  "Z80",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN025",
+                          "q":  "CPU in Plus/4?",
+                          "a":  "7501",
+                          "b":  "2A03",
+                          "c":  "Z80",
+                          "d":  "6809",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN026",
+                          "q":  "CPU in Atari 800?",
+                          "a":  "6510",
+                          "b":  "6809",
+                          "c":  "8502",
+                          "d":  "6502",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN027",
+                          "q":  "CPU in Atari XL?",
+                          "a":  "LR35902",
+                          "b":  "6502",
+                          "c":  "7501",
+                          "d":  "2A03",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "EN028",
+                          "q":  "CPU in Atari XE?",
+                          "a":  "6510",
+                          "b":  "2A03",
+                          "c":  "7501",
+                          "d":  "6502",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN029",
+                          "q":  "CPU in ZX Spectrum?",
+                          "a":  "Z80",
+                          "b":  "6809",
+                          "c":  "7501",
+                          "d":  "8502",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN030",
+                          "q":  "CPU in ZX81?",
+                          "a":  "Z80",
+                          "b":  "6502",
+                          "c":  "2A03",
+                          "d":  "8502",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN031",
+                          "q":  "CPU in Amstrad CPC?",
+                          "a":  "2A03",
+                          "b":  "Z80",
+                          "c":  "6502",
+                          "d":  "7501",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "EN032",
+                          "q":  "CPU in ColecoVision?",
+                          "a":  "6809",
+                          "b":  "6510",
+                          "c":  "7501",
+                          "d":  "Z80",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN033",
+                          "q":  "CPU in NES (NTSC)?",
+                          "a":  "Z80",
+                          "b":  "7501",
+                          "c":  "6809",
+                          "d":  "2A03",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN034",
+                          "q":  "CPU in Game Boy?",
+                          "a":  "6502",
+                          "b":  "LR35902",
+                          "c":  "2A03",
+                          "d":  "6809",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "EN035",
+                          "q":  "CPU in Apple II?",
+                          "a":  "2A03",
+                          "b":  "6809",
+                          "c":  "LR35902",
+                          "d":  "6502",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN036",
+                          "q":  "CPU in BBC Micro?",
+                          "a":  "6502",
+                          "b":  "7501",
+                          "c":  "6510",
+                          "d":  "8502",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN037",
+                          "q":  "CPU in Oric-1?",
+                          "a":  "6510",
+                          "b":  "LR35902",
+                          "c":  "2A03",
+                          "d":  "6502",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN038",
+                          "q":  "CPU in Enterprise 128?",
+                          "a":  "LR35902",
+                          "b":  "2A03",
+                          "c":  "6502",
+                          "d":  "Z80",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN039",
+                          "q":  "CPU in SAM Coupe?",
+                          "a":  "6809",
+                          "b":  "2A03",
+                          "c":  "LR35902",
+                          "d":  "Z80",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN040",
+                          "q":  "CPU in Dragon 32?",
+                          "a":  "6502",
+                          "b":  "6809",
+                          "c":  "Z80",
+                          "d":  "2A03",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "EN041",
+                          "q":  "Release year of C64?",
+                          "a":  "1982",
+                          "b":  "1989",
+                          "c":  "1984",
+                          "d":  "1977",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN042",
+                          "q":  "Release year of C128?",
+                          "a":  "1981",
+                          "b":  "1989",
+                          "c":  "1979",
+                          "d":  "1985",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN043",
+                          "q":  "Release year of VIC-20?",
+                          "a":  "1983",
+                          "b":  "1979",
+                          "c":  "1977",
+                          "d":  "1980",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN044",
+                          "q":  "Release year of C16?",
+                          "a":  "1984",
+                          "b":  "1983",
+                          "c":  "1981",
+                          "d":  "1979",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN045",
+                          "q":  "Release year of Plus/4?",
+                          "a":  "1984",
+                          "b":  "1989",
+                          "c":  "1980",
+                          "d":  "1982",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN046",
+                          "q":  "Release year of Atari 800?",
+                          "a":  "1985",
+                          "b":  "1983",
+                          "c":  "1979",
+                          "d":  "1977",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "EN047",
+                          "q":  "Release year of Atari XL?",
+                          "a":  "1983",
+                          "b":  "1980",
+                          "c":  "1977",
+                          "d":  "1979",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN048",
+                          "q":  "Release year of Atari XE?",
+                          "a":  "1989",
+                          "b":  "1983",
+                          "c":  "1979",
+                          "d":  "1985",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN049",
+                          "q":  "Release year of ZX Spectrum?",
+                          "a":  "1980",
+                          "b":  "1979",
+                          "c":  "1982",
+                          "d":  "1985",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "EN050",
+                          "q":  "Release year of ZX81?",
+                          "a":  "1985",
+                          "b":  "1980",
+                          "c":  "1983",
+                          "d":  "1981",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN051",
+                          "q":  "Release year of Amstrad CPC?",
+                          "a":  "1979",
+                          "b":  "1983",
+                          "c":  "1984",
+                          "d":  "1982",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "EN052",
+                          "q":  "Release year of ColecoVision?",
+                          "a":  "1982",
+                          "b":  "1989",
+                          "c":  "1977",
+                          "d":  "1979",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN053",
+                          "q":  "Release year of NES (Japan)?",
+                          "a":  "1983",
+                          "b":  "1989",
+                          "c":  "1979",
+                          "d":  "1980",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN054",
+                          "q":  "Release year of Game Boy?",
+                          "a":  "1983",
+                          "b":  "1985",
+                          "c":  "1989",
+                          "d":  "1977",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "EN055",
+                          "q":  "Release year of Apple II?",
+                          "a":  "1985",
+                          "b":  "1989",
+                          "c":  "1982",
+                          "d":  "1977",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN056",
+                          "q":  "Release year of BBC Micro?",
+                          "a":  "1983",
+                          "b":  "1979",
+                          "c":  "1981",
+                          "d":  "1984",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "EN057",
+                          "q":  "Release year of Oric-1?",
+                          "a":  "1982",
+                          "b":  "1983",
+                          "c":  "1984",
+                          "d":  "1979",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "EN058",
+                          "q":  "Release year of Enterprise 128?",
+                          "a":  "1979",
+                          "b":  "1983",
+                          "c":  "1981",
+                          "d":  "1985",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN059",
+                          "q":  "Release year of SAM Coupe?",
+                          "a":  "1984",
+                          "b":  "1981",
+                          "c":  "1983",
+                          "d":  "1989",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN060",
+                          "q":  "Release year of Dragon 32?",
+                          "a":  "1980",
+                          "b":  "1985",
+                          "c":  "1982",
+                          "d":  "1979",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "EN061",
+                          "q":  "Main platform for Manic Miner?",
+                          "a":  "Game Boy",
+                          "b":  "ZX Spectrum",
+                          "c":  "Apple II",
+                          "d":  "BBC Micro",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "EN062",
+                          "q":  "Main platform for Jet Set Willy?",
+                          "a":  "ZX Spectrum",
+                          "b":  "C64",
+                          "c":  "Apple II",
+                          "d":  "NES",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN063",
+                          "q":  "Main platform for Elite?",
+                          "a":  "Game Boy",
+                          "b":  "ColecoVision",
+                          "c":  "ZX Spectrum",
+                          "d":  "BBC Micro",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN064",
+                          "q":  "Main platform for The Last Ninja?",
+                          "a":  "ColecoVision",
+                          "b":  "NES",
+                          "c":  "Game Boy",
+                          "d":  "C64",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN065",
+                          "q":  "Main platform for Impossible Mission?",
+                          "a":  "ZX Spectrum",
+                          "b":  "Atari 2600",
+                          "c":  "NES",
+                          "d":  "C64",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN066",
+                          "q":  "Main platform for Summer Games?",
+                          "a":  "Atari 2600",
+                          "b":  "C64",
+                          "c":  "BBC Micro",
+                          "d":  "Apple II",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "EN067",
+                          "q":  "Main platform for Boulder Dash?",
+                          "a":  "Game Boy",
+                          "b":  "NES",
+                          "c":  "ZX Spectrum",
+                          "d":  "C64",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN068",
+                          "q":  "Main platform for Pitfall!?",
+                          "a":  "Atari 2600",
+                          "b":  "NES",
+                          "c":  "Apple II",
+                          "d":  "ZX Spectrum",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN069",
+                          "q":  "Main platform for River Raid?",
+                          "a":  "ColecoVision",
+                          "b":  "NES",
+                          "c":  "Apple II",
+                          "d":  "Atari 2600",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN070",
+                          "q":  "Main platform for Ghostbusters?",
+                          "a":  "Atari 2600",
+                          "b":  "NES",
+                          "c":  "BBC Micro",
+                          "d":  "C64",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN071",
+                          "q":  "Main platform for Bruce Lee?",
+                          "a":  "Atari 2600",
+                          "b":  "C64",
+                          "c":  "Game Boy",
+                          "d":  "NES",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "EN072",
+                          "q":  "Main platform for Zaxxon?",
+                          "a":  "BBC Micro",
+                          "b":  "ZX Spectrum",
+                          "c":  "ColecoVision",
+                          "d":  "NES",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "EN073",
+                          "q":  "Main platform for Pac-Man?",
+                          "a":  "NES",
+                          "b":  "Game Boy",
+                          "c":  "ColecoVision",
+                          "d":  "ZX Spectrum",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN074",
+                          "q":  "Main platform for Super Mario Bros?",
+                          "a":  "BBC Micro",
+                          "b":  "Apple II",
+                          "c":  "NES",
+                          "d":  "Game Boy",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "EN075",
+                          "q":  "Main platform for Tetris?",
+                          "a":  "C64",
+                          "b":  "Apple II",
+                          "c":  "Game Boy",
+                          "d":  "ColecoVision",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "EN076",
+                          "q":  "Main platform for Prince of Persia?",
+                          "a":  "Game Boy",
+                          "b":  "Atari 2600",
+                          "c":  "Apple II",
+                          "d":  "NES",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "EN077",
+                          "q":  "Main platform for Lode Runner?",
+                          "a":  "ZX Spectrum",
+                          "b":  "Apple II",
+                          "c":  "BBC Micro",
+                          "d":  "Atari 2600",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "EN078",
+                          "q":  "Main platform for Dizzy?",
+                          "a":  "Apple II",
+                          "b":  "NES",
+                          "c":  "BBC Micro",
+                          "d":  "ZX Spectrum",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN079",
+                          "q":  "Main platform for Skool Daze?",
+                          "a":  "ColecoVision",
+                          "b":  "Game Boy",
+                          "c":  "Apple II",
+                          "d":  "ZX Spectrum",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN080",
+                          "q":  "Main platform for Head Over Heels?",
+                          "a":  "ZX Spectrum",
+                          "b":  "C64",
+                          "c":  "ColecoVision",
+                          "d":  "NES",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN081",
+                          "q":  "Publisher of Manic Miner?",
+                          "a":  "Nintendo",
+                          "b":  "Bug-Byte",
+                          "c":  "Software Projects",
+                          "d":  "Epyx",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "EN082",
+                          "q":  "Publisher of Jet Set Willy?",
+                          "a":  "Acornsoft",
+                          "b":  "Software Projects",
+                          "c":  "Broderbund",
+                          "d":  "Codemasters",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "EN083",
+                          "q":  "Publisher of Elite?",
+                          "a":  "Microsphere",
+                          "b":  "Datasoft",
+                          "c":  "Epyx",
+                          "d":  "Acornsoft",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN084",
+                          "q":  "Publisher of The Last Ninja?",
+                          "a":  "System 3",
+                          "b":  "Software Projects",
+                          "c":  "Broderbund",
+                          "d":  "Bug-Byte",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN085",
+                          "q":  "Publisher of Impossible Mission?",
+                          "a":  "Sega",
+                          "b":  "Epyx",
+                          "c":  "Microsphere",
+                          "d":  "First Star",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "EN086",
+                          "q":  "Publisher of Summer Games?",
+                          "a":  "Epyx",
+                          "b":  "Nintendo",
+                          "c":  "Sega",
+                          "d":  "System 3",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN087",
+                          "q":  "Publisher of Boulder Dash?",
+                          "a":  "Ocean",
+                          "b":  "Datasoft",
+                          "c":  "First Star",
+                          "d":  "Acornsoft",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "EN088",
+                          "q":  "Publisher of Pitfall!?",
+                          "a":  "Bug-Byte",
+                          "b":  "Nintendo",
+                          "c":  "Codemasters",
+                          "d":  "Activision",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN089",
+                          "q":  "Publisher of River Raid?",
+                          "a":  "Microsphere",
+                          "b":  "Codemasters",
+                          "c":  "Activision",
+                          "d":  "Ocean",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "EN090",
+                          "q":  "Publisher of Ghostbusters?",
+                          "a":  "Activision",
+                          "b":  "Datasoft",
+                          "c":  "Acornsoft",
+                          "d":  "Ocean",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN091",
+                          "q":  "Publisher of Bruce Lee?",
+                          "a":  "Datasoft",
+                          "b":  "Software Projects",
+                          "c":  "Namco",
+                          "d":  "Acornsoft",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN092",
+                          "q":  "Publisher of Zaxxon?",
+                          "a":  "Ocean",
+                          "b":  "Acornsoft",
+                          "c":  "Epyx",
+                          "d":  "Sega",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "EN093",
+                          "q":  "Publisher of Pac-Man?",
+                          "a":  "Namco",
+                          "b":  "Epyx",
+                          "c":  "Bug-Byte",
+                          "d":  "System 3",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN094",
+                          "q":  "Publisher of Super Mario Bros?",
+                          "a":  "Bug-Byte",
+                          "b":  "Nintendo",
+                          "c":  "System 3",
+                          "d":  "Codemasters",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "EN095",
+                          "q":  "Publisher of Tetris?",
+                          "a":  "First Star",
+                          "b":  "Sega",
+                          "c":  "Nintendo",
+                          "d":  "Acornsoft",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "EN096",
+                          "q":  "Publisher of Prince of Persia?",
+                          "a":  "Ocean",
+                          "b":  "Bug-Byte",
+                          "c":  "Broderbund",
+                          "d":  "Codemasters",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "EN097",
+                          "q":  "Publisher of Lode Runner?",
+                          "a":  "Broderbund",
+                          "b":  "Bug-Byte",
+                          "c":  "Namco",
+                          "d":  "Software Projects",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN098",
+                          "q":  "Publisher of Dizzy?",
+                          "a":  "Codemasters",
+                          "b":  "First Star",
+                          "c":  "Nintendo",
+                          "d":  "Ocean",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "EN099",
+                          "q":  "Publisher of Skool Daze?",
+                          "a":  "Activision",
+                          "b":  "Microsphere",
+                          "c":  "First Star",
+                          "d":  "System 3",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "EN100",
+                          "q":  "Publisher of Head Over Heels?",
+                          "a":  "Broderbund",
+                          "b":  "System 3",
+                          "c":  "Namco",
+                          "d":  "Ocean",
+                          "correct":  "D"
+                      }
+                  ]
+}

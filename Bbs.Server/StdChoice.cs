@@ -6,6 +6,7 @@ namespace Bbs.Server;
 public sealed class StdChoice : PetsciiThread
 {
     private const string SessionInlineImagesKey = "session:inline-petscii-images";
+    private static readonly Lazy<byte[]?> HeaderSeq = new(LoadHeaderSeq);
 
     public override async Task DoLoopAsync(CancellationToken cancellationToken = default)
     {
@@ -14,12 +15,13 @@ public sealed class StdChoice : PetsciiThread
             Cls();
             PrintEightBitzHeader();
             Println();
-            Println("1) PetsciiArtGallery");
-            Println("2) RssPetscii");
-            Println("3) WikipediaPetscii");
+            Println("1) Art Gallery");
+            Println("2) RSS");
+            Println("3) Wikipedia");
             Println("4) CSDB");
             Println("5) ZorkMachine");
             Println("6) CommodoreNews");
+            Println("7) Quiz");
             Println("B) 8-Bitz blog (polish)");
             Println($"I) Inline IMG: {(IsSessionInlineImagesEnabled() ? "ON" : "OFF")}");
             Println("Q) Quit");
@@ -71,6 +73,12 @@ public sealed class StdChoice : PetsciiThread
             if (choice is "6" or "COMMODORE" or "COMMODORENEWS" or "NEWS")
             {
                 await LaunchAsync(new Tenant.CommodoreNews(), cancellationToken).ConfigureAwait(false);
+                continue;
+            }
+
+            if (choice is "7" or "QUIZ" or "QUIZPETSCII" or "MILLIONAIRE" or "MILIONERZY")
+            {
+                await LaunchAsync(new Tenant.QuizPetscii(), cancellationToken).ConfigureAwait(false);
                 continue;
             }
             if (choice is "B" or "8BITZ" or "8-BITZ" or "EIGHTBITZ")
@@ -147,10 +155,21 @@ public sealed class StdChoice : PetsciiThread
 
     private void PrintEightBitzHeader()
     {
+        var seq = HeaderSeq.Value;
+        if (seq is { Length: > 0 })
+        {
+            Write(seq);
+            Write(PetsciiKeys.White);
+            return;
+        }
+
         PrintBlockLine(PetsciiKeys.Blue);
-        PrintColorLine(PetsciiKeys.Cyan, "      * * *   8-BITZ   * * *");
-        PrintColorLine(PetsciiKeys.LightGreen, "       RETRO PETSCII BBS");
-        PrintColorLine(PetsciiKeys.Yellow, "      RSS WIKI CSDB ZORK ART");
+        PrintColorLine(PetsciiKeys.LightBlue, "   +-------------------------------+");
+        PrintColorLine(PetsciiKeys.Cyan, "   |         * 8-BITZ *           |");
+        PrintColorLine(PetsciiKeys.LightGreen, "   |       RETRO PETSCII BBS      |");
+        PrintColorLine(PetsciiKeys.Yellow, "   |   RSS WIKI CSDB ZORK ART     |");
+        PrintColorLine(PetsciiKeys.Purple, "   |   NEWS GALLERY BLOG QUIZ     |");
+        PrintColorLine(PetsciiKeys.LightBlue, "   +-------------------------------+");
         PrintBlockLine(PetsciiKeys.Blue);
         Write(PetsciiKeys.White);
     }
@@ -197,6 +216,38 @@ public sealed class StdChoice : PetsciiThread
     private void ToggleSessionInlineImages()
     {
         SetCustomObject(SessionInlineImagesKey, !IsSessionInlineImagesEnabled());
+    }
+
+    private static byte[]? LoadHeaderSeq()
+    {
+        var candidates = new[]
+        {
+            Path.Combine(AppContext.BaseDirectory, "Assets", "stdchoice_header.seq"),
+            Path.Combine(AppContext.BaseDirectory, "stdchoice_header.seq"),
+            Path.Combine(Directory.GetCurrentDirectory(), "Bbs.Server", "Assets", "stdchoice_header.seq"),
+            Path.Combine(Directory.GetCurrentDirectory(), "Assets", "stdchoice_header.seq")
+        };
+
+        foreach (var path in candidates)
+        {
+            try
+            {
+                if (File.Exists(path))
+                {
+                    var bytes = File.ReadAllBytes(path);
+                    if (bytes.Length > 0)
+                    {
+                        return bytes;
+                    }
+                }
+            }
+            catch
+            {
+                // ignore and try next candidate
+            }
+        }
+
+        return null;
     }
 }
 

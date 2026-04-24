@@ -1,0 +1,920 @@
+{
+    "header":  {
+                   "id":  "quiz_cz_cult_movies_v1",
+                   "language":  "cz",
+                   "title":  "Kviz: kultovni filmy 70-99 + Forbidden Planet",
+                   "description":  "100 CZ otazek o kultovnich filmech 1970-1999 plus Forbidden Planet.",
+                   "version":  "1.1.0",
+                   "author":  "CsharpBbs",
+                   "createdAt":  "2026-04-24",
+                   "tags":  [
+                                "film",
+                                "kino",
+                                "scifi",
+                                "akce",
+                                "retro"
+                            ]
+               },
+    "questions":  [
+                      {
+                          "id":  "MVCZ001",
+                          "q":  "Kdo reziroval Jaws?",
+                          "a":  "Ridley Scott",
+                          "b":  "James Cameron",
+                          "c":  "Steven Spielberg",
+                          "d":  "John McTiernan",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ002",
+                          "q":  "Rok premiery Jaws?",
+                          "a":  "1990",
+                          "b":  "1999",
+                          "c":  "1968",
+                          "d":  "1975",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVCZ003",
+                          "q":  "Hlavni herec ve Jaws?",
+                          "a":  "Sean Astin",
+                          "b":  "Keanu Reeves",
+                          "c":  "Mark Hamill",
+                          "d":  "Roy Scheider",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVCZ004",
+                          "q":  "Film s motivem: zralok z Amity?",
+                          "a":  "The Matrix",
+                          "b":  "Alien",
+                          "c":  "The Fifth Element",
+                          "d":  "Jaws",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVCZ005",
+                          "q":  "Rok svetove premiery Jaws?",
+                          "a":  "1975",
+                          "b":  "1979",
+                          "c":  "1982",
+                          "d":  "1976",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ006",
+                          "q":  "Kdo reziroval WarGames?",
+                          "a":  "John Badham",
+                          "b":  "Richard Donner",
+                          "c":  "George Lucas",
+                          "d":  "Irvin Kershner",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ007",
+                          "q":  "Rok premiery WarGames?",
+                          "a":  "1999",
+                          "b":  "1984",
+                          "c":  "1968",
+                          "d":  "1983",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVCZ008",
+                          "q":  "Hlavni herec ve WarGames?",
+                          "a":  "Bruce Willis",
+                          "b":  "Mark Hamill",
+                          "c":  "Matthew Broderick",
+                          "d":  "Michael J. Fox",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ009",
+                          "q":  "Film s motivem: pocitac WOPR?",
+                          "a":  "Alien",
+                          "b":  "WarGames",
+                          "c":  "Predator",
+                          "d":  "The Empire Strikes Back",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVCZ010",
+                          "q":  "Rok svetove premiery WarGames?",
+                          "a":  "1984",
+                          "b":  "1987",
+                          "c":  "1990",
+                          "d":  "1983",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVCZ011",
+                          "q":  "Kdo reziroval The Goonies?",
+                          "a":  "Paul Verhoeven",
+                          "b":  "Wachowski Sisters",
+                          "c":  "Ridley Scott",
+                          "d":  "Richard Donner",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVCZ012",
+                          "q":  "Rok premiery The Goonies?",
+                          "a":  "1985",
+                          "b":  "1982",
+                          "c":  "1993",
+                          "d":  "1975",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ013",
+                          "q":  "Hlavni herec ve The Goonies?",
+                          "a":  "Arnold Schwarzenegger",
+                          "b":  "Sean Astin",
+                          "c":  "Sam Neill",
+                          "d":  "Keanu Reeves",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVCZ014",
+                          "q":  "Film s motivem: mapa One-Eyed Willy?",
+                          "a":  "Alien",
+                          "b":  "The Goonies",
+                          "c":  "Star Wars",
+                          "d":  "RoboCop",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVCZ015",
+                          "q":  "Rok svetove premiery The Goonies?",
+                          "a":  "1979",
+                          "b":  "1985",
+                          "c":  "1975",
+                          "d":  "1984",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVCZ016",
+                          "q":  "Kdo reziroval 2001: A Space Odyssey?",
+                          "a":  "James Cameron",
+                          "b":  "Stanley Kubrick",
+                          "c":  "Ivan Reitman",
+                          "d":  "Fred M. Wilcox",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVCZ017",
+                          "q":  "Rok premiery 2001: A Space Odyssey?",
+                          "a":  "1981",
+                          "b":  "1999",
+                          "c":  "1982",
+                          "d":  "1968",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVCZ018",
+                          "q":  "Hlavni herec ve 2001: A Space Odyssey?",
+                          "a":  "Keir Dullea",
+                          "b":  "Michael J. Fox",
+                          "c":  "Peter Weller",
+                          "d":  "Sylvester Stallone",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ019",
+                          "q":  "Film s motivem: HAL 9000?",
+                          "a":  "2001: A Space Odyssey",
+                          "b":  "Raiders of the Lost Ark",
+                          "c":  "The Matrix",
+                          "d":  "Forbidden Planet",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ020",
+                          "q":  "Rok svetove premiery 2001: A Space Odyssey?",
+                          "a":  "1956",
+                          "b":  "1976",
+                          "c":  "1968",
+                          "d":  "1977",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ021",
+                          "q":  "Kdo reziroval Star Wars?",
+                          "a":  "John Badham",
+                          "b":  "George Lucas",
+                          "c":  "Irvin Kershner",
+                          "d":  "Richard Donner",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVCZ022",
+                          "q":  "Rok premiery Star Wars?",
+                          "a":  "1983",
+                          "b":  "1956",
+                          "c":  "1984",
+                          "d":  "1977",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVCZ023",
+                          "q":  "Hlavni herec ve Star Wars?",
+                          "a":  "Sean Astin",
+                          "b":  "Mark Hamill",
+                          "c":  "Keanu Reeves",
+                          "d":  "Sigourney Weaver",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVCZ024",
+                          "q":  "Film s motivem: Sila?",
+                          "a":  "The Terminator",
+                          "b":  "Star Wars",
+                          "c":  "Total Recall",
+                          "d":  "Back to the Future",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVCZ025",
+                          "q":  "Rok svetove premiery Star Wars?",
+                          "a":  "1977",
+                          "b":  "1983",
+                          "c":  "1968",
+                          "d":  "1985",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ026",
+                          "q":  "Kdo reziroval The Terminator?",
+                          "a":  "Paul Verhoeven",
+                          "b":  "James Cameron",
+                          "c":  "Ivan Reitman",
+                          "d":  "Stanley Kubrick",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVCZ027",
+                          "q":  "Rok premiery The Terminator?",
+                          "a":  "1984",
+                          "b":  "1982",
+                          "c":  "1985",
+                          "d":  "1968",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ028",
+                          "q":  "Hlavni herec ve The Terminator?",
+                          "a":  "Arnold Schwarzenegger",
+                          "b":  "Sylvester Stallone",
+                          "c":  "Bill Murray",
+                          "d":  "Peter Weller",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ029",
+                          "q":  "Film s motivem: T-800?",
+                          "a":  "The Empire Strikes Back",
+                          "b":  "RoboCop",
+                          "c":  "The Terminator",
+                          "d":  "Raiders of the Lost Ark",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ030",
+                          "q":  "Rok svetove premiery The Terminator?",
+                          "a":  "1997",
+                          "b":  "1981",
+                          "c":  "1984",
+                          "d":  "1983",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ031",
+                          "q":  "Kdo reziroval Ghostbusters?",
+                          "a":  "John Badham",
+                          "b":  "Ivan Reitman",
+                          "c":  "Paul Verhoeven",
+                          "d":  "Richard Donner",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVCZ032",
+                          "q":  "Rok premiery Ghostbusters?",
+                          "a":  "1968",
+                          "b":  "1985",
+                          "c":  "1976",
+                          "d":  "1984",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVCZ033",
+                          "q":  "Hlavni herec ve Ghostbusters?",
+                          "a":  "Sylvester Stallone",
+                          "b":  "Keanu Reeves",
+                          "c":  "Bill Murray",
+                          "d":  "Sam Neill",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ034",
+                          "q":  "Film s motivem: protonovy batoh?",
+                          "a":  "Back to the Future",
+                          "b":  "The Terminator",
+                          "c":  "Ghostbusters",
+                          "d":  "RoboCop",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ035",
+                          "q":  "Rok svetove premiery Ghostbusters?",
+                          "a":  "1984",
+                          "b":  "1983",
+                          "c":  "1999",
+                          "d":  "1980",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ036",
+                          "q":  "Kdo reziroval Rocky?",
+                          "a":  "John G. Avildsen",
+                          "b":  "Robert Zemeckis",
+                          "c":  "John McTiernan",
+                          "d":  "Irvin Kershner",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ037",
+                          "q":  "Rok premiery Rocky?",
+                          "a":  "1976",
+                          "b":  "1979",
+                          "c":  "1993",
+                          "d":  "1983",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ038",
+                          "q":  "Hlavni herec ve Rocky?",
+                          "a":  "Sylvester Stallone",
+                          "b":  "Leslie Nielsen",
+                          "c":  "Keanu Reeves",
+                          "d":  "Roy Scheider",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ039",
+                          "q":  "Film s motivem: Apollo Creed?",
+                          "a":  "2001: A Space Odyssey",
+                          "b":  "The Matrix",
+                          "c":  "Rocky",
+                          "d":  "Back to the Future",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ040",
+                          "q":  "Rok svetove premiery Rocky?",
+                          "a":  "1982",
+                          "b":  "1968",
+                          "c":  "1976",
+                          "d":  "1983",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ041",
+                          "q":  "Kdo reziroval Forbidden Planet?",
+                          "a":  "John Badham",
+                          "b":  "Ivan Reitman",
+                          "c":  "Fred M. Wilcox",
+                          "d":  "Irvin Kershner",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ042",
+                          "q":  "Rok premiery Forbidden Planet?",
+                          "a":  "1985",
+                          "b":  "1956",
+                          "c":  "1979",
+                          "d":  "1983",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVCZ043",
+                          "q":  "Hlavni herec ve Forbidden Planet?",
+                          "a":  "Bill Murray",
+                          "b":  "Sean Astin",
+                          "c":  "Bruce Willis",
+                          "d":  "Leslie Nielsen",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVCZ044",
+                          "q":  "Film s motivem: Robby Robot?",
+                          "a":  "Star Wars",
+                          "b":  "Back to the Future",
+                          "c":  "Forbidden Planet",
+                          "d":  "Ghostbusters",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ045",
+                          "q":  "Rok svetove premiery Forbidden Planet?",
+                          "a":  "1956",
+                          "b":  "1979",
+                          "c":  "1975",
+                          "d":  "1999",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ046",
+                          "q":  "Kdo reziroval Alien?",
+                          "a":  "Steven Spielberg",
+                          "b":  "John Badham",
+                          "c":  "Ridley Scott",
+                          "d":  "James Cameron",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ047",
+                          "q":  "Rok premiery Alien?",
+                          "a":  "1977",
+                          "b":  "1982",
+                          "c":  "1979",
+                          "d":  "1968",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ048",
+                          "q":  "Hlavni herec ve Alien?",
+                          "a":  "Harrison Ford",
+                          "b":  "Keir Dullea",
+                          "c":  "Sigourney Weaver",
+                          "d":  "Mark Hamill",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ049",
+                          "q":  "Film s motivem: Nostromo?",
+                          "a":  "The Matrix",
+                          "b":  "Star Wars",
+                          "c":  "Alien",
+                          "d":  "The Goonies",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ050",
+                          "q":  "Rok svetove premiery Alien?",
+                          "a":  "1979",
+                          "b":  "1990",
+                          "c":  "1983",
+                          "d":  "1976",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ051",
+                          "q":  "Kdo reziroval Blade Runner?",
+                          "a":  "Luc Besson",
+                          "b":  "Paul Verhoeven",
+                          "c":  "Ridley Scott",
+                          "d":  "John Badham",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ052",
+                          "q":  "Rok premiery Blade Runner?",
+                          "a":  "1982",
+                          "b":  "1980",
+                          "c":  "1976",
+                          "d":  "1968",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ053",
+                          "q":  "Hlavni herec ve Blade Runner?",
+                          "a":  "Harrison Ford",
+                          "b":  "Sylvester Stallone",
+                          "c":  "Leslie Nielsen",
+                          "d":  "Sean Astin",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ054",
+                          "q":  "Film s motivem: replikanti?",
+                          "a":  "2001: A Space Odyssey",
+                          "b":  "Blade Runner",
+                          "c":  "Back to the Future",
+                          "d":  "Rocky",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVCZ055",
+                          "q":  "Rok svetove premiery Blade Runner?",
+                          "a":  "1982",
+                          "b":  "1956",
+                          "c":  "1977",
+                          "d":  "1990",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ056",
+                          "q":  "Kdo reziroval Back to the Future?",
+                          "a":  "Fred M. Wilcox",
+                          "b":  "Robert Zemeckis",
+                          "c":  "James Cameron",
+                          "d":  "John Badham",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVCZ057",
+                          "q":  "Rok premiery Back to the Future?",
+                          "a":  "1977",
+                          "b":  "1990",
+                          "c":  "1979",
+                          "d":  "1985",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVCZ058",
+                          "q":  "Hlavni herec ve Back to the Future?",
+                          "a":  "Sam Neill",
+                          "b":  "Keanu Reeves",
+                          "c":  "Matthew Broderick",
+                          "d":  "Michael J. Fox",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVCZ059",
+                          "q":  "Film s motivem: DeLorean?",
+                          "a":  "Ghostbusters",
+                          "b":  "Jurassic Park",
+                          "c":  "The Matrix",
+                          "d":  "Back to the Future",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVCZ060",
+                          "q":  "Rok svetove premiery Back to the Future?",
+                          "a":  "1985",
+                          "b":  "1979",
+                          "c":  "1980",
+                          "d":  "1997",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ061",
+                          "q":  "Kdo reziroval The Empire Strikes Back?",
+                          "a":  "Robert Zemeckis",
+                          "b":  "Stanley Kubrick",
+                          "c":  "Irvin Kershner",
+                          "d":  "Richard Donner",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ062",
+                          "q":  "Rok premiery The Empire Strikes Back?",
+                          "a":  "1999",
+                          "b":  "1987",
+                          "c":  "1980",
+                          "d":  "1968",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ063",
+                          "q":  "Hlavni herec ve The Empire Strikes Back?",
+                          "a":  "Bruce Willis",
+                          "b":  "Bill Murray",
+                          "c":  "Mark Hamill",
+                          "d":  "Keanu Reeves",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ064",
+                          "q":  "Film s motivem: Hoth?",
+                          "a":  "The Empire Strikes Back",
+                          "b":  "Alien",
+                          "c":  "The Fifth Element",
+                          "d":  "2001: A Space Odyssey",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ065",
+                          "q":  "Rok svetove premiery The Empire Strikes Back?",
+                          "a":  "1999",
+                          "b":  "1980",
+                          "c":  "1982",
+                          "d":  "1975",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVCZ066",
+                          "q":  "Kdo reziroval Raiders of the Lost Ark?",
+                          "a":  "Ridley Scott",
+                          "b":  "Luc Besson",
+                          "c":  "Robert Zemeckis",
+                          "d":  "Steven Spielberg",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVCZ067",
+                          "q":  "Rok premiery Raiders of the Lost Ark?",
+                          "a":  "1999",
+                          "b":  "1975",
+                          "c":  "1981",
+                          "d":  "1980",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ068",
+                          "q":  "Hlavni herec ve Raiders of the Lost Ark?",
+                          "a":  "Bruce Willis",
+                          "b":  "Keir Dullea",
+                          "c":  "Harrison Ford",
+                          "d":  "Sigourney Weaver",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ069",
+                          "q":  "Film s motivem: Archa umluvy?",
+                          "a":  "Ghostbusters",
+                          "b":  "Raiders of the Lost Ark",
+                          "c":  "WarGames",
+                          "d":  "The Goonies",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVCZ070",
+                          "q":  "Rok svetove premiery Raiders of the Lost Ark?",
+                          "a":  "1981",
+                          "b":  "1983",
+                          "c":  "1984",
+                          "d":  "1975",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ071",
+                          "q":  "Kdo reziroval Predator?",
+                          "a":  "Paul Verhoeven",
+                          "b":  "John McTiernan",
+                          "c":  "George Lucas",
+                          "d":  "Fred M. Wilcox",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVCZ072",
+                          "q":  "Rok premiery Predator?",
+                          "a":  "1984",
+                          "b":  "1997",
+                          "c":  "1987",
+                          "d":  "1956",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ073",
+                          "q":  "Hlavni herec ve Predator?",
+                          "a":  "Michael J. Fox",
+                          "b":  "Arnold Schwarzenegger",
+                          "c":  "Sean Astin",
+                          "d":  "Keir Dullea",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVCZ074",
+                          "q":  "Film s motivem: lovec z dzungle?",
+                          "a":  "Ghostbusters",
+                          "b":  "Predator",
+                          "c":  "Forbidden Planet",
+                          "d":  "Star Wars",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVCZ075",
+                          "q":  "Rok svetove premiery Predator?",
+                          "a":  "1982",
+                          "b":  "1979",
+                          "c":  "1985",
+                          "d":  "1987",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVCZ076",
+                          "q":  "Kdo reziroval RoboCop?",
+                          "a":  "Paul Verhoeven",
+                          "b":  "John G. Avildsen",
+                          "c":  "John Badham",
+                          "d":  "John McTiernan",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ077",
+                          "q":  "Rok premiery RoboCop?",
+                          "a":  "1956",
+                          "b":  "1979",
+                          "c":  "1990",
+                          "d":  "1987",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVCZ078",
+                          "q":  "Hlavni herec ve RoboCop?",
+                          "a":  "Matthew Broderick",
+                          "b":  "Peter Weller",
+                          "c":  "Keir Dullea",
+                          "d":  "Leslie Nielsen",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVCZ079",
+                          "q":  "Film s motivem: OCP Detroit?",
+                          "a":  "The Terminator",
+                          "b":  "Raiders of the Lost Ark",
+                          "c":  "The Empire Strikes Back",
+                          "d":  "RoboCop",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVCZ080",
+                          "q":  "Rok svetove premiery RoboCop?",
+                          "a":  "1987",
+                          "b":  "1968",
+                          "c":  "1993",
+                          "d":  "1980",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ081",
+                          "q":  "Kdo reziroval The Matrix?",
+                          "a":  "Richard Donner",
+                          "b":  "Paul Verhoeven",
+                          "c":  "Stanley Kubrick",
+                          "d":  "Wachowski Sisters",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVCZ082",
+                          "q":  "Rok premiery The Matrix?",
+                          "a":  "1984",
+                          "b":  "1968",
+                          "c":  "1999",
+                          "d":  "1990",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ083",
+                          "q":  "Hlavni herec ve The Matrix?",
+                          "a":  "Keanu Reeves",
+                          "b":  "Roy Scheider",
+                          "c":  "Matthew Broderick",
+                          "d":  "Mark Hamill",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ084",
+                          "q":  "Film s motivem: cervena pilulka?",
+                          "a":  "The Empire Strikes Back",
+                          "b":  "The Matrix",
+                          "c":  "Ghostbusters",
+                          "d":  "Back to the Future",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVCZ085",
+                          "q":  "Rok svetove premiery The Matrix?",
+                          "a":  "1999",
+                          "b":  "1982",
+                          "c":  "1975",
+                          "d":  "1968",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ086",
+                          "q":  "Kdo reziroval Jurassic Park?",
+                          "a":  "Steven Spielberg",
+                          "b":  "John Badham",
+                          "c":  "Richard Donner",
+                          "d":  "Paul Verhoeven",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ087",
+                          "q":  "Rok premiery Jurassic Park?",
+                          "a":  "1977",
+                          "b":  "1993",
+                          "c":  "1979",
+                          "d":  "1985",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVCZ088",
+                          "q":  "Hlavni herec ve Jurassic Park?",
+                          "a":  "Keir Dullea",
+                          "b":  "Roy Scheider",
+                          "c":  "Sam Neill",
+                          "d":  "Bill Murray",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ089",
+                          "q":  "Film s motivem: klonovani dinosauri?",
+                          "a":  "Alien",
+                          "b":  "WarGames",
+                          "c":  "Jurassic Park",
+                          "d":  "Back to the Future",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ090",
+                          "q":  "Rok svetove premiery Jurassic Park?",
+                          "a":  "1980",
+                          "b":  "1993",
+                          "c":  "1999",
+                          "d":  "1982",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVCZ091",
+                          "q":  "Kdo reziroval Total Recall?",
+                          "a":  "Irvin Kershner",
+                          "b":  "James Cameron",
+                          "c":  "Paul Verhoeven",
+                          "d":  "Stanley Kubrick",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ092",
+                          "q":  "Rok premiery Total Recall?",
+                          "a":  "1956",
+                          "b":  "1993",
+                          "c":  "1990",
+                          "d":  "1980",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ093",
+                          "q":  "Hlavni herec ve Total Recall?",
+                          "a":  "Arnold Schwarzenegger",
+                          "b":  "Bruce Willis",
+                          "c":  "Keir Dullea",
+                          "d":  "Leslie Nielsen",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ094",
+                          "q":  "Film s motivem: vzpominky na Mars?",
+                          "a":  "The Matrix",
+                          "b":  "2001: A Space Odyssey",
+                          "c":  "Total Recall",
+                          "d":  "Rocky",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ095",
+                          "q":  "Rok svetove premiery Total Recall?",
+                          "a":  "1990",
+                          "b":  "1956",
+                          "c":  "1985",
+                          "d":  "1979",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ096",
+                          "q":  "Kdo reziroval The Fifth Element?",
+                          "a":  "Luc Besson",
+                          "b":  "Ridley Scott",
+                          "c":  "Paul Verhoeven",
+                          "d":  "Fred M. Wilcox",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ097",
+                          "q":  "Rok premiery The Fifth Element?",
+                          "a":  "1983",
+                          "b":  "1999",
+                          "c":  "1984",
+                          "d":  "1997",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVCZ098",
+                          "q":  "Hlavni herec ve The Fifth Element?",
+                          "a":  "Leslie Nielsen",
+                          "b":  "Arnold Schwarzenegger",
+                          "c":  "Bruce Willis",
+                          "d":  "Keir Dullea",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVCZ099",
+                          "q":  "Film s motivem: Leeloo?",
+                          "a":  "The Fifth Element",
+                          "b":  "The Terminator",
+                          "c":  "Back to the Future",
+                          "d":  "2001: A Space Odyssey",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVCZ100",
+                          "q":  "Rok svetove premiery The Fifth Element?",
+                          "a":  "1997",
+                          "b":  "1968",
+                          "c":  "1956",
+                          "d":  "1980",
+                          "correct":  "A"
+                      }
+                  ]
+}

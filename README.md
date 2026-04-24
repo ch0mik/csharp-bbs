@@ -19,6 +19,7 @@ The current setup runs in PETSCII-only mode and exposes:
   - ZorkMachine
   - CommodoreNews (news list from `https://www.commodore.net/news` with sitemap fallback) - unique, completely new functionality in this project
   - 8-bitz blog
+  - QuizPetscii (Milionerzy-style PETSCII quiz with session resume, JSON packs, A/B/C/D answers, N/P paging for long questions)
 - Filesystem-driven PETSCII art gallery
 - PNG/JPEG to PETSCII conversion on the fly in gallery
 - Optional Redis-backed session presence tracking
@@ -42,6 +43,10 @@ Main runtime configuration is passed by command-line arguments and environment v
 - `ZMACHINE_STORY_ROOT`
   - Path to Z-machine stories directory.
   - Fallback: `AppContext.BaseDirectory/zmpp`
+- `QUIZ_PACKS_ROOT`
+  - Path to external quiz packs directory (`*.json`).
+  - Recommended docker mount: `./quiz-packs:/app/quiz-packs:ro`
+  - Fallback: auto-detected local `quiz-packs` folder.
 - `BBS_SESSION_STORE`
   - Session backend mode: `inmemory` (default) or `redis`
 - `REDIS_HOST`, `REDIS_PORT`, `REDIS_PASSWORD`
@@ -79,10 +84,12 @@ services:
     environment:
       - PETSCII_GALLERY_ROOT=/app/petscii-art-gallery
       - ZMACHINE_STORY_ROOT=/app/zmpp
+      - QUIZ_PACKS_ROOT=/app/quiz-packs
       - BBS_SESSION_STORE=inmemory
     volumes:
       - ./petscii-art-gallery:/app/petscii-art-gallery:ro
       - ./zmpp:/app/zmpp:ro
+      - ./quiz-packs:/app/quiz-packs:ro
     restart: unless-stopped
 ```
 
@@ -101,6 +108,7 @@ services:
     environment:
       - PETSCII_GALLERY_ROOT=/app/petscii-art-gallery
       - ZMACHINE_STORY_ROOT=/app/zmpp
+      - QUIZ_PACKS_ROOT=/app/quiz-packs
       - BBS_SESSION_STORE=redis
       - REDIS_HOST=redis
       - REDIS_PORT=6379
@@ -113,6 +121,7 @@ services:
     volumes:
       - ./petscii-art-gallery:/app/petscii-art-gallery:ro
       - ./zmpp:/app/zmpp:ro
+      - ./quiz-packs:/app/quiz-packs:ro
     networks:
       - bbs_net
       - redis_net
@@ -186,11 +195,58 @@ docker compose down
 In main menu (`StdChoice`):
 - `I` toggles inline PETSCII images for current session in all supported tenants (`Inline IMG: ON/OFF`).
   - Affects: `8-bitz blog`, `CommodoreNews`, `WikipediaPetscii`.
+- `7` opens `QuizPetscii`.
 
 Inside `8-bitz blog` tenant:
 - `N+` / `N-` switch post list page.
 - Post id (for example `1259`) opens article.
 - While viewing an inline image: `ENTER=Next`, `T=Text`, `.=Back`.
+
+## Quiz JSON Format
+
+Quiz packs are regular JSON files stored in the `QUIZ_PACKS_ROOT` directory.
+
+```json
+{
+  "header": {
+    "id": "quiz_en_8bit_v1",
+    "language": "en",
+    "title": "8-bit Quiz EN v1",
+    "description": "Short quiz about 8-bit computers and classic games.",
+    "version": "1.0.0",
+    "author": "CsharpBbs",
+    "createdAt": "2026-04-23",
+    "tags": ["8-bit", "retro", "games"]
+  },
+  "questions": [
+    {
+      "id": "EN001",
+      "q": "Who made C64?",
+      "a": "Commodore",
+      "b": "Atari",
+      "c": "Sinclair",
+      "d": "Apple",
+      "correct": "A"
+    }
+  ]
+}
+```
+
+Validation rules:
+- `header` is required.
+- `header.description` is required.
+- at least `25` questions are required.
+- each question must contain `a/b/c/d`.
+- `correct` must be one of `A/B/C/D`.
+
+## Quiz Summary
+
+- Start flow: language -> quiz pack -> quiz header -> game.
+- Round length: `25` random questions from selected pack.
+- Controls in question view: `A/B/C/D` answer, `N/P` page navigation for long questions, `.` exit with confirmation.
+- Session behavior: unfinished game can be resumed in the same BBS session.
+- Scoring: points are shown only at the end (`score` + `%`), without per-question reveal during play.
+- Final screen includes a PETSCII face based on result range: `0-30`, `31-50`, `51-70`, `71-90`, `91-100`.
 
 ## Local .NET build (optional)
 

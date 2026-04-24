@@ -1,0 +1,290 @@
+{
+    "header":  {
+                   "id":  "quiz_pl_bareja_v1",
+                   "language":  "pl",
+                   "title":  "Quiz: tworczosc Barei",
+                   "description":  "Quiz PL o filmach i serialach Stanislawa Barei. 30 pytan, odpowiedzi A/B/C/D.",
+                   "version":  "1.0.0",
+                   "author":  "CsharpBbs",
+                   "createdAt":  "2026-04-24",
+                   "tags":  [
+                                "bareja",
+                                "polskie-kino",
+                                "film",
+                                "serial",
+                                "prl"
+                            ]
+               },
+    "questions":  [
+                      {
+                          "id":  "BR001",
+                          "q":  "Kto wyrezyserowal film Mis?",
+                          "a":  "Andrzej Wajda",
+                          "b":  "Stanislaw Bareja",
+                          "c":  "Krzysztof Kieslowski",
+                          "d":  "Agnieszka Holland",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "BR002",
+                          "q":  "Film z Ryszardem Ochodzkim?",
+                          "a":  "Mis",
+                          "b":  "Seksmisja",
+                          "c":  "Vabank",
+                          "d":  "Psy",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "BR003",
+                          "q":  "Haslo o plaszczu jest z filmu?",
+                          "a":  "Rejs",
+                          "b":  "Brunet wieczorowa pora",
+                          "c":  "Mis",
+                          "d":  "Kingsajz",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "BR004",
+                          "q":  "Kto zagral Ryszarda Ochodzkiego?",
+                          "a":  "Janusz Gajos",
+                          "b":  "Jerzy Stuhr",
+                          "c":  "Roman Wilhelmi",
+                          "d":  "Stanislaw Tym",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "BR005",
+                          "q":  "Poszukiwany, poszukiwana to?",
+                          "a":  "Film Barei",
+                          "b":  "Film Wajdy",
+                          "c":  "Film Machulskiego",
+                          "d":  "Serial TVP",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "BR006",
+                          "q":  "Brunet wieczorowa pora to?",
+                          "a":  "Film Barei",
+                          "b":  "Serial kryminalny",
+                          "c":  "Film Koterskiego",
+                          "d":  "Film Smarzowskiego",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "BR007",
+                          "q":  "Alternatywy 4 to?",
+                          "a":  "Film kinowy",
+                          "b":  "Serial Barei",
+                          "c":  "Teatr TV",
+                          "d":  "Dokument",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "BR008",
+                          "q":  "Kto zagral Stanislawa Aniola?",
+                          "a":  "Roman Wilhelmi",
+                          "b":  "Wojciech Pokora",
+                          "c":  "Jerzy Bonczak",
+                          "d":  "Marian Opania",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "BR009",
+                          "q":  "Rok premiery Co mi zrobisz...?",
+                          "a":  "1972",
+                          "b":  "1974",
+                          "c":  "1978",
+                          "d":  "1981",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "BR010",
+                          "q":  "Rok premiery Nie ma rozy...?",
+                          "a":  "1974",
+                          "b":  "1976",
+                          "c":  "1978",
+                          "d":  "1983",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "BR011",
+                          "q":  "Rok premiery filmu Mis?",
+                          "a":  "1978",
+                          "b":  "1981",
+                          "c":  "1984",
+                          "d":  "1987",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "BR012",
+                          "q":  "Ktory tytul NIE jest Barei?",
+                          "a":  "Mis",
+                          "b":  "Zmiennicy",
+                          "c":  "Rejs",
+                          "d":  "Brunet wieczorowa pora",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "BR013",
+                          "q":  "Ktory tytul jest dzielem Barei?",
+                          "a":  "Seksmisja",
+                          "b":  "Zmiennicy",
+                          "c":  "Dlugi weekend",
+                          "d":  "Kiler",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "BR014",
+                          "q":  "Ktory film wyrezyserowal Bareja?",
+                          "a":  "Psy",
+                          "b":  "Zona dla Australijczyka",
+                          "c":  "Kingsajz",
+                          "d":  "Kogel-mogel",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "BR015",
+                          "q":  "Ktory film to Bareja?",
+                          "a":  "Milosc Ci wszystko wybaczy",
+                          "b":  "M jak milosc",
+                          "c":  "Malzenstwo z rozsadku",
+                          "d":  "Noce i dnie",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "BR016",
+                          "q":  "Ktory tytul NIE jest Barei?",
+                          "a":  "Czlowiek z marmuru",
+                          "b":  "Mis",
+                          "c":  "Poszukiwany, poszukiwana",
+                          "d":  "Co mi zrobisz, jak mnie zlapiesz",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "BR017",
+                          "q":  "Gdzie dzieje sie Alternatywy 4?",
+                          "a":  "Na lotnisku",
+                          "b":  "W bloku osiedlowym",
+                          "c":  "W szkole",
+                          "d":  "W kopalni",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "BR018",
+                          "q":  "Nazwisko gospodarza w Alternatywy 4?",
+                          "a":  "Kotek",
+                          "b":  "Balcerek",
+                          "c":  "Aniol",
+                          "d":  "Wolanski",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "BR019",
+                          "q":  "Kto gra glowna role w Poszukiwany...?",
+                          "a":  "Wojciech Pokora",
+                          "b":  "Daniel Olbrychski",
+                          "c":  "Zbigniew Zamachowski",
+                          "d":  "Olaf Lubaszenko",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "BR020",
+                          "q":  "Zmiennicy to film czy serial?",
+                          "a":  "Film TV",
+                          "b":  "Serial",
+                          "c":  "Dokument",
+                          "d":  "Teledysk",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "BR021",
+                          "q":  "Kto wyrezyserowal Zmiennikow?",
+                          "a":  "Krzysztof Zanussi",
+                          "b":  "Jan Jakub Kolski",
+                          "c":  "Stanislaw Bareja",
+                          "d":  "Wojciech Smarzowski",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "BR022",
+                          "q":  "Tytul Barei o brunecie to?",
+                          "a":  "Brunet wieczorowa pora",
+                          "b":  "Nocny pociag",
+                          "c":  "Samowolka",
+                          "d":  "Hydrozagadka",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "BR023",
+                          "q":  "Tytul Barei ze slowem roza?",
+                          "a":  "Roza i miecz",
+                          "b":  "Nie ma rozy bez ognia",
+                          "c":  "Rozowa pantera",
+                          "d":  "Rozowe lata",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "BR024",
+                          "q":  "Serial Barei z numerem w tytule?",
+                          "a":  "07 zglos sie",
+                          "b":  "39 i pol",
+                          "c":  "Alternatywy 4",
+                          "d":  "Daleko od noszy",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "BR025",
+                          "q":  "Tytul Barei zaczynajacy sie od Co mi?",
+                          "a":  "Co lubia tygrysy",
+                          "b":  "Co nowego",
+                          "c":  "Co mi zrobisz, jak mnie zlapiesz",
+                          "d":  "Co jest grane",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "BR026",
+                          "q":  "Ktory tworca to Bareja?",
+                          "a":  "Stanislaw Bareja",
+                          "b":  "Roman Polanski",
+                          "c":  "Krzysztof Kieslowski",
+                          "d":  "Wladyslaw Pasikowski",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "BR027",
+                          "q":  "Mis to film czy serial?",
+                          "a":  "Film",
+                          "b":  "Serial",
+                          "c":  "Teatr TV",
+                          "d":  "Dokument",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "BR028",
+                          "q":  "W jakim serialu jest Aniol?",
+                          "a":  "Zmiennicy",
+                          "b":  "Alternatywy 4",
+                          "c":  "Dom",
+                          "d":  "Ekstradycja",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "BR029",
+                          "q":  "Rok premiery Poszukiwany, poszukiwana?",
+                          "a":  "1968",
+                          "b":  "1972",
+                          "c":  "1976",
+                          "d":  "1981",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "BR030",
+                          "q":  "Rok premiery Brunet wieczorowa pora?",
+                          "a":  "1976",
+                          "b":  "1978",
+                          "c":  "1981",
+                          "d":  "1984",
+                          "correct":  "A"
+                      }
+                  ]
+}

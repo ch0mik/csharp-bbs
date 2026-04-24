@@ -28,6 +28,9 @@
     <Reference Include="Bbs.Server">
       <HintPath>..\Bbs.Server\bin\Debug\net10.0\Bbs.Server.dll</HintPath>
     </Reference>
+    <Reference Include="Bbs.Tenants">
+      <HintPath>..\Bbs.Tenants\bin\Debug\net10.0\Bbs.Tenants.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

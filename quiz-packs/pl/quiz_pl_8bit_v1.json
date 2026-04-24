@@ -1,0 +1,920 @@
+{
+    "header":  {
+                   "id":  "quiz_pl_8bit_v1",
+                   "language":  "pl",
+                   "title":  "Quiz 8-bit PL v1",
+                   "description":  "Krotki quiz o komputerach 8-bit i klasycznych grach. 100 pytan, odpowiedzi A/B/C/D.",
+                   "version":  "1.0.0",
+                   "author":  "CsharpBbs",
+                   "createdAt":  "2026-04-24",
+                   "tags":  [
+                                "8-bit",
+                                "retro",
+                                "gry",
+                                "commodore",
+                                "atari"
+                            ]
+               },
+    "questions":  [
+                      {
+                          "id":  "PL001",
+                          "q":  "Kto wyprodukowal C64?",
+                          "a":  "Sinclair",
+                          "b":  "Commodore",
+                          "c":  "Atari",
+                          "d":  "Apple",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "PL002",
+                          "q":  "Kto wyprodukowal C128?",
+                          "a":  "Sinclair",
+                          "b":  "Coleco",
+                          "c":  "Tangerine",
+                          "d":  "Commodore",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "PL003",
+                          "q":  "Kto wyprodukowal VIC-20?",
+                          "a":  "Commodore",
+                          "b":  "Atari",
+                          "c":  "Coleco",
+                          "d":  "Amstrad",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL004",
+                          "q":  "Kto wyprodukowal C16?",
+                          "a":  "Dragon Data",
+                          "b":  "Commodore",
+                          "c":  "Enterprise",
+                          "d":  "MGT",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "PL005",
+                          "q":  "Kto wyprodukowal Plus/4?",
+                          "a":  "Commodore",
+                          "b":  "Sinclair",
+                          "c":  "Acorn",
+                          "d":  "Nintendo",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL006",
+                          "q":  "Kto wyprodukowal Atari 800?",
+                          "a":  "MGT",
+                          "b":  "Coleco",
+                          "c":  "Sinclair",
+                          "d":  "Atari",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "PL007",
+                          "q":  "Kto wyprodukowal Atari XL?",
+                          "a":  "Atari",
+                          "b":  "Amstrad",
+                          "c":  "Dragon Data",
+                          "d":  "Apple",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL008",
+                          "q":  "Kto wyprodukowal Atari XE?",
+                          "a":  "Atari",
+                          "b":  "Amstrad",
+                          "c":  "MGT",
+                          "d":  "Dragon Data",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL009",
+                          "q":  "Kto wyprodukowal ZX Spectrum?",
+                          "a":  "Sinclair",
+                          "b":  "Tangerine",
+                          "c":  "Atari",
+                          "d":  "Enterprise",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL010",
+                          "q":  "Kto wyprodukowal ZX81?",
+                          "a":  "Sinclair",
+                          "b":  "Amstrad",
+                          "c":  "MGT",
+                          "d":  "Apple",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL011",
+                          "q":  "Kto wyprodukowal Amstrad CPC?",
+                          "a":  "Tangerine",
+                          "b":  "Apple",
+                          "c":  "Acorn",
+                          "d":  "Amstrad",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "PL012",
+                          "q":  "Kto wyprodukowal ColecoVision?",
+                          "a":  "Coleco",
+                          "b":  "MGT",
+                          "c":  "Tangerine",
+                          "d":  "Apple",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL013",
+                          "q":  "Kto wyprodukowal NES?",
+                          "a":  "Sinclair",
+                          "b":  "Nintendo",
+                          "c":  "Atari",
+                          "d":  "Acorn",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "PL014",
+                          "q":  "Kto wyprodukowal Game Boy?",
+                          "a":  "Nintendo",
+                          "b":  "Sinclair",
+                          "c":  "Coleco",
+                          "d":  "Amstrad",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL015",
+                          "q":  "Kto wyprodukowal Apple II?",
+                          "a":  "Commodore",
+                          "b":  "Atari",
+                          "c":  "Acorn",
+                          "d":  "Apple",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "PL016",
+                          "q":  "Kto wyprodukowal BBC Micro?",
+                          "a":  "Atari",
+                          "b":  "MGT",
+                          "c":  "Apple",
+                          "d":  "Acorn",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "PL017",
+                          "q":  "Kto wyprodukowal Oric-1?",
+                          "a":  "Nintendo",
+                          "b":  "Sinclair",
+                          "c":  "Apple",
+                          "d":  "Tangerine",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "PL018",
+                          "q":  "Kto wyprodukowal Enterprise 128?",
+                          "a":  "Enterprise",
+                          "b":  "Coleco",
+                          "c":  "Amstrad",
+                          "d":  "Tangerine",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL019",
+                          "q":  "Kto wyprodukowal SAM Coupe?",
+                          "a":  "Coleco",
+                          "b":  "Commodore",
+                          "c":  "MGT",
+                          "d":  "Apple",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "PL020",
+                          "q":  "Kto wyprodukowal Dragon 32?",
+                          "a":  "Dragon Data",
+                          "b":  "Coleco",
+                          "c":  "Amstrad",
+                          "d":  "Enterprise",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL021",
+                          "q":  "CPU w C64?",
+                          "a":  "6510",
+                          "b":  "7501",
+                          "c":  "8502",
+                          "d":  "Z80",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL022",
+                          "q":  "CPU w C128 (tryb natywny)?",
+                          "a":  "LR35902",
+                          "b":  "6809",
+                          "c":  "8502",
+                          "d":  "6502",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "PL023",
+                          "q":  "CPU w VIC-20?",
+                          "a":  "6502",
+                          "b":  "7501",
+                          "c":  "LR35902",
+                          "d":  "6809",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL024",
+                          "q":  "CPU w C16?",
+                          "a":  "7501",
+                          "b":  "8502",
+                          "c":  "Z80",
+                          "d":  "LR35902",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL025",
+                          "q":  "CPU w Plus/4?",
+                          "a":  "2A03",
+                          "b":  "7501",
+                          "c":  "6510",
+                          "d":  "6809",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "PL026",
+                          "q":  "CPU w Atari 800?",
+                          "a":  "6502",
+                          "b":  "8502",
+                          "c":  "6510",
+                          "d":  "Z80",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL027",
+                          "q":  "CPU w Atari XL?",
+                          "a":  "6502",
+                          "b":  "6809",
+                          "c":  "2A03",
+                          "d":  "6510",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL028",
+                          "q":  "CPU w Atari XE?",
+                          "a":  "Z80",
+                          "b":  "6502",
+                          "c":  "7501",
+                          "d":  "8502",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "PL029",
+                          "q":  "CPU w ZX Spectrum?",
+                          "a":  "Z80",
+                          "b":  "2A03",
+                          "c":  "8502",
+                          "d":  "6502",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL030",
+                          "q":  "CPU w ZX81?",
+                          "a":  "LR35902",
+                          "b":  "Z80",
+                          "c":  "6809",
+                          "d":  "8502",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "PL031",
+                          "q":  "CPU w Amstrad CPC?",
+                          "a":  "7501",
+                          "b":  "2A03",
+                          "c":  "8502",
+                          "d":  "Z80",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "PL032",
+                          "q":  "CPU w ColecoVision?",
+                          "a":  "LR35902",
+                          "b":  "Z80",
+                          "c":  "2A03",
+                          "d":  "7501",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "PL033",
+                          "q":  "CPU w NES (NTSC)?",
+                          "a":  "6809",
+                          "b":  "6510",
+                          "c":  "2A03",
+                          "d":  "Z80",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "PL034",
+                          "q":  "CPU w Game Boy?",
+                          "a":  "LR35902",
+                          "b":  "6502",
+                          "c":  "2A03",
+                          "d":  "6510",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL035",
+                          "q":  "CPU w Apple II?",
+                          "a":  "6502",
+                          "b":  "6809",
+                          "c":  "LR35902",
+                          "d":  "6510",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL036",
+                          "q":  "CPU w BBC Micro?",
+                          "a":  "2A03",
+                          "b":  "6502",
+                          "c":  "Z80",
+                          "d":  "LR35902",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "PL037",
+                          "q":  "CPU w Oric-1?",
+                          "a":  "6510",
+                          "b":  "Z80",
+                          "c":  "8502",
+                          "d":  "6502",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "PL038",
+                          "q":  "CPU w Enterprise 128?",
+                          "a":  "7501",
+                          "b":  "6809",
+                          "c":  "6510",
+                          "d":  "Z80",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "PL039",
+                          "q":  "CPU w SAM Coupe?",
+                          "a":  "LR35902",
+                          "b":  "6510",
+                          "c":  "Z80",
+                          "d":  "8502",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "PL040",
+                          "q":  "CPU w Dragon 32?",
+                          "a":  "LR35902",
+                          "b":  "2A03",
+                          "c":  "6809",
+                          "d":  "Z80",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "PL041",
+                          "q":  "Rok premiery C64?",
+                          "a":  "1984",
+                          "b":  "1982",
+                          "c":  "1980",
+                          "d":  "1985",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "PL042",
+                          "q":  "Rok premiery C128?",
+                          "a":  "1977",
+                          "b":  "1985",
+                          "c":  "1981",
+                          "d":  "1982",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "PL043",
+                          "q":  "Rok premiery VIC-20?",
+                          "a":  "1983",
+                          "b":  "1981",
+                          "c":  "1980",
+                          "d":  "1989",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "PL044",
+                          "q":  "Rok premiery C16?",
+                          "a":  "1989",
+                          "b":  "1983",
+                          "c":  "1984",
+                          "d":  "1982",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "PL045",
+                          "q":  "Rok premiery Plus/4?",
+                          "a":  "1983",
+                          "b":  "1979",
+                          "c":  "1985",
+                          "d":  "1984",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "PL046",
+                          "q":  "Rok premiery Atari 800?",
+                          "a":  "1980",
+                          "b":  "1979",
+                          "c":  "1985",
+                          "d":  "1977",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "PL047",
+                          "q":  "Rok premiery Atari XL?",
+                          "a":  "1981",
+                          "b":  "1982",
+                          "c":  "1983",
+                          "d":  "1984",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "PL048",
+                          "q":  "Rok premiery Atari XE?",
+                          "a":  "1984",
+                          "b":  "1985",
+                          "c":  "1980",
+                          "d":  "1979",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "PL049",
+                          "q":  "Rok premiery ZX Spectrum?",
+                          "a":  "1979",
+                          "b":  "1980",
+                          "c":  "1982",
+                          "d":  "1989",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "PL050",
+                          "q":  "Rok premiery ZX81?",
+                          "a":  "1984",
+                          "b":  "1989",
+                          "c":  "1981",
+                          "d":  "1979",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "PL051",
+                          "q":  "Rok premiery Amstrad CPC?",
+                          "a":  "1983",
+                          "b":  "1985",
+                          "c":  "1977",
+                          "d":  "1984",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "PL052",
+                          "q":  "Rok premiery ColecoVision?",
+                          "a":  "1980",
+                          "b":  "1979",
+                          "c":  "1982",
+                          "d":  "1984",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "PL053",
+                          "q":  "Rok premiery NES (Japonia)?",
+                          "a":  "1977",
+                          "b":  "1983",
+                          "c":  "1984",
+                          "d":  "1981",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "PL054",
+                          "q":  "Rok premiery Game Boy?",
+                          "a":  "1983",
+                          "b":  "1979",
+                          "c":  "1984",
+                          "d":  "1989",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "PL055",
+                          "q":  "Rok premiery Apple II?",
+                          "a":  "1977",
+                          "b":  "1989",
+                          "c":  "1980",
+                          "d":  "1985",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL056",
+                          "q":  "Rok premiery BBC Micro?",
+                          "a":  "1981",
+                          "b":  "1984",
+                          "c":  "1977",
+                          "d":  "1982",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL057",
+                          "q":  "Rok premiery Oric-1?",
+                          "a":  "1981",
+                          "b":  "1985",
+                          "c":  "1983",
+                          "d":  "1980",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "PL058",
+                          "q":  "Rok premiery Enterprise 128?",
+                          "a":  "1985",
+                          "b":  "1983",
+                          "c":  "1977",
+                          "d":  "1979",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL059",
+                          "q":  "Rok premiery SAM Coupe?",
+                          "a":  "1980",
+                          "b":  "1984",
+                          "c":  "1989",
+                          "d":  "1985",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "PL060",
+                          "q":  "Rok premiery Dragon 32?",
+                          "a":  "1989",
+                          "b":  "1982",
+                          "c":  "1984",
+                          "d":  "1979",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "PL061",
+                          "q":  "Glowna platforma Manic Miner?",
+                          "a":  "ColecoVision",
+                          "b":  "Game Boy",
+                          "c":  "Atari 2600",
+                          "d":  "ZX Spectrum",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "PL062",
+                          "q":  "Glowna platforma Jet Set Willy?",
+                          "a":  "C64",
+                          "b":  "ZX Spectrum",
+                          "c":  "Atari 2600",
+                          "d":  "Game Boy",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "PL063",
+                          "q":  "Glowna platforma Elite?",
+                          "a":  "ColecoVision",
+                          "b":  "Game Boy",
+                          "c":  "NES",
+                          "d":  "BBC Micro",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "PL064",
+                          "q":  "Glowna platforma The Last Ninja?",
+                          "a":  "Apple II",
+                          "b":  "C64",
+                          "c":  "ZX Spectrum",
+                          "d":  "BBC Micro",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "PL065",
+                          "q":  "Glowna platforma Impossible Mission?",
+                          "a":  "ColecoVision",
+                          "b":  "NES",
+                          "c":  "ZX Spectrum",
+                          "d":  "C64",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "PL066",
+                          "q":  "Glowna platforma Summer Games?",
+                          "a":  "Game Boy",
+                          "b":  "ColecoVision",
+                          "c":  "ZX Spectrum",
+                          "d":  "C64",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "PL067",
+                          "q":  "Glowna platforma Boulder Dash?",
+                          "a":  "Game Boy",
+                          "b":  "Apple II",
+                          "c":  "C64",
+                          "d":  "ColecoVision",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "PL068",
+                          "q":  "Glowna platforma Pitfall!?",
+                          "a":  "NES",
+                          "b":  "ZX Spectrum",
+                          "c":  "Atari 2600",
+                          "d":  "C64",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "PL069",
+                          "q":  "Glowna platforma River Raid?",
+                          "a":  "Game Boy",
+                          "b":  "NES",
+                          "c":  "Atari 2600",
+                          "d":  "ZX Spectrum",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "PL070",
+                          "q":  "Glowna platforma Ghostbusters?",
+                          "a":  "NES",
+                          "b":  "Apple II",
+                          "c":  "C64",
+                          "d":  "Atari 2600",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "PL071",
+                          "q":  "Glowna platforma Bruce Lee?",
+                          "a":  "NES",
+                          "b":  "Apple II",
+                          "c":  "ColecoVision",
+                          "d":  "C64",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "PL072",
+                          "q":  "Glowna platforma Zaxxon?",
+                          "a":  "ColecoVision",
+                          "b":  "C64",
+                          "c":  "Game Boy",
+                          "d":  "BBC Micro",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL073",
+                          "q":  "Glowna platforma Pac-Man?",
+                          "a":  "Apple II",
+                          "b":  "C64",
+                          "c":  "BBC Micro",
+                          "d":  "NES",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "PL074",
+                          "q":  "Glowna platforma Super Mario Bros?",
+                          "a":  "BBC Micro",
+                          "b":  "Atari 2600",
+                          "c":  "ColecoVision",
+                          "d":  "NES",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "PL075",
+                          "q":  "Glowna platforma Tetris?",
+                          "a":  "Game Boy",
+                          "b":  "BBC Micro",
+                          "c":  "Atari 2600",
+                          "d":  "ColecoVision",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL076",
+                          "q":  "Glowna platforma Prince of Persia?",
+                          "a":  "BBC Micro",
+                          "b":  "NES",
+                          "c":  "Atari 2600",
+                          "d":  "Apple II",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "PL077",
+                          "q":  "Glowna platforma Lode Runner?",
+                          "a":  "Apple II",
+                          "b":  "Atari 2600",
+                          "c":  "C64",
+                          "d":  "ColecoVision",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL078",
+                          "q":  "Glowna platforma Dizzy?",
+                          "a":  "NES",
+                          "b":  "ZX Spectrum",
+                          "c":  "Apple II",
+                          "d":  "C64",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "PL079",
+                          "q":  "Glowna platforma Skool Daze?",
+                          "a":  "Apple II",
+                          "b":  "C64",
+                          "c":  "ZX Spectrum",
+                          "d":  "NES",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "PL080",
+                          "q":  "Glowna platforma Head Over Heels?",
+                          "a":  "BBC Micro",
+                          "b":  "Game Boy",
+                          "c":  "ZX Spectrum",
+                          "d":  "ColecoVision",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "PL081",
+                          "q":  "Wydawca gry Manic Miner?",
+                          "a":  "Activision",
+                          "b":  "Bug-Byte",
+                          "c":  "Epyx",
+                          "d":  "System 3",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "PL082",
+                          "q":  "Wydawca gry Jet Set Willy?",
+                          "a":  "Software Projects",
+                          "b":  "Namco",
+                          "c":  "Acornsoft",
+                          "d":  "Codemasters",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL083",
+                          "q":  "Wydawca gry Elite?",
+                          "a":  "Acornsoft",
+                          "b":  "Codemasters",
+                          "c":  "Nintendo",
+                          "d":  "Epyx",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL084",
+                          "q":  "Wydawca gry The Last Ninja?",
+                          "a":  "Namco",
+                          "b":  "Codemasters",
+                          "c":  "System 3",
+                          "d":  "Software Projects",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "PL085",
+                          "q":  "Wydawca gry Impossible Mission?",
+                          "a":  "System 3",
+                          "b":  "Bug-Byte",
+                          "c":  "Epyx",
+                          "d":  "Activision",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "PL086",
+                          "q":  "Wydawca gry Summer Games?",
+                          "a":  "Datasoft",
+                          "b":  "Epyx",
+                          "c":  "Ocean",
+                          "d":  "Microsphere",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "PL087",
+                          "q":  "Wydawca gry Boulder Dash?",
+                          "a":  "Ocean",
+                          "b":  "Codemasters",
+                          "c":  "First Star",
+                          "d":  "Sega",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "PL088",
+                          "q":  "Wydawca gry Pitfall!?",
+                          "a":  "Acornsoft",
+                          "b":  "Nintendo",
+                          "c":  "Activision",
+                          "d":  "Microsphere",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "PL089",
+                          "q":  "Wydawca gry River Raid?",
+                          "a":  "Microsphere",
+                          "b":  "Sega",
+                          "c":  "Activision",
+                          "d":  "Epyx",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "PL090",
+                          "q":  "Wydawca gry Ghostbusters?",
+                          "a":  "System 3",
+                          "b":  "Epyx",
+                          "c":  "Activision",
+                          "d":  "Bug-Byte",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "PL091",
+                          "q":  "Wydawca gry Bruce Lee?",
+                          "a":  "Datasoft",
+                          "b":  "First Star",
+                          "c":  "Nintendo",
+                          "d":  "Activision",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL092",
+                          "q":  "Wydawca gry Zaxxon?",
+                          "a":  "System 3",
+                          "b":  "Sega",
+                          "c":  "First Star",
+                          "d":  "Codemasters",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "PL093",
+                          "q":  "Wydawca gry Pac-Man?",
+                          "a":  "Nintendo",
+                          "b":  "Namco",
+                          "c":  "Sega",
+                          "d":  "First Star",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "PL094",
+                          "q":  "Wydawca gry Super Mario Bros?",
+                          "a":  "Codemasters",
+                          "b":  "Epyx",
+                          "c":  "Namco",
+                          "d":  "Nintendo",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "PL095",
+                          "q":  "Wydawca gry Tetris?",
+                          "a":  "Nintendo",
+                          "b":  "Ocean",
+                          "c":  "Bug-Byte",
+                          "d":  "Microsphere",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL096",
+                          "q":  "Wydawca gry Prince of Persia?",
+                          "a":  "Broderbund",
+                          "b":  "System 3",
+                          "c":  "Acornsoft",
+                          "d":  "First Star",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "PL097",
+                          "q":  "Wydawca gry Lode Runner?",
+                          "a":  "System 3",
+                          "b":  "Broderbund",
+                          "c":  "First Star",
+                          "d":  "Nintendo",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "PL098",
+                          "q":  "Wydawca gry Dizzy?",
+                          "a":  "Bug-Byte",
+                          "b":  "Software Projects",
+                          "c":  "Codemasters",
+                          "d":  "Broderbund",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "PL099",
+                          "q":  "Wydawca gry Skool Daze?",
+                          "a":  "Namco",
+                          "b":  "Sega",
+                          "c":  "Microsphere",
+                          "d":  "Datasoft",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "PL100",
+                          "q":  "Wydawca gry Head Over Heels?",
+                          "a":  "Ocean",
+                          "b":  "First Star",
+                          "c":  "Microsphere",
+                          "d":  "Nintendo",
+                          "correct":  "A"
+                      }
+                  ]
+}

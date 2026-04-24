@@ -17,3 +17,6 @@
 
 # Docs/artifacts not needed in runtime image
 *.md
+
+# External quiz packs are mounted as volume
+quiz-packs/

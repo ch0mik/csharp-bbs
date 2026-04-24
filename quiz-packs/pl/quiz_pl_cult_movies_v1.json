@@ -1,0 +1,920 @@
+{
+  "header": {
+    "id": "quiz_pl_cult_movies_v1",
+    "language": "pl",
+    "title": "Kultowe filmy",
+    "description": "Kultowe filmy",
+    "version": "1.1.0",
+    "author": "CsharpBbs",
+    "createdAt": "2026-04-24",
+    "tags": [
+      "film",
+      "kino",
+      "scifi",
+      "akcja",
+      "retro"
+    ]
+  },
+  "questions": [
+    {
+      "id": "MVPL001",
+      "q": "Kto wyrezyserowal Jaws?",
+      "a": "Irvin Kershner",
+      "b": "Steven Spielberg",
+      "c": "John G. Avildsen",
+      "d": "Fred M. Wilcox",
+      "correct": "B"
+    },
+    {
+      "id": "MVPL002",
+      "q": "Rok premiery Jaws?",
+      "a": "1981",
+      "b": "1985",
+      "c": "1975",
+      "d": "1976",
+      "correct": "C"
+    },
+    {
+      "id": "MVPL003",
+      "q": "Glowny aktor w Jaws?",
+      "a": "Keir Dullea",
+      "b": "Roy Scheider",
+      "c": "Bruce Willis",
+      "d": "Keanu Reeves",
+      "correct": "B"
+    },
+    {
+      "id": "MVPL004",
+      "q": "Film z motywem: rekin z Amity?",
+      "a": "Jaws",
+      "b": "The Matrix",
+      "c": "Back to the Future",
+      "d": "The Goonies",
+      "correct": "A"
+    },
+    {
+      "id": "MVPL005",
+      "q": "Rok swiatowej premiery Jaws?",
+      "a": "1976",
+      "b": "1975",
+      "c": "1987",
+      "d": "1982",
+      "correct": "B"
+    },
+    {
+      "id": "MVPL006",
+      "q": "Kto wyrezyserowal WarGames?",
+      "a": "Wachowski Sisters",
+      "b": "John Badham",
+      "c": "Richard Donner",
+      "d": "John G. Avildsen",
+      "correct": "B"
+    },
+    {
+      "id": "MVPL007",
+      "q": "Rok premiery WarGames?",
+      "a": "1956",
+      "b": "1983",
+      "c": "1999",
+      "d": "1985",
+      "correct": "B"
+    },
+    {
+      "id": "MVPL008",
+      "q": "Glowny aktor w WarGames?",
+      "a": "Arnold Schwarzenegger",
+      "b": "Sam Neill",
+      "c": "Matthew Broderick",
+      "d": "Bruce Willis",
+      "correct": "C"
+    },
+    {
+      "id": "MVPL009",
+      "q": "Film z motywem: komputer WOPR?",
+      "a": "Jurassic Park",
+      "b": "Star Wars",
+      "c": "Forbidden Planet",
+      "d": "WarGames",
+      "correct": "D"
+    },
+    {
+      "id": "MVPL010",
+      "q": "Rok swiatowej premiery WarGames?",
+      "a": "1983",
+      "b": "1993",
+      "c": "1985",
+      "d": "1999",
+      "correct": "A"
+    },
+    {
+      "id": "MVPL011",
+      "q": "Kto wyrezyserowal The Goonies?",
+      "a": "Stanley Kubrick",
+      "b": "Ivan Reitman",
+      "c": "Richard Donner",
+      "d": "Robert Zemeckis",
+      "correct": "C"
+    },
+    {
+      "id": "MVPL012",
+      "q": "Rok premiery The Goonies?",
+      "a": "1985",
+      "b": "1990",
+      "c": "1999",
+      "d": "1979",
+      "correct": "A"
+    },
+    {
+      "id": "MVPL013",
+      "q": "Glowny aktor w The Goonies?",
+      "a": "Michael J. Fox",
+      "b": "Sean Astin",
+      "c": "Leslie Nielsen",
+      "d": "Keir Dullea",
+      "correct": "B"
+    },
+    {
+      "id": "MVPL014",
+      "q": "Film z motywem: mapa One-Eyed Willy?",
+      "a": "The Goonies",
+      "b": "Alien",
+      "c": "Raiders of the Lost Ark",
+      "d": "2001: A Space Odyssey",
+      "correct": "A"
+    },
+    {
+      "id": "MVPL015",
+      "q": "Rok swiatowej premiery The Goonies?",
+      "a": "1977",
+      "b": "1987",
+      "c": "1985",
+      "d": "1982",
+      "correct": "C"
+    },
+    {
+      "id": "MVPL016",
+      "q": "Kto wyrezyserowal 2001: A Space Odyssey?",
+      "a": "Fred M. Wilcox",
+      "b": "John G. Avildsen",
+      "c": "Stanley Kubrick",
+      "d": "Ivan Reitman",
+      "correct": "C"
+    },
+    {
+      "id": "MVPL017",
+      "q": "Rok premiery 2001: A Space Odyssey?",
+      "a": "1968",
+      "b": "1980",
+      "c": "1997",
+      "d": "1987",
+      "correct": "A"
+    },
+    {
+      "id": "MVPL018",
+      "q": "Glowny aktor w 2001: A Space Odyssey?",
+      "a": "Keir Dullea",
+      "b": "Bruce Willis",
+      "c": "Peter Weller",
+      "d": "Bill Murray",
+      "correct": "A"
+    },
+    {
+      "id": "MVPL019",
+      "q": "Film z motywem: HAL 9000?",
+      "a": "Alien",
+      "b": "Jurassic Park",
+      "c": "Forbidden Planet",
+      "d": "2001: A Space Odyssey",
+      "correct": "D"
+    },
+    {
+      "id": "MVPL020",
+      "q": "Rok swiatowej premiery 2001: A Space Odyssey?",
+      "a": "1981",
+      "b": "1982",
+      "c": "1968",
+      "d": "1979",
+      "correct": "C"
+    },
+    {
+      "id": "MVPL021",
+      "q": "Kto wyrezyserowal Star Wars?",
+      "a": "Fred M. Wilcox",
+      "b": "John G. Avildsen",
+      "c": "George Lucas",
+      "d": "Ivan Reitman",
+      "correct": "C"
+    },
+    {
+      "id": "MVPL022",
+      "q": "Rok premiery Star Wars?",
+      "a": "1982",
+      "b": "1999",
+      "c": "1977",
+      "d": "1983",
+      "correct": "C"
+    },
+    {
+      "id": "MVPL023",
+      "q": "Glowny aktor w Star Wars?",
+      "a": "Roy Scheider",
+      "b": "Mark Hamill",
+      "c": "Sigourney Weaver",
+      "d": "Bruce Willis",
+      "correct": "B"
+    },
+    {
+      "id": "MVPL024",
+      "q": "Film z motywem: Moc?",
+      "a": "RoboCop",
+      "b": "The Terminator",
+      "c": "Predator",
+      "d": "Star Wars",
+      "correct": "D"
+    },
+    {
+      "id": "MVPL025",
+      "q": "Rok swiatowej premiery Star Wars?",
+      "a": "1984",
+      "b": "1968",
+      "c": "1977",
+      "d": "1997",
+      "correct": "C"
+    },
+    {
+      "id": "MVPL026",
+      "q": "Kto wyrezyserowal The Terminator?",
+      "a": "Ivan Reitman",
+      "b": "Steven Spielberg",
+      "c": "James Cameron",
+      "d": "Wachowski Sisters",
+      "correct": "C"
+    },
+    {
+      "id": "MVPL027",
+      "q": "Rok premiery The Terminator?",
+      "a": "1982",
+      "b": "1984",
+      "c": "1999",
+      "d": "1977",
+      "correct": "B"
+    },
+    {
+      "id": "MVPL028",
+      "q": "Glowny aktor w The Terminator?",
+      "a": "Sylvester Stallone",
+      "b": "Bruce Willis",
+      "c": "Arnold Schwarzenegger",
+      "d": "Sigourney Weaver",
+      "correct": "C"
+    },
+    {
+      "id": "MVPL029",
+      "q": "Film z motywem: T-800?",
+      "a": "Total Recall",
+      "b": "The Terminator",
+      "c": "Jurassic Park",
+      "d": "Raiders of the Lost Ark",
+      "correct": "B"
+    },
+    {
+      "id": "MVPL030",
+      "q": "Rok swiatowej premiery The Terminator?",
+      "a": "1956",
+      "b": "1990",
+      "c": "1980",
+      "d": "1984",
+      "correct": "D"
+    },
+    {
+      "id": "MVPL031",
+      "q": "Kto wyrezyserowal Ghostbusters?",
+      "a": "George Lucas",
+      "b": "Fred M. Wilcox",
+      "c": "Ivan Reitman",
+      "d": "Irvin Kershner",
+      "correct": "C"
+    },
+    {
+      "id": "MVPL032",
+      "q": "Rok premiery Ghostbusters?",
+      "a": "1976",
+      "b": "1956",
+      "c": "1980",
+      "d": "1984",
+      "correct": "D"
+    },
+    {
+      "id": "MVPL033",
+      "q": "Glowny aktor w Ghostbusters?",
+      "a": "Keanu Reeves",
+      "b": "Roy Scheider",
+      "c": "Bill Murray",
+      "d": "Sam Neill",
+      "correct": "C"
+    },
+    {
+      "id": "MVPL034",
+      "q": "Film z motywem: plecak protonowy?",
+      "a": "Total Recall",
+      "b": "Back to the Future",
+      "c": "The Empire Strikes Back",
+      "d": "Ghostbusters",
+      "correct": "D"
+    },
+    {
+      "id": "MVPL035",
+      "q": "Rok swiatowej premiery Ghostbusters?",
+      "a": "1975",
+      "b": "1984",
+      "c": "1980",
+      "d": "1981",
+      "correct": "B"
+    },
+    {
+      "id": "MVPL036",
+      "q": "Kto wyrezyserowal Rocky?",
+      "a": "John McTiernan",
+      "b": "Irvin Kershner",
+      "c": "John G. Avildsen",
+      "d": "John Badham",
+      "correct": "C"
+    },
+    {
+      "id": "MVPL037",
+      "q": "Rok premiery Rocky?",
+      "a": "1997",
+      "b": "1956",
+      "c": "1976",
+      "d": "1984",
+      "correct": "C"
+    },
+    {
+      "id": "MVPL038",
+      "q": "Glowny aktor w Rocky?",
+      "a": "Matthew Broderick",
+      "b": "Sylvester Stallone",
+      "c": "Michael J. Fox",
+      "d": "Sigourney Weaver",
+      "correct": "B"
+    },
+    {
+      "id": "MVPL039",
+      "q": "Film z motywem: Apollo Creed?",
+      "a": "The Terminator",
+      "b": "The Empire Strikes Back",
+      "c": "Raiders of the Lost Ark",
+      "d": "Rocky",
+      "correct": "D"
+    },
+    {
+      "id": "MVPL040",
+      "q": "Rok swiatowej premiery Rocky?",
+      "a": "1982",
+      "b": "1979",
+      "c": "1981",
+      "d": "1976",
+      "correct": "D"
+    },
+    {
+      "id": "MVPL041",
+      "q": "Kto wyrezyserowal Forbidden Planet?",
+      "a": "James Cameron",
+      "b": "Steven Spielberg",
+      "c": "Ridley Scott",
+      "d": "Fred M. Wilcox",
+      "correct": "D"
+    },
+    {
+      "id": "MVPL042",
+      "q": "Rok premiery Forbidden Planet?",
+      "a": "1975",
+      "b": "1956",
+      "c": "1983",
+      "d": "1982",
+      "correct": "B"
+    },
+    {
+      "id": "MVPL043",
+      "q": "Glowny aktor w Forbidden Planet?",
+      "a": "Leslie Nielsen",
+      "b": "Roy Scheider",
+      "c": "Arnold Schwarzenegger",
+      "d": "Sam Neill",
+      "correct": "A"
+    },
+    {
+      "id": "MVPL044",
+      "q": "Film z motywem: Robby Robot?",
+      "a": "Blade Runner",
+      "b": "The Matrix",
+      "c": "WarGames",
+      "d": "Forbidden Planet",
+      "correct": "D"
+    },
+    {
+      "id": "MVPL045",
+      "q": "Rok swiatowej premiery Forbidden Planet?",
+      "a": "1993",
+      "b": "1990",
+      "c": "1980",
+      "d": "1956",
+      "correct": "D"
+    },
+    {
+      "id": "MVPL046",
+      "q": "Kto wyrezyserowal Alien?",
+      "a": "John Badham",
+      "b": "Luc Besson",
+      "c": "Wachowski Sisters",
+      "d": "Ridley Scott",
+      "correct": "D"
+    },
+    {
+      "id": "MVPL047",
+      "q": "Rok premiery Alien?",
+      "a": "1987",
+      "b": "1979",
+      "c": "1993",
+      "d": "1999",
+      "correct": "B"
+    },
+    {
+      "id": "MVPL048",
+      "q": "Glowny aktor w Alien?",
+      "a": "Sylvester Stallone",
+      "b": "Bill Murray",
+      "c": "Sigourney Weaver",
+      "d": "Arnold Schwarzenegger",
+      "correct": "C"
+    },
+    {
+      "id": "MVPL049",
+      "q": "Film z motywem: Nostromo?",
+      "a": "Forbidden Planet",
+      "b": "Alien",
+      "c": "Ghostbusters",
+      "d": "WarGames",
+      "correct": "B"
+    },
+    {
+      "id": "MVPL050",
+      "q": "Rok swiatowej premiery Alien?",
+      "a": "1979",
+      "b": "1968",
+      "c": "1983",
+      "d": "1975",
+      "correct": "A"
+    },
+    {
+      "id": "MVPL051",
+      "q": "Kto wyrezyserowal Blade Runner?",
+      "a": "Paul Verhoeven",
+      "b": "George Lucas",
+      "c": "Robert Zemeckis",
+      "d": "Ridley Scott",
+      "correct": "D"
+    },
+    {
+      "id": "MVPL052",
+      "q": "Rok premiery Blade Runner?",
+      "a": "1968",
+      "b": "1982",
+      "c": "1985",
+      "d": "1956",
+      "correct": "B"
+    },
+    {
+      "id": "MVPL053",
+      "q": "Glowny aktor w Blade Runner?",
+      "a": "Sylvester Stallone",
+      "b": "Harrison Ford",
+      "c": "Sam Neill",
+      "d": "Mark Hamill",
+      "correct": "B"
+    },
+    {
+      "id": "MVPL054",
+      "q": "Film z motywem: replikanci?",
+      "a": "The Terminator",
+      "b": "The Matrix",
+      "c": "Back to the Future",
+      "d": "Blade Runner",
+      "correct": "D"
+    },
+    {
+      "id": "MVPL055",
+      "q": "Rok swiatowej premiery Blade Runner?",
+      "a": "1975",
+      "b": "1990",
+      "c": "1982",
+      "d": "1981",
+      "correct": "C"
+    },
+    {
+      "id": "MVPL056",
+      "q": "Kto wyrezyserowal Back to the Future?",
+      "a": "Irvin Kershner",
+      "b": "John Badham",
+      "c": "George Lucas",
+      "d": "Robert Zemeckis",
+      "correct": "D"
+    },
+    {
+      "id": "MVPL057",
+      "q": "Rok premiery Back to the Future?",
+      "a": "1990",
+      "b": "1985",
+      "c": "1987",
+      "d": "1975",
+      "correct": "B"
+    },
+    {
+      "id": "MVPL058",
+      "q": "Glowny aktor w Back to the Future?",
+      "a": "Roy Scheider",
+      "b": "Sigourney Weaver",
+      "c": "Michael J. Fox",
+      "d": "Peter Weller",
+      "correct": "C"
+    },
+    {
+      "id": "MVPL059",
+      "q": "Film z motywem: DeLorean?",
+      "a": "Back to the Future",
+      "b": "Ghostbusters",
+      "c": "Raiders of the Lost Ark",
+      "d": "The Empire Strikes Back",
+      "correct": "A"
+    },
+    {
+      "id": "MVPL060",
+      "q": "Rok swiatowej premiery Back to the Future?",
+      "a": "1981",
+      "b": "1985",
+      "c": "1976",
+      "d": "1982",
+      "correct": "B"
+    },
+    {
+      "id": "MVPL061",
+      "q": "Kto wyrezyserowal The Empire Strikes Back?",
+      "a": "George Lucas",
+      "b": "Robert Zemeckis",
+      "c": "Fred M. Wilcox",
+      "d": "Irvin Kershner",
+      "correct": "D"
+    },
+    {
+      "id": "MVPL062",
+      "q": "Rok premiery The Empire Strikes Back?",
+      "a": "1975",
+      "b": "1979",
+      "c": "1985",
+      "d": "1980",
+      "correct": "D"
+    },
+    {
+      "id": "MVPL063",
+      "q": "Glowny aktor w The Empire Strikes Back?",
+      "a": "Keanu Reeves",
+      "b": "Mark Hamill",
+      "c": "Keir Dullea",
+      "d": "Sam Neill",
+      "correct": "B"
+    },
+    {
+      "id": "MVPL064",
+      "q": "Film z motywem: Hoth?",
+      "a": "The Terminator",
+      "b": "The Empire Strikes Back",
+      "c": "The Goonies",
+      "d": "Star Wars",
+      "correct": "B"
+    },
+    {
+      "id": "MVPL065",
+      "q": "Rok swiatowej premiery The Empire Strikes Back?",
+      "a": "1980",
+      "b": "1999",
+      "c": "1956",
+      "d": "1979",
+      "correct": "A"
+    },
+    {
+      "id": "MVPL066",
+      "q": "Kto wyrezyserowal Raiders of the Lost Ark?",
+      "a": "Steven Spielberg",
+      "b": "Paul Verhoeven",
+      "c": "John Badham",
+      "d": "Luc Besson",
+      "correct": "A"
+    },
+    {
+      "id": "MVPL067",
+      "q": "Rok premiery Raiders of the Lost Ark?",
+      "a": "1977",
+      "b": "1984",
+      "c": "1985",
+      "d": "1981",
+      "correct": "D"
+    },
+    {
+      "id": "MVPL068",
+      "q": "Glowny aktor w Raiders of the Lost Ark?",
+      "a": "Harrison Ford",
+      "b": "Arnold Schwarzenegger",
+      "c": "Michael J. Fox",
+      "d": "Sylvester Stallone",
+      "correct": "A"
+    },
+    {
+      "id": "MVPL069",
+      "q": "Film z motywem: Arka Przymierza?",
+      "a": "Raiders of the Lost Ark",
+      "b": "Back to the Future",
+      "c": "The Matrix",
+      "d": "The Fifth Element",
+      "correct": "A"
+    },
+    {
+      "id": "MVPL070",
+      "q": "Rok swiatowej premiery Raiders of the Lost Ark?",
+      "a": "1976",
+      "b": "1979",
+      "c": "1993",
+      "d": "1981",
+      "correct": "D"
+    },
+    {
+      "id": "MVPL071",
+      "q": "Kto wyrezyserowal Predator?",
+      "a": "Irvin Kershner",
+      "b": "Luc Besson",
+      "c": "John G. Avildsen",
+      "d": "John McTiernan",
+      "correct": "D"
+    },
+    {
+      "id": "MVPL072",
+      "q": "Rok premiery Predator?",
+      "a": "1975",
+      "b": "1987",
+      "c": "1993",
+      "d": "1979",
+      "correct": "B"
+    },
+    {
+      "id": "MVPL073",
+      "q": "Glowny aktor w Predator?",
+      "a": "Arnold Schwarzenegger",
+      "b": "Sean Astin",
+      "c": "Sylvester Stallone",
+      "d": "Leslie Nielsen",
+      "correct": "A"
+    },
+    {
+      "id": "MVPL074",
+      "q": "Film z motywem: lowca z dzungli?",
+      "a": "Predator",
+      "b": "RoboCop",
+      "c": "Ghostbusters",
+      "d": "Blade Runner",
+      "correct": "A"
+    },
+    {
+      "id": "MVPL075",
+      "q": "Rok swiatowej premiery Predator?",
+      "a": "1985",
+      "b": "1997",
+      "c": "1983",
+      "d": "1987",
+      "correct": "D"
+    },
+    {
+      "id": "MVPL076",
+      "q": "Kto wyrezyserowal RoboCop?",
+      "a": "Steven Spielberg",
+      "b": "Paul Verhoeven",
+      "c": "Irvin Kershner",
+      "d": "Robert Zemeckis",
+      "correct": "B"
+    },
+    {
+      "id": "MVPL077",
+      "q": "Rok premiery RoboCop?",
+      "a": "1987",
+      "b": "1975",
+      "c": "1979",
+      "d": "1977",
+      "correct": "A"
+    },
+    {
+      "id": "MVPL078",
+      "q": "Glowny aktor w RoboCop?",
+      "a": "Michael J. Fox",
+      "b": "Peter Weller",
+      "c": "Bill Murray",
+      "d": "Sylvester Stallone",
+      "correct": "B"
+    },
+    {
+      "id": "MVPL079",
+      "q": "Film z motywem: OCP Detroit?",
+      "a": "Blade Runner",
+      "b": "Raiders of the Lost Ark",
+      "c": "RoboCop",
+      "d": "Jaws",
+      "correct": "C"
+    },
+    {
+      "id": "MVPL080",
+      "q": "Rok swiatowej premiery RoboCop?",
+      "a": "1976",
+      "b": "1990",
+      "c": "1987",
+      "d": "1981",
+      "correct": "C"
+    },
+    {
+      "id": "MVPL081",
+      "q": "Kto wyrezyserowal The Matrix?",
+      "a": "Irvin Kershner",
+      "b": "John McTiernan",
+      "c": "Wachowski Sisters",
+      "d": "John G. Avildsen",
+      "correct": "C"
+    },
+    {
+      "id": "MVPL082",
+      "q": "Rok premiery The Matrix?",
+      "a": "1956",
+      "b": "1968",
+      "c": "1976",
+      "d": "1999",
+      "correct": "D"
+    },
+    {
+      "id": "MVPL083",
+      "q": "Glowny aktor w The Matrix?",
+      "a": "Bill Murray",
+      "b": "Harrison Ford",
+      "c": "Sigourney Weaver",
+      "d": "Keanu Reeves",
+      "correct": "D"
+    },
+    {
+      "id": "MVPL084",
+      "q": "Film z motywem: czerwona pigulka?",
+      "a": "The Matrix",
+      "b": "The Goonies",
+      "c": "Raiders of the Lost Ark",
+      "d": "The Empire Strikes Back",
+      "correct": "A"
+    },
+    {
+      "id": "MVPL085",
+      "q": "Rok swiatowej premiery The Matrix?",
+      "a": "1990",
+      "b": "1999",
+      "c": "1981",
+      "d": "1977",
+      "correct": "B"
+    },
+    {
+      "id": "MVPL086",
+      "q": "Kto wyrezyserowal Jurassic Park?",
+      "a": "Fred M. Wilcox",
+      "b": "Steven Spielberg",
+      "c": "Ridley Scott",
+      "d": "John Badham",
+      "correct": "B"
+    },
+    {
+      "id": "MVPL087",
+      "q": "Rok premiery Jurassic Park?",
+      "a": "1990",
+      "b": "1956",
+      "c": "1993",
+      "d": "1977",
+      "correct": "C"
+    },
+    {
+      "id": "MVPL088",
+      "q": "Glowny aktor w Jurassic Park?",
+      "a": "Sam Neill",
+      "b": "Bruce Willis",
+      "c": "Sigourney Weaver",
+      "d": "Arnold Schwarzenegger",
+      "correct": "A"
+    },
+    {
+      "id": "MVPL089",
+      "q": "Film z motywem: klonowane dinozaury?",
+      "a": "Jurassic Park",
+      "b": "RoboCop",
+      "c": "Ghostbusters",
+      "d": "The Goonies",
+      "correct": "A"
+    },
+    {
+      "id": "MVPL090",
+      "q": "Rok swiatowej premiery Jurassic Park?",
+      "a": "1993",
+      "b": "1956",
+      "c": "1997",
+      "d": "1984",
+      "correct": "A"
+    },
+    {
+      "id": "MVPL091",
+      "q": "Kto wyrezyserowal Total Recall?",
+      "a": "Paul Verhoeven",
+      "b": "Irvin Kershner",
+      "c": "Richard Donner",
+      "d": "John McTiernan",
+      "correct": "A"
+    },
+    {
+      "id": "MVPL092",
+      "q": "Rok premiery Total Recall?",
+      "a": "1983",
+      "b": "1979",
+      "c": "1990",
+      "d": "1968",
+      "correct": "C"
+    },
+    {
+      "id": "MVPL093",
+      "q": "Glowny aktor w Total Recall?",
+      "a": "Mark Hamill",
+      "b": "Roy Scheider",
+      "c": "Arnold Schwarzenegger",
+      "d": "Sigourney Weaver",
+      "correct": "C"
+    },
+    {
+      "id": "MVPL094",
+      "q": "Film z motywem: wspomnienia Marsa?",
+      "a": "Rocky",
+      "b": "Total Recall",
+      "c": "Back to the Future",
+      "d": "Blade Runner",
+      "correct": "B"
+    },
+    {
+      "id": "MVPL095",
+      "q": "Rok swiatowej premiery Total Recall?",
+      "a": "1976",
+      "b": "1977",
+      "c": "1990",
+      "d": "1975",
+      "correct": "C"
+    },
+    {
+      "id": "MVPL096",
+      "q": "Kto wyrezyserowal The Fifth Element?",
+      "a": "Fred M. Wilcox",
+      "b": "Paul Verhoeven",
+      "c": "Robert Zemeckis",
+      "d": "Luc Besson",
+      "correct": "D"
+    },
+    {
+      "id": "MVPL097",
+      "q": "Rok premiery The Fifth Element?",
+      "a": "1985",
+      "b": "1968",
+      "c": "1997",
+      "d": "1983",
+      "correct": "C"
+    },
+    {
+      "id": "MVPL098",
+      "q": "Glowny aktor w The Fifth Element?",
+      "a": "Bruce Willis",
+      "b": "Sigourney Weaver",
+      "c": "Bill Murray",
+      "d": "Keanu Reeves",
+      "correct": "A"
+    },
+    {
+      "id": "MVPL099",
+      "q": "Film z motywem: Leeloo?",
+      "a": "Back to the Future",
+      "b": "Jaws",
+      "c": "2001: A Space Odyssey",
+      "d": "The Fifth Element",
+      "correct": "D"
+    },
+    {
+      "id": "MVPL100",
+      "q": "Rok swiatowej premiery The Fifth Element?",
+      "a": "1997",
+      "b": "1984",
+      "c": "1975",
+      "d": "1982",
+      "correct": "A"
+    }
+  ]
+}

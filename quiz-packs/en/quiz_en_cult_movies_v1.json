@@ -1,0 +1,920 @@
+{
+    "header":  {
+                   "id":  "quiz_en_cult_movies_v1",
+                   "language":  "en",
+                   "title":  "Quiz: cult films 70-99 + Forbidden Planet",
+                   "description":  "100 EN questions about cult movies from 1970-1999 plus Forbidden Planet.",
+                   "version":  "1.1.0",
+                   "author":  "CsharpBbs",
+                   "createdAt":  "2026-04-24",
+                   "tags":  [
+                                "film",
+                                "cinema",
+                                "scifi",
+                                "action",
+                                "retro"
+                            ]
+               },
+    "questions":  [
+                      {
+                          "id":  "MVEN001",
+                          "q":  "Who directed Jaws?",
+                          "a":  "George Lucas",
+                          "b":  "Paul Verhoeven",
+                          "c":  "Steven Spielberg",
+                          "d":  "Ridley Scott",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVEN002",
+                          "q":  "Release year of Jaws?",
+                          "a":  "1968",
+                          "b":  "1983",
+                          "c":  "1975",
+                          "d":  "1993",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVEN003",
+                          "q":  "Lead actor in Jaws?",
+                          "a":  "Sylvester Stallone",
+                          "b":  "Matthew Broderick",
+                          "c":  "Sigourney Weaver",
+                          "d":  "Roy Scheider",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVEN004",
+                          "q":  "Which film has: Amity shark?",
+                          "a":  "2001: A Space Odyssey",
+                          "b":  "The Terminator",
+                          "c":  "Jaws",
+                          "d":  "Predator",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVEN005",
+                          "q":  "World premiere year of Jaws?",
+                          "a":  "1982",
+                          "b":  "1993",
+                          "c":  "1990",
+                          "d":  "1975",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVEN006",
+                          "q":  "Who directed WarGames?",
+                          "a":  "John Badham",
+                          "b":  "James Cameron",
+                          "c":  "Ridley Scott",
+                          "d":  "Paul Verhoeven",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVEN007",
+                          "q":  "Release year of WarGames?",
+                          "a":  "1990",
+                          "b":  "1975",
+                          "c":  "1956",
+                          "d":  "1983",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVEN008",
+                          "q":  "Lead actor in WarGames?",
+                          "a":  "Sigourney Weaver",
+                          "b":  "Arnold Schwarzenegger",
+                          "c":  "Bruce Willis",
+                          "d":  "Matthew Broderick",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVEN009",
+                          "q":  "Which film has: computer WOPR?",
+                          "a":  "WarGames",
+                          "b":  "Star Wars",
+                          "c":  "The Matrix",
+                          "d":  "Rocky",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVEN010",
+                          "q":  "World premiere year of WarGames?",
+                          "a":  "1993",
+                          "b":  "1990",
+                          "c":  "1983",
+                          "d":  "1984",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVEN011",
+                          "q":  "Who directed The Goonies?",
+                          "a":  "Fred M. Wilcox",
+                          "b":  "Stanley Kubrick",
+                          "c":  "Richard Donner",
+                          "d":  "Ridley Scott",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVEN012",
+                          "q":  "Release year of The Goonies?",
+                          "a":  "1982",
+                          "b":  "1985",
+                          "c":  "1976",
+                          "d":  "1956",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVEN013",
+                          "q":  "Lead actor in The Goonies?",
+                          "a":  "Sean Astin",
+                          "b":  "Leslie Nielsen",
+                          "c":  "Arnold Schwarzenegger",
+                          "d":  "Mark Hamill",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVEN014",
+                          "q":  "Which film has: One-Eyed Willy map?",
+                          "a":  "The Empire Strikes Back",
+                          "b":  "The Goonies",
+                          "c":  "Raiders of the Lost Ark",
+                          "d":  "Jurassic Park",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVEN015",
+                          "q":  "World premiere year of The Goonies?",
+                          "a":  "1999",
+                          "b":  "1980",
+                          "c":  "1976",
+                          "d":  "1985",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVEN016",
+                          "q":  "Who directed 2001: A Space Odyssey?",
+                          "a":  "John Badham",
+                          "b":  "Stanley Kubrick",
+                          "c":  "James Cameron",
+                          "d":  "Steven Spielberg",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVEN017",
+                          "q":  "Release year of 2001: A Space Odyssey?",
+                          "a":  "1968",
+                          "b":  "1956",
+                          "c":  "1985",
+                          "d":  "1975",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVEN018",
+                          "q":  "Lead actor in 2001: A Space Odyssey?",
+                          "a":  "Harrison Ford",
+                          "b":  "Keir Dullea",
+                          "c":  "Sylvester Stallone",
+                          "d":  "Sean Astin",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVEN019",
+                          "q":  "Which film has: HAL 9000?",
+                          "a":  "2001: A Space Odyssey",
+                          "b":  "The Matrix",
+                          "c":  "Jurassic Park",
+                          "d":  "Raiders of the Lost Ark",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVEN020",
+                          "q":  "World premiere year of 2001: A Space Odyssey?",
+                          "a":  "1984",
+                          "b":  "1999",
+                          "c":  "1968",
+                          "d":  "1981",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVEN021",
+                          "q":  "Who directed Star Wars?",
+                          "a":  "George Lucas",
+                          "b":  "Luc Besson",
+                          "c":  "Stanley Kubrick",
+                          "d":  "Paul Verhoeven",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVEN022",
+                          "q":  "Release year of Star Wars?",
+                          "a":  "1990",
+                          "b":  "1977",
+                          "c":  "1968",
+                          "d":  "1981",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVEN023",
+                          "q":  "Lead actor in Star Wars?",
+                          "a":  "Peter Weller",
+                          "b":  "Mark Hamill",
+                          "c":  "Michael J. Fox",
+                          "d":  "Sean Astin",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVEN024",
+                          "q":  "Which film has: The Force?",
+                          "a":  "The Empire Strikes Back",
+                          "b":  "The Fifth Element",
+                          "c":  "Star Wars",
+                          "d":  "Total Recall",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVEN025",
+                          "q":  "World premiere year of Star Wars?",
+                          "a":  "1977",
+                          "b":  "1975",
+                          "c":  "1976",
+                          "d":  "1968",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVEN026",
+                          "q":  "Who directed The Terminator?",
+                          "a":  "Ivan Reitman",
+                          "b":  "Luc Besson",
+                          "c":  "Stanley Kubrick",
+                          "d":  "James Cameron",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVEN027",
+                          "q":  "Release year of The Terminator?",
+                          "a":  "1985",
+                          "b":  "1987",
+                          "c":  "1984",
+                          "d":  "1993",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVEN028",
+                          "q":  "Lead actor in The Terminator?",
+                          "a":  "Arnold Schwarzenegger",
+                          "b":  "Keanu Reeves",
+                          "c":  "Keir Dullea",
+                          "d":  "Mark Hamill",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVEN029",
+                          "q":  "Which film has: T-800?",
+                          "a":  "Alien",
+                          "b":  "Star Wars",
+                          "c":  "The Fifth Element",
+                          "d":  "The Terminator",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVEN030",
+                          "q":  "World premiere year of The Terminator?",
+                          "a":  "1984",
+                          "b":  "1977",
+                          "c":  "1993",
+                          "d":  "1968",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVEN031",
+                          "q":  "Who directed Ghostbusters?",
+                          "a":  "Ivan Reitman",
+                          "b":  "Robert Zemeckis",
+                          "c":  "Luc Besson",
+                          "d":  "Wachowski Sisters",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVEN032",
+                          "q":  "Release year of Ghostbusters?",
+                          "a":  "1984",
+                          "b":  "1985",
+                          "c":  "1983",
+                          "d":  "1982",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVEN033",
+                          "q":  "Lead actor in Ghostbusters?",
+                          "a":  "Bill Murray",
+                          "b":  "Roy Scheider",
+                          "c":  "Leslie Nielsen",
+                          "d":  "Arnold Schwarzenegger",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVEN034",
+                          "q":  "Which film has: proton pack?",
+                          "a":  "Total Recall",
+                          "b":  "The Goonies",
+                          "c":  "Star Wars",
+                          "d":  "Ghostbusters",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVEN035",
+                          "q":  "World premiere year of Ghostbusters?",
+                          "a":  "1980",
+                          "b":  "1984",
+                          "c":  "1990",
+                          "d":  "1979",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVEN036",
+                          "q":  "Who directed Rocky?",
+                          "a":  "George Lucas",
+                          "b":  "John McTiernan",
+                          "c":  "John Badham",
+                          "d":  "John G. Avildsen",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVEN037",
+                          "q":  "Release year of Rocky?",
+                          "a":  "1956",
+                          "b":  "1987",
+                          "c":  "1985",
+                          "d":  "1976",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVEN038",
+                          "q":  "Lead actor in Rocky?",
+                          "a":  "Sylvester Stallone",
+                          "b":  "Harrison Ford",
+                          "c":  "Michael J. Fox",
+                          "d":  "Sigourney Weaver",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVEN039",
+                          "q":  "Which film has: Apollo Creed?",
+                          "a":  "Ghostbusters",
+                          "b":  "Jurassic Park",
+                          "c":  "Forbidden Planet",
+                          "d":  "Rocky",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVEN040",
+                          "q":  "World premiere year of Rocky?",
+                          "a":  "1976",
+                          "b":  "1982",
+                          "c":  "1999",
+                          "d":  "1981",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVEN041",
+                          "q":  "Who directed Forbidden Planet?",
+                          "a":  "Richard Donner",
+                          "b":  "Fred M. Wilcox",
+                          "c":  "Stanley Kubrick",
+                          "d":  "Paul Verhoeven",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVEN042",
+                          "q":  "Release year of Forbidden Planet?",
+                          "a":  "1980",
+                          "b":  "1983",
+                          "c":  "1956",
+                          "d":  "1968",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVEN043",
+                          "q":  "Lead actor in Forbidden Planet?",
+                          "a":  "Sam Neill",
+                          "b":  "Leslie Nielsen",
+                          "c":  "Bill Murray",
+                          "d":  "Arnold Schwarzenegger",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVEN044",
+                          "q":  "Which film has: Robby the Robot?",
+                          "a":  "Forbidden Planet",
+                          "b":  "Jurassic Park",
+                          "c":  "The Empire Strikes Back",
+                          "d":  "Alien",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVEN045",
+                          "q":  "World premiere year of Forbidden Planet?",
+                          "a":  "1999",
+                          "b":  "1980",
+                          "c":  "1981",
+                          "d":  "1956",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVEN046",
+                          "q":  "Who directed Alien?",
+                          "a":  "Ridley Scott",
+                          "b":  "Fred M. Wilcox",
+                          "c":  "George Lucas",
+                          "d":  "Irvin Kershner",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVEN047",
+                          "q":  "Release year of Alien?",
+                          "a":  "1979",
+                          "b":  "1981",
+                          "c":  "1993",
+                          "d":  "1977",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVEN048",
+                          "q":  "Lead actor in Alien?",
+                          "a":  "Sylvester Stallone",
+                          "b":  "Arnold Schwarzenegger",
+                          "c":  "Mark Hamill",
+                          "d":  "Sigourney Weaver",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVEN049",
+                          "q":  "Which film has: Nostromo?",
+                          "a":  "WarGames",
+                          "b":  "Alien",
+                          "c":  "The Matrix",
+                          "d":  "Rocky",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVEN050",
+                          "q":  "World premiere year of Alien?",
+                          "a":  "1968",
+                          "b":  "1980",
+                          "c":  "1979",
+                          "d":  "1985",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVEN051",
+                          "q":  "Who directed Blade Runner?",
+                          "a":  "Ridley Scott",
+                          "b":  "Fred M. Wilcox",
+                          "c":  "Ivan Reitman",
+                          "d":  "George Lucas",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVEN052",
+                          "q":  "Release year of Blade Runner?",
+                          "a":  "1977",
+                          "b":  "1980",
+                          "c":  "1984",
+                          "d":  "1982",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVEN053",
+                          "q":  "Lead actor in Blade Runner?",
+                          "a":  "Harrison Ford",
+                          "b":  "Matthew Broderick",
+                          "c":  "Sean Astin",
+                          "d":  "Sigourney Weaver",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVEN054",
+                          "q":  "Which film has: replicants?",
+                          "a":  "Blade Runner",
+                          "b":  "2001: A Space Odyssey",
+                          "c":  "RoboCop",
+                          "d":  "Total Recall",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVEN055",
+                          "q":  "World premiere year of Blade Runner?",
+                          "a":  "1982",
+                          "b":  "1979",
+                          "c":  "1975",
+                          "d":  "1985",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVEN056",
+                          "q":  "Who directed Back to the Future?",
+                          "a":  "John G. Avildsen",
+                          "b":  "Robert Zemeckis",
+                          "c":  "James Cameron",
+                          "d":  "Richard Donner",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVEN057",
+                          "q":  "Release year of Back to the Future?",
+                          "a":  "1997",
+                          "b":  "1990",
+                          "c":  "1993",
+                          "d":  "1985",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVEN058",
+                          "q":  "Lead actor in Back to the Future?",
+                          "a":  "Keanu Reeves",
+                          "b":  "Sigourney Weaver",
+                          "c":  "Leslie Nielsen",
+                          "d":  "Michael J. Fox",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVEN059",
+                          "q":  "Which film has: DeLorean?",
+                          "a":  "The Empire Strikes Back",
+                          "b":  "Back to the Future",
+                          "c":  "Star Wars",
+                          "d":  "Rocky",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVEN060",
+                          "q":  "World premiere year of Back to the Future?",
+                          "a":  "1985",
+                          "b":  "1990",
+                          "c":  "1968",
+                          "d":  "1999",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVEN061",
+                          "q":  "Who directed The Empire Strikes Back?",
+                          "a":  "Richard Donner",
+                          "b":  "Paul Verhoeven",
+                          "c":  "Irvin Kershner",
+                          "d":  "Stanley Kubrick",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVEN062",
+                          "q":  "Release year of The Empire Strikes Back?",
+                          "a":  "1980",
+                          "b":  "1999",
+                          "c":  "1983",
+                          "d":  "1997",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVEN063",
+                          "q":  "Lead actor in The Empire Strikes Back?",
+                          "a":  "Mark Hamill",
+                          "b":  "Sam Neill",
+                          "c":  "Peter Weller",
+                          "d":  "Harrison Ford",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVEN064",
+                          "q":  "Which film has: Hoth?",
+                          "a":  "The Terminator",
+                          "b":  "Rocky",
+                          "c":  "Blade Runner",
+                          "d":  "The Empire Strikes Back",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVEN065",
+                          "q":  "World premiere year of The Empire Strikes Back?",
+                          "a":  "1975",
+                          "b":  "1976",
+                          "c":  "1980",
+                          "d":  "1984",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVEN066",
+                          "q":  "Who directed Raiders of the Lost Ark?",
+                          "a":  "Paul Verhoeven",
+                          "b":  "Ivan Reitman",
+                          "c":  "Steven Spielberg",
+                          "d":  "Stanley Kubrick",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVEN067",
+                          "q":  "Release year of Raiders of the Lost Ark?",
+                          "a":  "1956",
+                          "b":  "1981",
+                          "c":  "1976",
+                          "d":  "1987",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVEN068",
+                          "q":  "Lead actor in Raiders of the Lost Ark?",
+                          "a":  "Matthew Broderick",
+                          "b":  "Sylvester Stallone",
+                          "c":  "Harrison Ford",
+                          "d":  "Keanu Reeves",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVEN069",
+                          "q":  "Which film has: Ark of the Covenant?",
+                          "a":  "The Terminator",
+                          "b":  "Raiders of the Lost Ark",
+                          "c":  "The Matrix",
+                          "d":  "2001: A Space Odyssey",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVEN070",
+                          "q":  "World premiere year of Raiders of the Lost Ark?",
+                          "a":  "1979",
+                          "b":  "1976",
+                          "c":  "1981",
+                          "d":  "1999",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVEN071",
+                          "q":  "Who directed Predator?",
+                          "a":  "Wachowski Sisters",
+                          "b":  "John McTiernan",
+                          "c":  "Ridley Scott",
+                          "d":  "Stanley Kubrick",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVEN072",
+                          "q":  "Release year of Predator?",
+                          "a":  "1979",
+                          "b":  "1956",
+                          "c":  "1987",
+                          "d":  "1976",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVEN073",
+                          "q":  "Lead actor in Predator?",
+                          "a":  "Sylvester Stallone",
+                          "b":  "Matthew Broderick",
+                          "c":  "Arnold Schwarzenegger",
+                          "d":  "Sean Astin",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVEN074",
+                          "q":  "Which film has: jungle hunter?",
+                          "a":  "Jurassic Park",
+                          "b":  "RoboCop",
+                          "c":  "Predator",
+                          "d":  "Forbidden Planet",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVEN075",
+                          "q":  "World premiere year of Predator?",
+                          "a":  "1980",
+                          "b":  "1983",
+                          "c":  "1976",
+                          "d":  "1987",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVEN076",
+                          "q":  "Who directed RoboCop?",
+                          "a":  "Richard Donner",
+                          "b":  "Paul Verhoeven",
+                          "c":  "Wachowski Sisters",
+                          "d":  "John McTiernan",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVEN077",
+                          "q":  "Release year of RoboCop?",
+                          "a":  "1997",
+                          "b":  "1987",
+                          "c":  "1979",
+                          "d":  "1984",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVEN078",
+                          "q":  "Lead actor in RoboCop?",
+                          "a":  "Keir Dullea",
+                          "b":  "Harrison Ford",
+                          "c":  "Leslie Nielsen",
+                          "d":  "Peter Weller",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVEN079",
+                          "q":  "Which film has: OCP Detroit?",
+                          "a":  "Back to the Future",
+                          "b":  "RoboCop",
+                          "c":  "Predator",
+                          "d":  "The Matrix",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVEN080",
+                          "q":  "World premiere year of RoboCop?",
+                          "a":  "1987",
+                          "b":  "1979",
+                          "c":  "1990",
+                          "d":  "1968",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVEN081",
+                          "q":  "Who directed The Matrix?",
+                          "a":  "Wachowski Sisters",
+                          "b":  "John G. Avildsen",
+                          "c":  "Stanley Kubrick",
+                          "d":  "Robert Zemeckis",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVEN082",
+                          "q":  "Release year of The Matrix?",
+                          "a":  "1979",
+                          "b":  "1977",
+                          "c":  "1985",
+                          "d":  "1999",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVEN083",
+                          "q":  "Lead actor in The Matrix?",
+                          "a":  "Keanu Reeves",
+                          "b":  "Michael J. Fox",
+                          "c":  "Roy Scheider",
+                          "d":  "Peter Weller",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVEN084",
+                          "q":  "Which film has: red pill?",
+                          "a":  "The Goonies",
+                          "b":  "The Empire Strikes Back",
+                          "c":  "The Matrix",
+                          "d":  "Jaws",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVEN085",
+                          "q":  "World premiere year of The Matrix?",
+                          "a":  "1984",
+                          "b":  "1999",
+                          "c":  "1976",
+                          "d":  "1987",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVEN086",
+                          "q":  "Who directed Jurassic Park?",
+                          "a":  "Fred M. Wilcox",
+                          "b":  "Steven Spielberg",
+                          "c":  "John Badham",
+                          "d":  "John McTiernan",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVEN087",
+                          "q":  "Release year of Jurassic Park?",
+                          "a":  "1982",
+                          "b":  "1999",
+                          "c":  "1993",
+                          "d":  "1976",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVEN088",
+                          "q":  "Lead actor in Jurassic Park?",
+                          "a":  "Sigourney Weaver",
+                          "b":  "Peter Weller",
+                          "c":  "Roy Scheider",
+                          "d":  "Sam Neill",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVEN089",
+                          "q":  "Which film has: cloned dinosaurs?",
+                          "a":  "Alien",
+                          "b":  "Ghostbusters",
+                          "c":  "The Goonies",
+                          "d":  "Jurassic Park",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVEN090",
+                          "q":  "World premiere year of Jurassic Park?",
+                          "a":  "1980",
+                          "b":  "1975",
+                          "c":  "1993",
+                          "d":  "1997",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVEN091",
+                          "q":  "Who directed Total Recall?",
+                          "a":  "Richard Donner",
+                          "b":  "Paul Verhoeven",
+                          "c":  "Ivan Reitman",
+                          "d":  "Ridley Scott",
+                          "correct":  "B"
+                      },
+                      {
+                          "id":  "MVEN092",
+                          "q":  "Release year of Total Recall?",
+                          "a":  "1983",
+                          "b":  "1980",
+                          "c":  "1977",
+                          "d":  "1990",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVEN093",
+                          "q":  "Lead actor in Total Recall?",
+                          "a":  "Matthew Broderick",
+                          "b":  "Roy Scheider",
+                          "c":  "Sylvester Stallone",
+                          "d":  "Arnold Schwarzenegger",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVEN094",
+                          "q":  "Which film has: Mars memory?",
+                          "a":  "Alien",
+                          "b":  "WarGames",
+                          "c":  "Total Recall",
+                          "d":  "RoboCop",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVEN095",
+                          "q":  "World premiere year of Total Recall?",
+                          "a":  "1999",
+                          "b":  "1975",
+                          "c":  "1990",
+                          "d":  "1976",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVEN096",
+                          "q":  "Who directed The Fifth Element?",
+                          "a":  "Irvin Kershner",
+                          "b":  "Paul Verhoeven",
+                          "c":  "Luc Besson",
+                          "d":  "John Badham",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVEN097",
+                          "q":  "Release year of The Fifth Element?",
+                          "a":  "1997",
+                          "b":  "1980",
+                          "c":  "1987",
+                          "d":  "1983",
+                          "correct":  "A"
+                      },
+                      {
+                          "id":  "MVEN098",
+                          "q":  "Lead actor in The Fifth Element?",
+                          "a":  "Mark Hamill",
+                          "b":  "Arnold Schwarzenegger",
+                          "c":  "Sean Astin",
+                          "d":  "Bruce Willis",
+                          "correct":  "D"
+                      },
+                      {
+                          "id":  "MVEN099",
+                          "q":  "Which film has: Leeloo?",
+                          "a":  "RoboCop",
+                          "b":  "Forbidden Planet",
+                          "c":  "The Fifth Element",
+                          "d":  "Back to the Future",
+                          "correct":  "C"
+                      },
+                      {
+                          "id":  "MVEN100",
+                          "q":  "World premiere year of The Fifth Element?",
+                          "a":  "1983",
+                          "b":  "1984",
+                          "c":  "1997",
+                          "d":  "1968",
+                          "correct":  "C"
+                      }
+                  ]
+}
