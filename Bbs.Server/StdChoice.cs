@@ -24,7 +24,6 @@ public sealed class StdChoice : PetsciiThread
             Println("6) Commodore News");
             Println("7) Quiz");
             Println("W) WarGames Simulator");
-            Println("C) Commodore News");
             Println("B) 8-Bitz blog (polish)");
             Println($"I) Inline IMG: {(IsSessionInlineImagesEnabled() ? "ON" : "OFF")}");
             Println("Q) Quit");
