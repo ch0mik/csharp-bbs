@@ -189,9 +189,38 @@ docker compose down
 W menu glownym (`StdChoice`):
 - `I` przelacza obrazki PETSCII na biezaca sesje we wszystkich wspieranych tenantach (`Inline IMG: ON/OFF`).
   - Dotyczy: `8-bitz blog`, `CommodoreNews`, `WikipediaPetscii`.
-- `6` uruchamia `CommodoreNews`.
-- `7` uruchamia `QuizPetscii`.
+- `5` uruchamia `CommodoreNews` (`6` pozostaje aliasem zgodnosci).
 - `C` tez uruchamia `CommodoreNews`.
+- `G` otwiera menu gier: Breakout, Tetris, Squash, Pong vs CPU, ZorkMachine, Quiz, Chess i WarGames.
+
+W grze `Breakout`:
+- `Z` / kursor w lewo przesuwa paletke w lewo.
+- `X` / kursor w prawo przesuwa paletke w prawo.
+- `SPACJA` uruchamia pilke.
+- `Q`, a potem `Y`, wraca do menu gier.
+
+W grze `Tetris`:
+- `A/D` lub kursor lewo/prawo przesuwa klocek.
+- `W` lub kursor w gore obraca; `S` lub kursor w dol opuszcza klocek.
+- `SPACJA` zrzuca klocek; `Q`, a potem `Y`, wraca do menu gier.
+
+W grze `Squash`:
+- `A/Z` lub kursor gora/dol przesuwa paletke.
+- `SPACJA` serwuje pilke; `Q`, a potem `Y`, wraca do menu gier.
+
+W grze `Pong vs CPU`:
+- `A/Z` lub kursor gora/dol przesuwa lewa paletke.
+- `SPACJA` serwuje; pierwsza strona z 7 punktami wygrywa seta.
+- `PTS` przechodzi miedzy setami: +1 za odbicie gracza i +10 za zdobyty punkt. Rekord Redis uzywa `PTS`.
+- `Q`, a potem `Y`, wraca do menu gier.
+
+Rekordy gier:
+- Breakout, Tetris, Squash i Pong zapisuja najlepszy wynik gracza w Redis.
+- Klucze to sorted sets `bbs:highscore:<gra>` i pozostaja po restarcie kontenera BBS.
+- Gdy `REDIS_HOST` nie jest skonfigurowany, rekordy i napis `HI` sa wylaczone.
+- Po ustanowieniu nowego globalnego rekordu gracz moze wpisac nazwe o dlugosci do 8 znakow.
+
+Przy `BBS_DEBUG=true` gry czasu rzeczywistego loguja zdarzenia oraz co 10 sekund podsumowanie FPS, liczby zmienionych komorek na sekunde i czasu sesji.
 
 W tenantcie `CommodoreNews`:
 - `N+` / `N-` zmienia strone listy wpisow.

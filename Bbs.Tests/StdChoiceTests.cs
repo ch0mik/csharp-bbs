@@ -30,8 +30,9 @@ public class StdChoiceTests
         }
         while (!text.Contains("Choice:", StringComparison.OrdinalIgnoreCase));
 
-        Assert.Contains("C) Commodore News", text, StringComparison.OrdinalIgnoreCase);
-        Assert.Contains("W) WarGames Simulator", text, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("5) Commodore News", text, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("G) Games", text, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("W) WarGames Simulator", text, StringComparison.OrdinalIgnoreCase);
 
         await stream.WriteAsync(Encoding.ASCII.GetBytes("q\r"), cts.Token).ConfigureAwait(false);
         await stream.FlushAsync(cts.Token).ConfigureAwait(false);

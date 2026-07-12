@@ -20,11 +20,9 @@ public sealed class StdChoice : PetsciiThread
             Println("2) RSS");
             Println("3) Wikipedia");
             Println("4) CSDB");
-            Println("5) ZorkMachine");
-            Println("6) Commodore News");
-            Println("7) Quiz");
-            Println("W) WarGames Simulator");
+            Println("5) Commodore News");
             Println("B) 8-Bitz blog (polish)");
+            Println("G) Games");
             Println($"I) Inline IMG: {(IsSessionInlineImagesEnabled() ? "ON" : "OFF")}");
             Println("Q) Quit");
             Println();
@@ -66,27 +64,15 @@ public sealed class StdChoice : PetsciiThread
                 continue;
             }
 
-            if (choice is "5" or "ZORK")
-            {
-                await LaunchAsync(new Tenant.ZorkMachine(), cancellationToken).ConfigureAwait(false);
-                continue;
-            }
-
-            if (choice is "6" or "C" or "COMMODORE" or "NEWS" or "COMMODORENEWS")
+            if (choice is "5" or "6" or "C" or "COMMODORE" or "NEWS" or "COMMODORENEWS")
             {
                 await LaunchAsync(new Tenant.CommodoreNews(), cancellationToken).ConfigureAwait(false);
                 continue;
             }
 
-            if (choice is "7" or "QUIZ" or "QUIZPETSCII" or "MILLIONAIRE" or "MILIONERZY")
+            if (choice is "G" or "GAME" or "GAMES")
             {
-                await LaunchAsync(new Tenant.QuizPetscii(), cancellationToken).ConfigureAwait(false);
-                continue;
-            }
-
-            if (choice is "W" or "WOPR" or "WARGAMES" or "WAR GAMES")
-            {
-                await LaunchAsync(new Tenant.WarGamesPetscii(), cancellationToken).ConfigureAwait(false);
+                await ShowGamesMenuAsync(cancellationToken).ConfigureAwait(false);
                 continue;
             }
 
@@ -111,6 +97,90 @@ public sealed class StdChoice : PetsciiThread
             }
 
             Console.WriteLine($"{DateTimeOffset.UtcNow:yyyy-MM-dd HH:mm:ss} WARN Unknown StdChoice input '{rawInput}' normalized='{choice}', client={ClientId}");
+            Println();
+            Println("Unknown option.");
+            Println("Press ENTER...");
+            await FlushAsync(cancellationToken).ConfigureAwait(false);
+            await ReadLineAsync(maxLength: 1, cancellationToken: cancellationToken).ConfigureAwait(false);
+        }
+    }
+
+    private async Task ShowGamesMenuAsync(CancellationToken cancellationToken)
+    {
+        while (!cancellationToken.IsCancellationRequested)
+        {
+            Cls();
+            PrintEightBitzHeader();
+            Println("GAMES");
+            Println();
+            Println("1) Breakout");
+            Println("2) Tetris");
+            Println("3) Squash");
+            Println("4) Pong vs CPU");
+            Println("5) ZorkMachine");
+            Println("6) Quiz");
+            Println("7) Chess");
+            Println("8) WarGames Simulator");
+            Println(".) Back");
+            Println();
+            Print("Choice: ");
+            await FlushAsync(cancellationToken).ConfigureAwait(false);
+
+            var input = (await ReadLineAsync(maxLength: 16, cancellationToken: cancellationToken).ConfigureAwait(false)).Trim();
+            var choice = NormalizeChoice(input);
+            if (choice is "." or "BACK" or "Q" or "QUIT")
+            {
+                return;
+            }
+
+            if (choice is "1" or "BREAKOUT")
+            {
+                await LaunchAsync(new Tenant.BreakoutPetscii(), cancellationToken).ConfigureAwait(false);
+                continue;
+            }
+
+            if (choice is "2" or "TETRIS")
+            {
+                await LaunchAsync(new Tenant.TetrisPetscii(), cancellationToken).ConfigureAwait(false);
+                continue;
+            }
+
+            if (choice is "3" or "SQUASH")
+            {
+                await LaunchAsync(new Tenant.SquashPetscii(), cancellationToken).ConfigureAwait(false);
+                continue;
+            }
+
+            if (choice is "4" or "PONG")
+            {
+                await LaunchAsync(new Tenant.PongPetscii(), cancellationToken).ConfigureAwait(false);
+                continue;
+            }
+
+            if (choice is "5" or "ZORK" or "ZORKMACHINE")
+            {
+                await LaunchAsync(new Tenant.ZorkMachine(), cancellationToken).ConfigureAwait(false);
+                continue;
+            }
+
+            if (choice is "6" or "QUIZ" or "QUIZPETSCII" or "MILLIONAIRE" or "MILIONERZY")
+            {
+                await LaunchAsync(new Tenant.QuizPetscii(), cancellationToken).ConfigureAwait(false);
+                continue;
+            }
+
+            if (choice is "7" or "CHESS")
+            {
+                await LaunchAsync(new Tenant.ChessPetscii(), cancellationToken).ConfigureAwait(false);
+                continue;
+            }
+
+            if (choice is "8" or "W" or "WOPR" or "WARGAMES" or "WAR GAMES")
+            {
+                await LaunchAsync(new Tenant.WarGamesPetscii(), cancellationToken).ConfigureAwait(false);
+                continue;
+            }
+
             Println();
             Println("Unknown option.");
             Println("Press ENTER...");

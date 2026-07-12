@@ -190,9 +190,38 @@ docker compose down
 In main menu (`StdChoice`):
 - `I` toggles inline PETSCII images for current session in all supported tenants (`Inline IMG: ON/OFF`).
   - Affects: `8-bitz blog`, `CommodoreNews`, `WikipediaPetscii`.
-- `6` opens `CommodoreNews`.
-- `7` opens `QuizPetscii`.
+- `5` opens `CommodoreNews` (`6` remains a compatibility alias).
 - `C` also opens `CommodoreNews`.
+- `G` opens the games menu: Breakout, Tetris, Squash, Pong vs CPU, ZorkMachine, Quiz, Chess and WarGames.
+
+Inside `Breakout`:
+- `Z` / cursor left moves the paddle left.
+- `X` / cursor right moves the paddle right.
+- `SPACE` launches the ball.
+- `Q`, then `Y`, returns to the games menu.
+
+Inside `Tetris`:
+- `A/D` or cursor left/right moves a piece.
+- `W` or cursor up rotates it; `S` or cursor down moves it down.
+- `SPACE` performs a hard drop; `Q`, then `Y`, returns to the games menu.
+
+Inside `Squash`:
+- `A/Z` or cursor up/down moves the paddle.
+- `SPACE` serves the ball; `Q`, then `Y`, returns to the games menu.
+
+Inside `Pong vs CPU`:
+- `A/Z` or cursor up/down moves the left paddle.
+- `SPACE` serves; the first side to 7 points wins a set.
+- `PTS` carries between sets: +1 per player return and +10 per point won. Redis high score uses `PTS`.
+- `Q`, then `Y`, returns to the games menu.
+
+Game high scores:
+- Breakout, Tetris, Squash and Pong store each player's best score in Redis.
+- Keys use `bbs:highscore:<game>` sorted sets and survive BBS container restarts.
+- High scores and the `HI` display are disabled when `REDIS_HOST` is not configured.
+- A player setting a new global high score can enter a name up to 8 characters.
+
+With `BBS_DEBUG=true`, real-time games log gameplay events and a summary every 10 seconds containing FPS, changed cells per second and session uptime.
 
 Inside `CommodoreNews` tenant:
 - `N+` / `N-` switch post list page.
