@@ -11,23 +11,28 @@ public class WoprPetsciiTests
         var pair = await TestSocketPair.CreateAsync();
         using var server = pair.Server;
         using var client = pair.Client;
-        using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(15));
+        using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(30));
 
         var bbs = new WoprPetscii { AnimationDelay = TimeSpan.FromMilliseconds(1) };
         var sessionTask = bbs.RunSessionAsync(server, TimeSpan.FromMinutes(1), cts.Token);
         var outputTask = ReadAllAsync(client.GetStream(), cts.Token);
 
         await Task.Delay(250, cts.Token);
-        const string script = "JOSHUA\rfine\ryes\ryes\r2\rlater\r2\rmoscow\r\rl\r\r\r";
+        const string script = "JOSHUA\rfine\ryes\ryes\r2\rlater\rc\r2\rmoscow\r\rl\r\r\r";
         await client.GetStream().WriteAsync(Encoding.ASCII.GetBytes(script), cts.Token);
         await client.GetStream().FlushAsync(cts.Token);
 
-        await sessionTask.WaitAsync(TimeSpan.FromSeconds(10), cts.Token);
+        await sessionTask.WaitAsync(TimeSpan.FromSeconds(25), cts.Token);
         var output = await outputTask.WaitAsync(TimeSpan.FromSeconds(2), cts.Token);
 
         Assert.Contains("GREETINGS PROFESSOR FALKEN", output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("GLOBAL THERMONUCLEAR WAR", output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("C) CINEMATIC MODE", output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("S) STRATEGIC SIMULATION", output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("DEFCON 1", output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("PROJECTED US LOSSES", output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("STRATEGY ANALYSIS", output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("ALL OUTCOMES: NO WINNER", output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("THE ONLY WINNING MOVE IS NOT TO PLAY", output, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("DEFCON 5", output, StringComparison.OrdinalIgnoreCase);
     }
@@ -51,6 +56,28 @@ public class WoprPetsciiTests
         await sessionTask.WaitAsync(TimeSpan.FromSeconds(5), cts.Token);
         var output = await outputTask.WaitAsync(TimeSpan.FromSeconds(2), cts.Token);
         Assert.Contains("IDENTIFICATION NOT RECOGNIZED", output, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public async Task Logon_HelpGamesListsFilmGameCatalog()
+    {
+        var pair = await TestSocketPair.CreateAsync();
+        using var server = pair.Server;
+        using var client = pair.Client;
+        using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(10));
+        var bbs = new WoprPetscii { AnimationDelay = TimeSpan.FromMilliseconds(1) };
+        var sessionTask = bbs.RunSessionAsync(server, TimeSpan.FromMinutes(1), cts.Token);
+        var outputTask = ReadAllAsync(client.GetStream(), cts.Token);
+
+        await Task.Delay(250, cts.Token);
+        await client.GetStream().WriteAsync(Encoding.ASCII.GetBytes("Help Games\r.\r"), cts.Token);
+        await client.GetStream().FlushAsync(cts.Token);
+        await sessionTask.WaitAsync(TimeSpan.FromSeconds(5), cts.Token);
+        var output = await outputTask.WaitAsync(TimeSpan.FromSeconds(2), cts.Token);
+
+        Assert.Contains("FALKEN'S MAZE", output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("BIOTOXIC AND CHEMICAL WARFARE", output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("GLOBAL THERMONUCLEAR WAR", output, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]

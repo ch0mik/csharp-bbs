@@ -262,11 +262,22 @@ dotnet build Bbs.Server\Bbs.Server.csproj
 - Seattle Public School District scenario with the `PENCIL` password, student lookup, grade editing, pagination, and session state.
 - War dialer with configurable ranges, animated carrier scanning, remembered discoveries, and the original WOPR number `(311) 437-8739`.
 - Native WOPR/JOSHUA conversation, Global Thermonuclear War, target and side selection, DEFCON escalation, trajectory displays, accelerated tic-tac-toe learning, session resume, and the cinematic ending.
+- A playable chess game against WOPR, selected from its game menu, with moves entered as `E2E4`.
 - A 40-column PETSCII interface with cancellation-aware input and animations; no Linux programs, speech synthesizer, or WAV playback are required.
 
-Choose `W) WarGames Simulator` in `StdChoice`, or enter the `WOPR`, `WARGAMES`, or `WAR GAMES` alias. This opens one IMSAI 8080 terminal experience. Call the known school computer with option `1`, or use option `2` to war dial for unknown systems and discover WOPR. Log on to WOPR as `JOSHUA` and follow the terminal conversation to play Global Thermonuclear War. `.` or `QUIT` moves back through the terminal stack to the BBS.
+Choose `W) WarGames Simulator` in `StdChoice`, or enter the `WOPR`, `WARGAMES`, or `WAR GAMES` alias. This opens one IMSAI 8080 terminal experience. Option `1` calls the school computer, option `2` starts the cinematic war-dial/WOPR path, and option `3` opens Strategic GTW directly. The WOPR path asks again whether to run `C) CINEMATIC MODE` or `S) STRATEGIC SIMULATION` after Global Thermonuclear War is selected. `.` or `QUIT` moves back through the terminal stack to the BBS.
 
 The v1 tenant is a native 40-column PETSCII adaptation of the cinematic game path. It includes side and target selection, DEFCON escalation, deterministic tic-tac-toe learning, and the movie ending. It intentionally excludes the source project's regular user accounts, mail, administration, GPT, Internet/ARPANET, Linux commands, speech, and WAV playback.
+
+Selecting `CHESS` in WOPR starts a playable board against a deterministic computer opponent. Enter moves in long coordinate notation such as `E2E4`; use `.` to return to WOPR. The lightweight terminal rules support normal piece movement, captures, pawn promotion, and king capture, but do not implement castling or en passant.
+
+The WOPR terminal also supports the film-inspired `HELP LOGON`, `HELP GAMES`, and `LIST GAMES` commands. Its startup sequence now reproduces system-port diagnostics, while the endgame includes projected losses and a paged strategy analysis demonstrating that every escalation scenario has no winner.
+
+After selecting Global Thermonuclear War, choose `C) CINEMATIC MODE` for the film-driven trajectory, DEFCON, tic-tac-toe, and strategy-analysis sequence. Choose `S) STRATEGIC SIMULATION` for a turn-based game with 32 ICBMs per side, city populations, strike outcomes, an aggressive WOPR opponent, peace talks, surrender, and persistent damage markers. The United States can target up to four cities per strike; the Soviet Union can target up to six.
+
+During a strategic missile launch, select enemy cities using the displayed numbers (`1,2`) or comma-separated names (`MOSCOW,MINSK`).
+
+The strategic mode is based on the gameplay specification and behavior of the GPLv3 `wargames3` WOPR emulator. This project is distributed with source code, and the PETSCII implementation is native C# integrated with the BBS session model.
 
 ### Seattle school scenario
 

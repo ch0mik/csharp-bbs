@@ -26,6 +26,16 @@ public class WarGamesPetsciiTests
         Assert.True(Count(output, "IMSAI 8080 COMMUNICATIONS") >= 2);
     }
 
+    [Fact]
+    public async Task SingleTenant_ExposesStrategicSimulationDirectly()
+    {
+        var output = await RunAsync("3\r.\r.\r");
+
+        Assert.Contains("STRATEGIC GTW SIMULATION", output, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("SIMULATION MODE", output, StringComparison.OrdinalIgnoreCase);
+        Assert.True(Count(output, "IMSAI 8080 COMMUNICATIONS") >= 2);
+    }
+
     private static int Count(string value, string fragment)
     {
         var count = 0;

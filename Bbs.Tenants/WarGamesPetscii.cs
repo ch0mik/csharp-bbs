@@ -10,10 +10,11 @@ public sealed class WarGamesPetscii : PetsciiThread
         {
             Cls();
             Println("IMSAI 8080 COMMUNICATIONS");
-            Println("WARGAMES MOVIE SIMULATOR");
+            Println("WARGAMES SIMULATOR V2");
             Println("---------------------------------------");
             Println("1) CALL SCHOOL DISTRICT");
-            Println("2) WAR DIAL FOR UNKNOWN SYSTEMS");
+            Println("2) CINEMATIC PATH / WAR DIAL");
+            Println("3) STRATEGIC GTW SIMULATION");
             Println(".) HANG UP AND RETURN TO BBS");
             Println();
             Print("COMMAND: ");
@@ -31,6 +32,12 @@ public sealed class WarGamesPetscii : PetsciiThread
             if (input is "2" or "D" or "DIALER" or "WAR DIALER" or "WARDIALER")
             {
                 await LaunchAsync(new WarDialerPetscii(), cancellationToken).ConfigureAwait(false);
+                continue;
+            }
+
+            if (input is "3" or "S" or "STRATEGIC" or "SIMULATION")
+            {
+                await LaunchAsync(new ThermonuclearWarPetscii(), cancellationToken).ConfigureAwait(false);
                 continue;
             }
 

@@ -261,11 +261,22 @@ dotnet build Bbs.Server\Bbs.Server.csproj
 - Scenariusz Seattle Public School District z haslem `PENCIL`, wyszukiwaniem uczniow, edycja ocen, paginacja i stanem sesji.
 - War dialer z wyborem zakresu, animowanym wykrywaniem carrier tone, pamiecia odkryc i oryginalnym numerem WOPR `(311) 437-8739`.
 - Natywna rozmowa WOPR/JOSHUA, Global Thermonuclear War, wybor strony i celow, eskalacja DEFCON, trajektorie, przyspieszajaca nauka przez kolko i krzyzyk, wznowienie sesji oraz filmowy final.
+- Grywalne szachy przeciwko WOPR, wybierane z jego menu gier, z ruchami wpisywanymi jako `E2E4`.
 - Interfejs PETSCII 40 kolumn respektujacy anulowanie; bez programow linuksowych, syntezatora mowy i odtwarzania WAV.
 
-W `StdChoice` wybierz `W) WarGames Simulator` albo wpisz alias `WOPR`, `WARGAMES` lub `WAR GAMES`. Otworzy sie jedno filmowe srodowisko terminala IMSAI 8080. Opcja `1` dzwoni do znanego komputera szkolnego, a opcja `2` uruchamia war dialing i pozwala odkryc WOPR. Do WOPR zaloguj sie jako `JOSHUA`. `.` lub `QUIT` wraca przez kolejne poziomy terminala do BBS.
+W `StdChoice` wybierz `W) WarGames Simulator` albo wpisz alias `WOPR`, `WARGAMES` lub `WAR GAMES`. Otworzy sie terminal IMSAI 8080. Opcja `1` dzwoni do komputera szkolnego, opcja `2` uruchamia filmowa sciezke war dial/WOPR, a opcja `3` otwiera bezposrednio Strategic GTW. Po wybraniu Global Thermonuclear War sciezka WOPR ponownie pyta o `C) CINEMATIC MODE` albo `S) STRATEGIC SIMULATION`. `.` lub `QUIT` wraca przez kolejne poziomy terminala do BBS.
 
 Tenant v1 jest natywna, 40-kolumnowa adaptacja PETSCII filmowej sciezki gry. Obejmuje wybor strony i celow, eskalacje DEFCON, deterministyczna nauke przez kolko i krzyzyk oraz filmowy final. Celowo pomija zwykle konta, poczte, administracje, GPT, Internet/ARPANET, polecenia linuksowe, synteze mowy i odtwarzanie WAV z projektu zrodlowego.
+
+Wybranie `CHESS` w WOPR uruchamia grywalna plansze z deterministycznym przeciwnikiem. Ruchy wpisuje sie w dlugiej notacji wspolrzednych, np. `E2E4`; `.` wraca do WOPR. Lekkie zasady terminalowe obsluguja zwykle ruchy figur, bicia, promocje pionka i zdobycie krola, ale nie obejmuja roszady ani bicia w przelocie.
+
+Terminal WOPR obsluguje takze filmowe komendy `HELP LOGON`, `HELP GAMES` i `LIST GAMES`. Sekwencja startowa odtwarza diagnostyke portow systemu, a final zawiera prognozowane straty i stronicowana analize strategii pokazujaca, ze zaden wariant eskalacji nie ma zwyciezcy.
+
+Po wybraniu Global Thermonuclear War wybierz `C) CINEMATIC MODE`, aby przejsc filmowa sekwencje trajektorii, DEFCON, kolka i krzyzyka oraz analizy strategii. `S) STRATEGIC SIMULATION` uruchamia gre turowa z 32 pociskami ICBM na strone, populacjami miast, wynikami uderzen, agresywnym przeciwnikiem WOPR, negocjacjami, poddaniem i trwalymi oznaczeniami zniszczen. USA moze zaatakowac do czterech miast w turze, a ZSRR do szesciu.
+
+Podczas ataku w trybie strategicznym wybierz miasta przeciwnika numerami z wyswietlonej listy (`1,2`) albo nazwami rozdzielonymi przecinkami (`MOSCOW,MINSK`).
+
+Tryb strategiczny bazuje na specyfikacji rozgrywki i zachowaniu emulatora WOPR `wargames3` na licencji GPLv3. Projekt jest udostepniany wraz ze zrodlami, a implementacja PETSCII jest natywnym kodem C# zintegrowanym z modelem sesji BBS.
 
 ### Scenariusz szkolny Seattle
 

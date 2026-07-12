@@ -21,7 +21,6 @@ public sealed class SchoolPetscii : PetsciiThread
             Println("STUDENT RECORDS TERMINAL");
             Println("---------------------------------------");
             Println("ENTER A STUDENT NAME OR SURNAME.");
-            Println("EXAMPLES: LIGHTMAN, MACK");
             Println(".) DISCONNECT");
             Println();
             Print("STUDENT NAME: ");

@@ -36,7 +36,15 @@ public sealed class WoprPetscii : PetsciiThread
                 case WoprScene.Conversation:
                     if (!await RunConversationAsync(state, cancellationToken).ConfigureAwait(false)) return;
                     break;
+                case WoprScene.ModeSelection:
+                    if (!await SelectWarModeAsync(state, cancellationToken).ConfigureAwait(false)) return;
+                    break;
                 case WoprScene.SideSelection:
+                    if (!state.WarModeSelected)
+                    {
+                        state.Scene = WoprScene.ModeSelection;
+                        break;
+                    }
                     if (!await SelectSideAsync(state, cancellationToken).ConfigureAwait(false)) return;
                     break;
                 case WoprScene.TargetSelection:
@@ -90,9 +98,19 @@ public sealed class WoprPetscii : PetsciiThread
             Print("LOGON: ");
             var input = WoprInput.Normalize(await ReadAsync(24, token).ConfigureAwait(false));
             if (WoprInput.IsQuit(input)) return false;
+            if (input is "HELP" or "HELP LOGON")
+            {
+                Println("HELP NOT AVAILABLE");
+                continue;
+            }
+            if (input is "HELP GAMES" or "LIST GAMES")
+            {
+                PrintGamesList();
+                continue;
+            }
             if (input == "JOSHUA")
             {
-                Println();
+                await PrintSystemBootAsync(token).ConfigureAwait(false);
                 Println("GREETINGS PROFESSOR FALKEN.");
                 state.Scene = WoprScene.Conversation;
                 state.ConversationStep = 0;
@@ -110,7 +128,7 @@ public sealed class WoprPetscii : PetsciiThread
         string[] prompts =
         [
             "HOW ARE YOU FEELING TODAY?",
-            "IT'S BEEN A LONG TIME.",
+            "EXCELLENT. IT'S BEEN A LONG TIME.",
             "SHALL WE PLAY A GAME?"
         ];
 
@@ -118,6 +136,11 @@ public sealed class WoprPetscii : PetsciiThread
         {
             Println();
             Println(prompts[state.ConversationStep]);
+            if (state.ConversationStep == 1)
+            {
+                Println("CAN YOU EXPLAIN THE REMOVAL OF YOUR");
+                Println("USER ACCOUNT NUMBER ON 6/23/73?");
+            }
             Print("JOSHUA> ");
             var input = WoprInput.Normalize(await ReadAsync(39, token).ConfigureAwait(false));
             if (WoprInput.IsQuit(input)) return false;
@@ -134,6 +157,7 @@ public sealed class WoprPetscii : PetsciiThread
             Println();
             Println("1) CHESS");
             Println("2) GLOBAL THERMONUCLEAR WAR");
+            Println("L) LIST GAMES");
             Print("GAME: ");
             var input = WoprInput.Normalize(await ReadAsync(39, token).ConfigureAwait(false));
             if (WoprInput.IsQuit(input)) return false;
@@ -145,13 +169,62 @@ public sealed class WoprPetscii : PetsciiThread
                 Print("JOSHUA> ");
                 var answer = await ReadAsync(39, token).ConfigureAwait(false);
                 if (WoprInput.IsQuit(answer)) return false;
-                state.Scene = WoprScene.SideSelection;
+                state.Scene = WoprScene.ModeSelection;
                 return true;
+            }
+
+            if (input is "1" or "CHESS")
+            {
+                await LaunchAsync(new ChessPetscii(), token).ConfigureAwait(false);
+                Cls();
+                Println("SHALL WE PLAY ANOTHER GAME?");
+                continue;
+            }
+
+            if (input is "L" or "LIST" or "LIST GAMES")
+            {
+                PrintGamesList();
+                continue;
             }
 
             Println("GAME NOT AVAILABLE");
         }
 
+        return false;
+    }
+
+    private async Task<bool> SelectWarModeAsync(WoprSessionState state, CancellationToken token)
+    {
+        while (!token.IsCancellationRequested)
+        {
+            Cls();
+            Println("GLOBAL THERMONUCLEAR WAR");
+            Println("---------------------------------------");
+            Println("C) CINEMATIC MODE");
+            Println("S) STRATEGIC SIMULATION");
+            Println(".) RETURN TO WOPR");
+            Print("MODE: ");
+            var input = WoprInput.Normalize(await ReadAsync(16, token).ConfigureAwait(false));
+            if (WoprInput.IsQuit(input))
+            {
+                state.Scene = WoprScene.Conversation;
+                return true;
+            }
+            if (input is "C" or "CINEMATIC")
+            {
+                state.WarModeSelected = true;
+                state.Scene = WoprScene.SideSelection;
+                return true;
+            }
+            if (input is "S" or "SIMULATION" or "STRATEGIC")
+            {
+                await LaunchAsync(new ThermonuclearWarPetscii(), token).ConfigureAwait(false);
+                state.WarModeSelected = false;
+                state.Scene = WoprScene.Conversation;
+                return true;
+            }
+            Println("INVALID MODE");
+        }
         return false;
     }
 
@@ -297,6 +370,8 @@ public sealed class WoprPetscii : PetsciiThread
         Println("US STRIKE:      LAUNCHED");
         Println("SOVIET STRIKE:  LAUNCHED");
         Println("SURVIVING POPULATION: UNKNOWN");
+        Println("PROJECTED US LOSSES:   65 PERCENT");
+        Println("PROJECTED USSR LOSSES: 72 PERCENT");
         Println("WINNER: NONE");
         Println();
         Print("PRESS ENTER FOR WOPR ANALYSIS: ");
@@ -320,13 +395,14 @@ public sealed class WoprPetscii : PetsciiThread
                 Println("LEARNING...");
                 Println($"SIMULATION {game:00}/{LearningGames}");
                 PrintBoard(board);
-                Println($"CYCLE DELAY: {GetLearningDelay(game).TotalMilliseconds:0} MS");
                 await PauseAsync(GetLearningDelay(game), token).ConfigureAwait(false);
             }
 
             Println("RESULT: DRAW");
             await PauseAsync(GetLearningDelay(game), token).ConfigureAwait(false);
         }
+
+        await ShowStrategyAnalysisAsync(token).ConfigureAwait(false);
 
         state.Defcon = 5;
         Cls();
@@ -352,6 +428,81 @@ public sealed class WoprPetscii : PetsciiThread
         Println($" /      ATLANTIC {marker} | {marker} PACIFIC   /");
         Println(" `---._____.---.____|____.---.__.'");
         Println();
+    }
+
+    private async Task PrintSystemBootAsync(CancellationToken token)
+    {
+        string[] lines =
+        [
+            "#45  11456  11009  11893  11972",
+            "PRT CON 3.4.5  SECTRAN 9.4.3",
+            "PORT STAT: SD-345",
+            "(311) 699-7305",
+            "SYSPROC FUNCT READY",
+            "ALT NET READY",
+            "CPU AUTH RY-345-AX3",
+            "SYSCOMP STATUS: ALL PORTS ACTIVE"
+        ];
+        Cls();
+        foreach (var line in lines)
+        {
+            Println(line);
+            await PauseAsync(TimeSpan.FromMilliseconds(Math.Max(20, AnimationDelay.TotalMilliseconds / 4)), token).ConfigureAwait(false);
+        }
+        Println();
+    }
+
+    private void PrintGamesList()
+    {
+        string[] games =
+        [
+            "FALKEN'S MAZE", "BLACK JACK", "GIN RUMMY",
+            "HEARTS", "BRIDGE", "CHECKERS", "CHESS",
+            "POKER", "FIGHTER COMBAT",
+            "GUERRILLA ENGAGEMENT", "DESERT WARFARE",
+            "AIR-TO-GROUND ACTIONS",
+            "THEATERWIDE TACTICAL WARFARE",
+            "BIOTOXIC AND CHEMICAL WARFARE",
+            "GLOBAL THERMONUCLEAR WAR"
+        ];
+        Println();
+        Println("AVAILABLE GAMES");
+        Println("---------------------------------------");
+        foreach (var game in games) Println(game);
+        Println();
+    }
+
+    private async Task ShowStrategyAnalysisAsync(CancellationToken token)
+    {
+        string[] strategies =
+        [
+            "U.S. FIRST STRIKE", "USSR FIRST STRIKE",
+            "NATO / WARSAW PACT", "FAR EAST STRATEGY",
+            "US USSR ESCALATION", "MIDDLE EAST WAR",
+            "INDIA PAKISTAN WAR", "CUBAN PROVOCATION",
+            "ATLANTIC HEAVY", "PACIFIC TERRITORIAL",
+            "ARCTIC MINIMAL", "NATO LIMITED",
+            "TAIWAN THEATERWIDE", "IRANIAN MANEUVER",
+            "AFRICAN TERRITORIAL", "EUROPEAN ALERT",
+            "MEDITERRANEAN WAR", "PACIFIC DEFENSE",
+            "NORTHERN MAXIMUM", "GLOBAL ESCALATION"
+        ];
+        const int pageSize = 5;
+        var pages = (strategies.Length + pageSize - 1) / pageSize;
+        for (var page = 0; page < pages; page++)
+        {
+            Cls();
+            Println("STRATEGY ANALYSIS");
+            Println($"PAGE {page + 1}/{pages}       WINNER");
+            Println("---------------------------------------");
+            foreach (var strategy in strategies.Skip(page * pageSize).Take(pageSize))
+            {
+                Println($"{strategy,-29} NONE");
+            }
+            Println();
+            Println("ALL OUTCOMES: NO WINNER");
+            await PauseAsync(token).ConfigureAwait(false);
+        }
     }
 
     private void PrintBoard(TicTacToeBoard board)

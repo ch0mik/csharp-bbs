@@ -4,6 +4,7 @@ internal enum WoprScene
 {
     Logon,
     Conversation,
+    ModeSelection,
     SideSelection,
     TargetSelection,
     ConfirmTargets,
@@ -16,6 +17,7 @@ internal sealed class WoprSessionState
 {
     public WoprScene Scene { get; set; } = WoprScene.Logon;
     public int ConversationStep { get; set; }
+    public bool WarModeSelected { get; set; }
     public string Side { get; set; } = string.Empty;
     public List<string> Targets { get; } = new();
     public int Defcon { get; set; } = 5;
