@@ -97,7 +97,7 @@ public sealed class BreakoutPetscii : PetsciiThread
                 }
                 else if (x == _game.BallX && y == _game.BallY)
                 {
-                    Write(PetsciiKeys.White, 160);
+                    Write(PetsciiKeys.Yellow, 'O');
                 }
                 else if (y == BreakoutGame.PaddleY && x >= _game.PaddleX && x < _game.PaddleX + BreakoutGame.PaddleWidth)
                 {
@@ -144,7 +144,7 @@ public sealed class BreakoutPetscii : PetsciiThread
         if (previous.BallX != _game.BallX || previous.BallY != _game.BallY)
         {
             DrawCell(previous.BallX, previous.BallY, PetsciiKeys.Black, PetsciiKeys.Space);
-            DrawCell(_game.BallX, _game.BallY, PetsciiKeys.White, 160);
+            DrawCell(_game.BallX, _game.BallY, PetsciiKeys.Yellow, 'O');
             changedCells += 2;
         }
 
