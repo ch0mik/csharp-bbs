@@ -8,6 +8,8 @@ namespace Bbs.Tenants;
 
 public sealed class WikipediaPetscii : PetsciiThread
 {
+    private static readonly bool DebugEnabled = ReadBoolEnvironmentVariable("BBS_DEBUG", defaultValue: false);
+
     private const int MinInlineImageWidth = 320;
     private const int MinInlineImageHeight = 200;
     private const string SessionInlineImagesKey = "session:inline-petscii-images";
@@ -718,9 +720,14 @@ public sealed class WikipediaPetscii : PetsciiThread
 
     private async Task ShowErrorAsync(Exception ex, CancellationToken cancellationToken)
     {
+        DebugLog($"Wikipedia request failed: {ex}");
+
         Cls();
         Println("Wikipedia error:");
-        Println(TextRender.TrimTo(ex.Message, 39));
+        foreach (var line in TextRender.WrapLines(ex.Message, 39).Take(5))
+        {
+            Println(line);
+        }
         Println();
         Print("Press ENTER...");
         await FlushAsync(cancellationToken).ConfigureAwait(false);
@@ -729,7 +736,28 @@ public sealed class WikipediaPetscii : PetsciiThread
 
     private static void DebugLog(string message)
     {
+        if (!DebugEnabled)
+        {
+            return;
+        }
+
         Console.WriteLine($"[{DateTimeOffset.UtcNow:yyyy-MM-dd HH:mm:ss}][WikipediaPetscii] {message}");
+    }
+
+    private static bool ReadBoolEnvironmentVariable(string name, bool defaultValue)
+    {
+        var raw = Environment.GetEnvironmentVariable(name);
+        if (string.IsNullOrWhiteSpace(raw))
+        {
+            return defaultValue;
+        }
+
+        return raw.Trim().ToLowerInvariant() switch
+        {
+            "1" or "true" or "yes" or "on" => true,
+            "0" or "false" or "no" or "off" => false,
+            _ => defaultValue
+        };
     }
 
     private async Task NormalizeTextModeAsync(CancellationToken cancellationToken)

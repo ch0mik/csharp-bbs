@@ -185,6 +185,8 @@ public sealed class WordpressService : IWordpressService
 
 public sealed class WikipediaService : IWikipediaService
 {
+    internal const string WikimediaUserAgent = "CsharpBbsWikipediaBot/1.0 (https://github.com/ch0mik/csharp-bbs)";
+
     private readonly IHttpService _http;
 
     public WikipediaService(IHttpService? http = null)
@@ -197,7 +199,7 @@ public sealed class WikipediaService : IWikipediaService
         var lang = NormalizeLang(language);
         var safeQuery = Uri.EscapeDataString(query ?? string.Empty);
         var url = $"https://{lang}.wikipedia.org/w/api.php?format=json&action=query&list=search&srsearch={safeQuery}&srlimit={Math.Clamp(limit, 1, 50)}";
-        var json = await _http.GetStringAsync(url, cancellationToken: cancellationToken).ConfigureAwait(false);
+        var json = await _http.GetStringAsync(url, WikimediaUserAgent, cancellationToken).ConfigureAwait(false);
 
         using var doc = JsonDocument.Parse(json);
         var list = new List<WikipediaSearchItem>();
@@ -225,7 +227,7 @@ public sealed class WikipediaService : IWikipediaService
     {
         var lang = NormalizeLang(language);
         var url = $"https://{lang}.wikipedia.org/w/api.php?action=query&format=json&list=random&rnnamespace=0";
-        var json = await _http.GetStringAsync(url, cancellationToken: cancellationToken).ConfigureAwait(false);
+        var json = await _http.GetStringAsync(url, WikimediaUserAgent, cancellationToken).ConfigureAwait(false);
 
         using var doc = JsonDocument.Parse(json);
         if (!doc.RootElement.TryGetProperty("query", out var queryObj) || !queryObj.TryGetProperty("random", out var randomArray))
@@ -253,7 +255,7 @@ public sealed class WikipediaService : IWikipediaService
     {
         var lang = NormalizeLang(language);
         var url = $"https://{lang}.wikipedia.org/w/api.php?format=json&formatversion=2&action=parse&prop=text&pageid={pageId}&mobileformat=true&disableeditsection=true&disabletoc=true";
-        var json = await _http.GetStringAsync(url, cancellationToken: cancellationToken).ConfigureAwait(false);
+        var json = await _http.GetStringAsync(url, WikimediaUserAgent, cancellationToken).ConfigureAwait(false);
 
         using var doc = JsonDocument.Parse(json);
         if (!doc.RootElement.TryGetProperty("parse", out var parseObj)
@@ -291,7 +293,7 @@ public sealed class WikipediaService : IWikipediaService
                 url += $"&imcontinue={Uri.EscapeDataString(imContinue)}";
             }
 
-            var json = await _http.GetStringAsync(url, cancellationToken: cancellationToken).ConfigureAwait(false);
+            var json = await _http.GetStringAsync(url, WikimediaUserAgent, cancellationToken).ConfigureAwait(false);
             using var doc = JsonDocument.Parse(json);
             if (!doc.RootElement.TryGetProperty("query", out var queryObj)
                 || !queryObj.TryGetProperty("pages", out var pagesObj)
@@ -351,7 +353,7 @@ public sealed class WikipediaService : IWikipediaService
             var chunk = distinctTitles.Skip(i).Take(50).ToArray();
             var titlesArg = string.Join("|", chunk.Select(Uri.EscapeDataString));
             var iiUrl = $"https://{lang}.wikipedia.org/w/api.php?format=json&formatversion=2&action=query&prop=imageinfo&iiprop=url|size&titles={titlesArg}";
-            var iiJson = await _http.GetStringAsync(iiUrl, cancellationToken: cancellationToken).ConfigureAwait(false);
+            var iiJson = await _http.GetStringAsync(iiUrl, WikimediaUserAgent, cancellationToken).ConfigureAwait(false);
             using var iiDoc = JsonDocument.Parse(iiJson);
 
             if (!iiDoc.RootElement.TryGetProperty("query", out var q)

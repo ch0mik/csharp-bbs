@@ -17,6 +17,7 @@ services:
       - REDIS_PORT=6379
       - REDIS_PASSWORD=${REDIS_PASSWORD}
       - BBS_INSTANCE_ID=${HOSTNAME:-csharp-bbs}
+      - BBS_DEBUG=true
     volumes:
       - ./petscii-art-gallery:/app/petscii-art-gallery:ro
       - ./zmpp:/app/zmpp:ro
