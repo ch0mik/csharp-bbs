@@ -117,10 +117,11 @@ public sealed class StdChoice : PetsciiThread
             Println("2) Tetris");
             Println("3) Squash");
             Println("4) Pong vs CPU");
-            Println("5) ZorkMachine");
-            Println("6) Quiz");
-            Println("7) Chess");
-            Println("8) WarGames Simulator");
+            Println("5) Arkanoid");
+            Println("6) ZorkMachine");
+            Println("7) Quiz");
+            Println("8) Chess");
+            Println("9) WarGames Simulator");
             Println(".) Back");
             Println();
             Print("Choice: ");
@@ -157,25 +158,31 @@ public sealed class StdChoice : PetsciiThread
                 continue;
             }
 
-            if (choice is "5" or "ZORK" or "ZORKMACHINE")
+            if (choice is "5" or "ARKANOID" or "ARK")
+            {
+                await LaunchAsync(new Tenant.ArkanoidPetscii(), cancellationToken).ConfigureAwait(false);
+                continue;
+            }
+
+            if (choice is "6" or "ZORK" or "ZORKMACHINE")
             {
                 await LaunchAsync(new Tenant.ZorkMachine(), cancellationToken).ConfigureAwait(false);
                 continue;
             }
 
-            if (choice is "6" or "QUIZ" or "QUIZPETSCII" or "MILLIONAIRE" or "MILIONERZY")
+            if (choice is "7" or "QUIZ" or "QUIZPETSCII" or "MILLIONAIRE" or "MILIONERZY")
             {
                 await LaunchAsync(new Tenant.QuizPetscii(), cancellationToken).ConfigureAwait(false);
                 continue;
             }
 
-            if (choice is "7" or "CHESS")
+            if (choice is "8" or "CHESS")
             {
                 await LaunchAsync(new Tenant.ChessPetscii(), cancellationToken).ConfigureAwait(false);
                 continue;
             }
 
-            if (choice is "8" or "W" or "WOPR" or "WARGAMES" or "WAR GAMES")
+            if (choice is "9" or "W" or "WOPR" or "WARGAMES" or "WAR GAMES")
             {
                 await LaunchAsync(new Tenant.WarGamesPetscii(), cancellationToken).ConfigureAwait(false);
                 continue;

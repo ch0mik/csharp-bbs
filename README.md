@@ -192,7 +192,7 @@ In main menu (`StdChoice`):
   - Affects: `8-bitz blog`, `CommodoreNews`, `WikipediaPetscii`.
 - `5` opens `CommodoreNews` (`6` remains a compatibility alias).
 - `C` also opens `CommodoreNews`.
-- `G` opens the games menu: Breakout, Tetris, Squash, Pong vs CPU, ZorkMachine, Quiz, Chess and WarGames.
+- `G` opens the games menu: Breakout, Tetris, Squash, Pong vs CPU, Arkanoid, ZorkMachine, Quiz, Chess and WarGames.
 
 Inside `Breakout`:
 - `Z` / cursor left moves the paddle left.
@@ -215,7 +215,12 @@ Inside `Pong vs CPU`:
 - `PTS` carries between sets: +1 per player return and +10 per point won. Redis high score uses `PTS`.
 - `Q`, then `Y`, returns to the games menu.
 
-Game high scores:
+Inside `Arkanoid`:
+- Three levels with different layouts and durable `@` bricks.
+- `Z/X` or cursor left/right moves the paddle; `SPACE` launches the ball.
+- `Q`, then `Y`, returns to the games menu.
+
+Game high scores (Breakout, Tetris, Squash, Pong and Arkanoid):
 - Breakout, Tetris, Squash and Pong store each player's best score in Redis.
 - Keys use `bbs:highscore:<game>` sorted sets and survive BBS container restarts.
 - High scores and the `HI` display are disabled when `REDIS_HOST` is not configured.

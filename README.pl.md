@@ -191,7 +191,7 @@ W menu glownym (`StdChoice`):
   - Dotyczy: `8-bitz blog`, `CommodoreNews`, `WikipediaPetscii`.
 - `5` uruchamia `CommodoreNews` (`6` pozostaje aliasem zgodnosci).
 - `C` tez uruchamia `CommodoreNews`.
-- `G` otwiera menu gier: Breakout, Tetris, Squash, Pong vs CPU, ZorkMachine, Quiz, Chess i WarGames.
+- `G` otwiera menu gier: Breakout, Tetris, Squash, Pong vs CPU, Arkanoid, ZorkMachine, Quiz, Chess i WarGames.
 
 W grze `Breakout`:
 - `Z` / kursor w lewo przesuwa paletke w lewo.
@@ -214,7 +214,12 @@ W grze `Pong vs CPU`:
 - `PTS` przechodzi miedzy setami: +1 za odbicie gracza i +10 za zdobyty punkt. Rekord Redis uzywa `PTS`.
 - `Q`, a potem `Y`, wraca do menu gier.
 
-Rekordy gier:
+W grze `Arkanoid`:
+- Trzy poziomy z roznymi ukladami i wytrzymalymi ceglami `@`.
+- `Z/X` lub kursor lewo/prawo przesuwa paletke; `SPACJA` uruchamia pilke.
+- `Q`, a potem `Y`, wraca do menu gier.
+
+Rekordy gier (Breakout, Tetris, Squash, Pong i Arkanoid):
 - Breakout, Tetris, Squash i Pong zapisuja najlepszy wynik gracza w Redis.
 - Klucze to sorted sets `bbs:highscore:<gra>` i pozostaja po restarcie kontenera BBS.
 - Gdy `REDIS_HOST` nie jest skonfigurowany, rekordy i napis `HI` sa wylaczone.
