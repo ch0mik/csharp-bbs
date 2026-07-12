@@ -16,6 +16,8 @@ public class WordpressProxyPetscii : PetsciiThread
 
     protected virtual string Domain => "https://wordpress.org/news";
 
+    protected virtual string SourceLabel => Domain;
+
     protected virtual int PageSize => 10;
 
     protected virtual bool ShowAuthor => false;
@@ -53,7 +55,7 @@ public class WordpressProxyPetscii : PetsciiThread
             }
 
             Cls();
-            Println(TextRender.TrimTo(Domain, 39));
+            Println(TextRender.TrimTo(SourceLabel, 39));
             Println(new string('-', 39));
 
             foreach (var post in posts)

@@ -174,7 +174,12 @@ public sealed class WordpressService : IWordpressService
             value = "https://" + value;
         }
 
-        return value.TrimEnd('/');
+        if (!Uri.TryCreate(value, UriKind.Absolute, out var uri))
+        {
+            return value.TrimEnd('/');
+        }
+
+        return uri.GetLeftPart(UriPartial.Authority).TrimEnd('/');
     }
 }
 

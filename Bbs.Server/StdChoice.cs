@@ -1,3 +1,4 @@
+using Bbs.Core;
 using Bbs.Terminals;
 using Tenant = Bbs.Tenants;
 
@@ -20,8 +21,10 @@ public sealed class StdChoice : PetsciiThread
             Println("3) Wikipedia");
             Println("4) CSDB");
             Println("5) ZorkMachine");
-            Println("6) CommodoreNews");
+            Println("6) Commodore News");
             Println("7) Quiz");
+            Println("W) WarGames Simulator");
+            Println("C) Commodore News");
             Println("B) 8-Bitz blog (polish)");
             Println($"I) Inline IMG: {(IsSessionInlineImagesEnabled() ? "ON" : "OFF")}");
             Println("Q) Quit");
@@ -70,7 +73,7 @@ public sealed class StdChoice : PetsciiThread
                 continue;
             }
 
-            if (choice is "6" or "COMMODORE" or "COMMODORENEWS" or "NEWS")
+            if (choice is "6" or "C" or "COMMODORE" or "NEWS" or "COMMODORENEWS")
             {
                 await LaunchAsync(new Tenant.CommodoreNews(), cancellationToken).ConfigureAwait(false);
                 continue;
@@ -81,6 +84,13 @@ public sealed class StdChoice : PetsciiThread
                 await LaunchAsync(new Tenant.QuizPetscii(), cancellationToken).ConfigureAwait(false);
                 continue;
             }
+
+            if (choice is "W" or "WOPR" or "WARGAMES" or "WAR GAMES")
+            {
+                await LaunchAsync(new Tenant.WarGamesPetscii(), cancellationToken).ConfigureAwait(false);
+                continue;
+            }
+
             if (choice is "B" or "8BITZ" or "8-BITZ" or "EIGHTBITZ")
             {
                 await LaunchAsync(new Tenant.EightBitz(), cancellationToken).ConfigureAwait(false);
@@ -168,7 +178,7 @@ public sealed class StdChoice : PetsciiThread
         PrintColorLine(PetsciiKeys.Cyan, "   |         * 8-BITZ *           |");
         PrintColorLine(PetsciiKeys.LightGreen, "   |       RETRO PETSCII BBS      |");
         PrintColorLine(PetsciiKeys.Yellow, "   |   RSS WIKI CSDB ZORK ART     |");
-        PrintColorLine(PetsciiKeys.Purple, "   |   NEWS GALLERY BLOG QUIZ     |");
+        PrintColorLine(PetsciiKeys.Purple, "   | NEWS BLOG QUIZ WARGAMES      |");
         PrintColorLine(PetsciiKeys.LightBlue, "   +-------------------------------+");
         PrintBlockLine(PetsciiKeys.Blue);
         Write(PetsciiKeys.White);
@@ -191,7 +201,7 @@ public sealed class StdChoice : PetsciiThread
         Println(text);
     }
 
-    private static string NormalizeChoice(string value)
+    internal static string NormalizeChoice(string value)
     {
         var trimmed = (value ?? string.Empty).Trim().ToUpperInvariant();
         if (string.IsNullOrWhiteSpace(trimmed))
@@ -250,4 +260,3 @@ public sealed class StdChoice : PetsciiThread
         return null;
     }
 }
-

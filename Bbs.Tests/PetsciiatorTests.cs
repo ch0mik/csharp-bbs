@@ -6,6 +6,10 @@ namespace Bbs.Tests;
 
 public class PetsciiatorTests
 {
+    private const byte ClearScreen = 147;
+    private const byte LowercaseCharset = 14;
+    private const byte UppercaseCharset = 142;
+
     private static readonly byte[] Png1x1 = File.ReadAllBytes(GetPngPath());
 
     private static readonly byte[] Gif1x1 = Convert.FromHexString(
@@ -19,8 +23,9 @@ public class PetsciiatorTests
         var result = await converter.ConvertAsync(Png1x1).ConfigureAwait(false);
 
         Assert.True(result.Length > 900);
-        Assert.Equal(147, result[0]);
-        Assert.Equal(5, result[1]);
+        Assert.Equal(ClearScreen, result[0]);
+        Assert.Equal(LowercaseCharset, result[1]);
+        Assert.Equal(UppercaseCharset, result[^1]);
     }
 
     [Fact]
@@ -31,8 +36,9 @@ public class PetsciiatorTests
         var result = await converter.ConvertAsync(Gif1x1).ConfigureAwait(false);
 
         Assert.True(result.Length > 900);
-        Assert.Equal(147, result[0]);
-        Assert.Equal(5, result[1]);
+        Assert.Equal(ClearScreen, result[0]);
+        Assert.Equal(LowercaseCharset, result[1]);
+        Assert.Equal(UppercaseCharset, result[^1]);
     }
 
     [Fact]
@@ -56,8 +62,9 @@ public class PetsciiatorTests
         var result = await converter.ConvertFromUrlAsync("example.test/image.png").ConfigureAwait(false);
 
         Assert.True(result.Length > 900);
-        Assert.Equal(147, result[0]);
-        Assert.Equal(5, result[1]);
+        Assert.Equal(ClearScreen, result[0]);
+        Assert.Equal(LowercaseCharset, result[1]);
+        Assert.Equal(UppercaseCharset, result[^1]);
     }
 
     private sealed class StubImageHandler : HttpMessageHandler

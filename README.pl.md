@@ -16,15 +16,15 @@ Projekt wzorowany na https://github.com/sblendorio/petscii-bbs zostal sportowany
   - CSDB Releases
   - CSDB SD2IEC
   - ZorkMachine
-  - CommodoreNews (newsy z `https://www.commodore.net/news` + fallback przez sitemap) - to unikalna, calkowicie nowa funkcjonalnosc w tym projekcie
+  - CommodoreNews
   - 8-bitz blog
   - QuizPetscii (quiz w stylu Milionerzy: sesja, wznowienie, JSON, A/B/C/D, paginacja N/P)
 - Galeria PETSCII oparta o pliki z dysku
 - Konwersja PNG/JPEG do PETSCII w locie w galerii
 - Opcjonalny backend sesji w Redis
 - Konwersja online obrazkow do PETSCII w:
-  - CommodoreNews
   - WikipediaPetscii
+  - CommodoreNews
   - WordPress / 8-bitz
   - Globalny przelacznik sesyjny w menu glownym do wylaczenia obrazkow PETSCII (`I`)
 - Opcjonalny cache Redis dla online PETSCII (TTL: 7 dni)
@@ -50,22 +50,18 @@ Glowna konfiguracja runtime jest przekazywana przez argumenty startowe i zmienne
   - Tryb backendu sesji: `inmemory` (domyslnie) albo `redis`
 - `REDIS_HOST`, `REDIS_PORT`, `REDIS_PASSWORD`
   - Uzywane dla backendu sesji (`BBS_SESSION_STORE=redis`)
-  - Uzywane tez przez cache obrazkow PETSCII online (CommodoreNews/Wikipedia/WordPress)
+  - Uzywane tez przez cache obrazkow PETSCII online (Wikipedia/WordPress/8-bitz)
 - `BBS_INSTANCE_ID`
   - Opcjonalny identyfikator instancji (do kluczy Redis)
 - `BBS_INLINE_PETSCII_IMAGES`
   - Globalny przelacznik obrazkow PETSCII online w tenantach contentowych
   - Domyslnie: `true`
-- `BBS_COMMODORENEWS_INLINE_PETSCII_IMAGES`
-  - Nadpisanie tylko dla CommodoreNews
-  - Domyslnie: dziedziczone z `BBS_INLINE_PETSCII_IMAGES`
 - `BBS_WIKI_INLINE_PETSCII_IMAGES`
   - Nadpisanie tylko dla WikipediaPetscii
   - Domyslnie: dziedziczone z `BBS_INLINE_PETSCII_IMAGES`
 - `BBS_WORDPRESS_INLINE_PETSCII_IMAGES`
   - Nadpisanie tylko dla WordPress / 8-bitz
   - Domyslnie: dziedziczone z `BBS_INLINE_PETSCII_IMAGES`
-
 ### Docker Compose
 
 #### 1) Prosty (`inmemory`, bez Redis)
@@ -114,7 +110,6 @@ services:
       - REDIS_PASSWORD=${REDIS_PASSWORD}
       - BBS_INSTANCE_ID=${HOSTNAME:-csharp-bbs}
       - BBS_INLINE_PETSCII_IMAGES=true
-      - BBS_COMMODORENEWS_INLINE_PETSCII_IMAGES=true
       - BBS_WIKI_INLINE_PETSCII_IMAGES=true
       - BBS_WORDPRESS_INLINE_PETSCII_IMAGES=true
     volumes:
@@ -194,7 +189,14 @@ docker compose down
 W menu glownym (`StdChoice`):
 - `I` przelacza obrazki PETSCII na biezaca sesje we wszystkich wspieranych tenantach (`Inline IMG: ON/OFF`).
   - Dotyczy: `8-bitz blog`, `CommodoreNews`, `WikipediaPetscii`.
+- `6` uruchamia `CommodoreNews`.
 - `7` uruchamia `QuizPetscii`.
+- `C` tez uruchamia `CommodoreNews`.
+
+W tenantcie `CommodoreNews`:
+- `N+` / `N-` zmienia strone listy wpisow.
+- Id wpisu otwiera artykul.
+- Podczas ogladania obrazka: `ENTER=Next`, `T=Text`, `.=Back`.
 
 W tenantcie `8-bitz blog`:
 - `N+` / `N-` zmienia strone listy wpisow.
@@ -253,8 +255,22 @@ Walidacja:
 dotnet build Bbs.Server\Bbs.Server.csproj
 ```
 
+## WOPR / WarGames
 
+- Jeden zintegrowany tenant `W) WarGames Simulator` zbudowany wokol terminala IMSAI 8080.
+- Scenariusz Seattle Public School District z haslem `PENCIL`, wyszukiwaniem uczniow, edycja ocen, paginacja i stanem sesji.
+- War dialer z wyborem zakresu, animowanym wykrywaniem carrier tone, pamiecia odkryc i oryginalnym numerem WOPR `(311) 437-8739`.
+- Natywna rozmowa WOPR/JOSHUA, Global Thermonuclear War, wybor strony i celow, eskalacja DEFCON, trajektorie, przyspieszajaca nauka przez kolko i krzyzyk, wznowienie sesji oraz filmowy final.
+- Interfejs PETSCII 40 kolumn respektujacy anulowanie; bez programow linuksowych, syntezatora mowy i odtwarzania WAV.
 
+W `StdChoice` wybierz `W) WarGames Simulator` albo wpisz alias `WOPR`, `WARGAMES` lub `WAR GAMES`. Otworzy sie jedno filmowe srodowisko terminala IMSAI 8080. Opcja `1` dzwoni do znanego komputera szkolnego, a opcja `2` uruchamia war dialing i pozwala odkryc WOPR. Do WOPR zaloguj sie jako `JOSHUA`. `.` lub `QUIT` wraca przez kolejne poziomy terminala do BBS.
 
+Tenant v1 jest natywna, 40-kolumnowa adaptacja PETSCII filmowej sciezki gry. Obejmuje wybor strony i celow, eskalacje DEFCON, deterministyczna nauke przez kolko i krzyzyk oraz filmowy final. Celowo pomija zwykle konta, poczte, administracje, GPT, Internet/ARPANET, polecenia linuksowe, synteze mowy i odtwarzanie WAV z projektu zrodlowego.
 
+### Scenariusz szkolny Seattle
 
+W terminalu IMSAI WarGames wybierz `1) CALL SCHOOL DISTRICT`. Haslo to `PENCIL` i nie rozroznia wielkosci liter. Wyszukaj `LIGHTMAN` lub `MACK`, przegladaj przedmioty klawiszami `N/P`, a przez `E` zmien ocene dla podanego numeru klasy. Zmiany ocen pozostaja dostepne w biezacej sesji BBS. `.` wraca do terminala IMSAI.
+
+### War dialer
+
+W terminalu IMSAI WarGames wybierz `2) WAR DIAL FOR UNKNOWN SYSTEMS`. Domyslny zakres `(311) 437-8700..8750` znajduje WOPR pod `(311) 437-8739`. `V` pokazuje systemy znalezione w biezacej sesji, a przypisana litera rozpoczyna polaczenie. Skan jest ograniczony do 251 numerow; wpisy wymagajace niedostepnych programow linuksowych sa widoczne, ale v1 nie moze sie z nimi polaczyc.
