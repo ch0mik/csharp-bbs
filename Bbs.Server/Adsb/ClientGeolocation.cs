@@ -10,6 +10,7 @@ public sealed class ClientGeolocationOptions
     public const string SectionName = "ClientGeolocation";
 
     public bool Enabled { get; set; } = true;
+    public bool UseHostGeoForPrivateAddress { get; set; } = true;
     public string EndpointTemplate { get; set; } = "https://ipwho.is/{ip}";
     public string PrivateAddressFallbackEndpoint { get; set; } = "https://ipwho.is/";
     public int RequestTimeoutSeconds { get; set; } = 2;
@@ -51,6 +52,7 @@ public sealed class ClientGeolocationService(IHttpClientFactory clients, IOption
         if (!settings.Enabled) return null;
 
         var privateAddress = IsPrivate(address);
+        if (privateAddress && !settings.UseHostGeoForPrivateAddress) return null;
         var url = privateAddress
             ? settings.PrivateAddressFallbackEndpoint
             : settings.EndpointTemplate.Replace("{ip}", Uri.EscapeDataString(address.ToString()), StringComparison.Ordinal);

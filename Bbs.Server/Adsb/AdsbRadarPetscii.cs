@@ -7,7 +7,8 @@ namespace Bbs.Server.Adsb;
 public sealed class AdsbRadarPetscii(
     IOptions<AdsbRadarOptions> options,
     IAircraftSnapshotStore snapshots,
-    AdsbRadarSessionLimiter sessionLimiter) : PetsciiThread
+    AdsbRadarSessionLimiter sessionLimiter,
+    ICitySearchService? citySearch = null) : PetsciiThread
 {
     private readonly AdsbRadarOptions _options = options.Value;
     private int _rangeIndex;
@@ -114,12 +115,12 @@ public sealed class AdsbRadarPetscii(
         else
         {
             for (var row = 0; row < grid.GetLength(0); row++)
-            for (var column = 0; column < grid.GetLength(1); column++)
-            {
-                if (grid[row, column] == _previousGrid[row, column]) continue;
-                PositionCursor(column, row + 1);
-                Write(grid[row, column].Color, grid[row, column].Character);
-            }
+                for (var column = 0; column < grid.GetLength(1); column++)
+                {
+                    if (grid[row, column] == _previousGrid[row, column]) continue;
+                    PositionCursor(column, row + 1);
+                    Write(grid[row, column].Color, grid[row, column].Character);
+                }
             for (var index = 0; index < status.Length; index++)
                 if (_previousStatus![index] != status[index]) DrawStatus(index, status[index]);
         }
@@ -148,14 +149,14 @@ public sealed class AdsbRadarPetscii(
         const int width = 39, height = 19, centerX = 19, centerY = 9;
         var grid = new Cell[height, width];
         for (var y = 0; y < height; y++)
-        for (var x = 0; x < width; x++)
-        {
-            var dx = (x - centerX) / 2.0; var dy = y - centerY;
-            var radius = Math.Sqrt(dx * dx + dy * dy);
-            var ring = Math.Min(width / 4.0, height / 2.0);
-            var isRing = Enumerable.Range(1, 4).Any(index => Math.Abs(radius - ring * index / 4) < .45);
-            grid[y, x] = new Cell(isRing ? '.' : ' ', isRing ? PetsciiKeys.Green : PetsciiKeys.Blue);
-        }
+            for (var x = 0; x < width; x++)
+            {
+                var dx = (x - centerX) / 2.0; var dy = y - centerY;
+                var radius = Math.Sqrt(dx * dx + dy * dy);
+                var ring = Math.Min(width / 4.0, height / 2.0);
+                var isRing = Enumerable.Range(1, 4).Any(index => Math.Abs(radius - ring * index / 4) < .45);
+                grid[y, x] = new Cell(isRing ? '.' : ' ', isRing ? PetsciiKeys.Green : PetsciiKeys.Blue);
+            }
         for (var y = 0; y < height; y++) grid[y, centerX] = new Cell('|', PetsciiKeys.Green);
         for (var x = 0; x < width; x++) grid[centerY, x] = new Cell('-', PetsciiKeys.Green);
         grid[0, centerX] = new Cell('N', PetsciiKeys.White);
@@ -206,7 +207,11 @@ public sealed class AdsbRadarPetscii(
 
     private static char HeadingGlyph(double? heading) => heading switch
     {
-        null => '*', < 45 or >= 315 => '^', < 135 => '>', < 225 => 'v', _ => '<'
+        null => '*',
+        < 45 or >= 315 => '^',
+        < 135 => '>',
+        < 225 => 'v',
+        _ => '<'
     };
 
     private ClientLocation GetCenter()
@@ -218,42 +223,108 @@ public sealed class AdsbRadarPetscii(
 
     private async Task<bool> ConfigureCenterAsync(CancellationToken cancellationToken)
     {
-        Cls();
-        Write(PetsciiKeys.Cyan); Println("ADS-B RADAR CENTER"); Write(PetsciiKeys.White);
-        Println();
-        Println($"SOURCE: {_center!.Source}");
-        Println($"LAT:    {_center.Latitude:0.000000}");
-        Println($"LON:    {_center.Longitude:0.000000}");
-        Println();
-        Print("ENTER=start  M=modify  Q=back: ");
-        await FlushAsync(cancellationToken).ConfigureAwait(false);
-        var choice = (await ReadLineAsync(maxLength: 1, cancellationToken: cancellationToken).ConfigureAwait(false)).Trim();
-        if (choice.Equals("Q", StringComparison.OrdinalIgnoreCase) || choice == ".")
-            return false;
-        if (!choice.Equals("M", StringComparison.OrdinalIgnoreCase)) return true;
-
-        Print("Latitude (-90..90): ");
-        await FlushAsync(cancellationToken).ConfigureAwait(false);
-        var latitudeText = await ReadLineAsync(maxLength: 16, cancellationToken: cancellationToken).ConfigureAwait(false);
-        Print("Longitude (-180..180): ");
-        await FlushAsync(cancellationToken).ConfigureAwait(false);
-        var longitudeText = await ReadLineAsync(maxLength: 16, cancellationToken: cancellationToken).ConfigureAwait(false);
-        if (double.TryParse(latitudeText, NumberStyles.Float, CultureInfo.InvariantCulture, out var latitude)
-            && double.TryParse(longitudeText, NumberStyles.Float, CultureInfo.InvariantCulture, out var longitude)
-            && latitude is >= -90 and <= 90 && longitude is >= -180 and <= 180)
+        while (!cancellationToken.IsCancellationRequested)
         {
-            _center = new ClientLocation(latitude, longitude, "MANUAL");
-        }
-        else
-        {
+            Cls();
+            Write(PetsciiKeys.Cyan); Println("ADS-B RADAR CENTER"); Write(PetsciiKeys.White);
             Println();
-            Println("INVALID COORDINATES - USING DETECTED.");
-            Print("Press ENTER...");
+            Println($"SOURCE: {_center!.Source}");
+            Println($"LAT:    {_center.Latitude:0.000000}");
+            Println($"LON:    {_center.Longitude:0.000000}");
+            Println();
+            Println("ENTER=start  M=modify  S=search");
+            Print("Q=back: ");
             await FlushAsync(cancellationToken).ConfigureAwait(false);
-            await ReadLineAsync(maxLength: 1, cancellationToken: cancellationToken).ConfigureAwait(false);
+            var choice = (await ReadLineAsync(maxLength: 1, cancellationToken: cancellationToken).ConfigureAwait(false)).Trim();
+            if (choice.Equals("Q", StringComparison.OrdinalIgnoreCase) || choice == ".")
+                return false;
+            if (choice.Length == 0) return true;
+            if (choice.Equals("S", StringComparison.OrdinalIgnoreCase))
+            {
+                await SearchCenterAsync(cancellationToken).ConfigureAwait(false);
+                continue;
+            }
+            if (!choice.Equals("M", StringComparison.OrdinalIgnoreCase)) continue;
+
+            Print("Latitude (-90..90): ");
+            await FlushAsync(cancellationToken).ConfigureAwait(false);
+            var latitudeText = await ReadLineAsync(maxLength: 16, cancellationToken: cancellationToken).ConfigureAwait(false);
+            Print("Longitude (-180..180): ");
+            await FlushAsync(cancellationToken).ConfigureAwait(false);
+            var longitudeText = await ReadLineAsync(maxLength: 16, cancellationToken: cancellationToken).ConfigureAwait(false);
+            if (double.TryParse(latitudeText, NumberStyles.Float, CultureInfo.InvariantCulture, out var latitude)
+                && double.TryParse(longitudeText, NumberStyles.Float, CultureInfo.InvariantCulture, out var longitude)
+                && latitude is >= -90 and <= 90 && longitude is >= -180 and <= 180)
+            {
+                _center = new ClientLocation(latitude, longitude, "MANUAL");
+                SetCustomObject(ClientLocation.SessionKey, _center);
+            }
+            else
+            {
+                Println();
+                Println("INVALID COORDINATES - CENTER UNCHANGED.");
+                Print("Press ENTER...");
+                await FlushAsync(cancellationToken).ConfigureAwait(false);
+                await ReadLineAsync(maxLength: 1, cancellationToken: cancellationToken).ConfigureAwait(false);
+            }
         }
-        return true;
+        return false;
     }
+
+    private async Task SearchCenterAsync(CancellationToken cancellationToken)
+    {
+        Cls();
+        Write(PetsciiKeys.Cyan); Println("SEARCH RADAR CENTER"); Write(PetsciiKeys.White);
+        Println("City name (2-64 chars), ENTER=back:");
+        await FlushAsync(cancellationToken).ConfigureAwait(false);
+        var query = (await ReadLineAsync(maxLength: 64, cancellationToken: cancellationToken).ConfigureAwait(false)).Trim();
+        if (query.Length == 0) return;
+        if (query.Length < 2 || query.Any(char.IsControl))
+        {
+            await ShowSearchMessageAsync("INVALID CITY NAME.", cancellationToken).ConfigureAwait(false);
+            return;
+        }
+        Println("SEARCHING...");
+        await FlushAsync(cancellationToken).ConfigureAwait(false);
+        var matches = citySearch is null ? null : await citySearch.SearchAsync(query, cancellationToken).ConfigureAwait(false);
+        if (matches is null || matches.Count == 0)
+        {
+            await ShowSearchMessageAsync(matches is null ? "SEARCH UNAVAILABLE. TRY AGAIN LATER." : "NO MATCHING CITIES.", cancellationToken).ConfigureAwait(false);
+            return;
+        }
+        Cls();
+        Write(PetsciiKeys.Cyan); Println("SELECT CITY"); Write(PetsciiKeys.White);
+        for (var index = 0; index < matches.Count; index++)
+        {
+            var match = matches[index];
+            Println($"{index + 1}) {match.Name}");
+            Println($"   Country: {DisplayArea(match.Country)}");
+            Println($"   State:   {DisplayArea(match.Region)}");
+            Println($"   County:  {DisplayArea(match.County)}");
+        }
+        Println("GeoNames via Open-Meteo.com");
+        Print("Number (ENTER=back): ");
+        await FlushAsync(cancellationToken).ConfigureAwait(false);
+        var input = await ReadLineAsync(maxLength: 2, cancellationToken: cancellationToken).ConfigureAwait(false);
+        if (string.IsNullOrWhiteSpace(input)) return;
+        if (int.TryParse(input, NumberStyles.None, CultureInfo.InvariantCulture, out var selected) && selected >= 1 && selected <= matches.Count)
+        {
+            var match = matches[selected - 1];
+            _center = new ClientLocation(match.Latitude, match.Longitude, "SEARCH");
+            SetCustomObject(ClientLocation.SessionKey, _center);
+        }
+        else await ShowSearchMessageAsync("INVALID SELECTION.", cancellationToken).ConfigureAwait(false);
+    }
+
+    private async Task ShowSearchMessageAsync(string message, CancellationToken cancellationToken)
+    {
+        Println(message);
+        Print("Press ENTER...");
+        await FlushAsync(cancellationToken).ConfigureAwait(false);
+        await ReadLineAsync(maxLength: 1, cancellationToken: cancellationToken).ConfigureAwait(false);
+    }
+
+    private static string DisplayArea(string value) => string.IsNullOrWhiteSpace(value) ? "-" : value;
 
     private readonly record struct RadarTarget(Aircraft Aircraft, double DistanceKm, double BearingDegrees);
     private readonly record struct Cell(char Character, int Color);

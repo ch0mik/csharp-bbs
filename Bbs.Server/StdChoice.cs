@@ -13,11 +13,12 @@ public sealed class StdChoice : PetsciiThread
     private readonly IOptions<AdsbRadarOptions> _radarOptions;
     private readonly IAircraftSnapshotStore? _aircraftSnapshots;
     private readonly AdsbRadarSessionLimiter _radarSessionLimiter;
+    private readonly ICitySearchService? _citySearch;
 
     public StdChoice() : this(Options.Create(new AdsbRadarOptions()), null, new AdsbRadarSessionLimiter()) { }
 
-    public StdChoice(IOptions<AdsbRadarOptions> radarOptions, IAircraftSnapshotStore? aircraftSnapshots, AdsbRadarSessionLimiter? radarSessionLimiter = null)
-        => (_radarOptions, _aircraftSnapshots, _radarSessionLimiter) = (radarOptions, aircraftSnapshots, radarSessionLimiter ?? new AdsbRadarSessionLimiter());
+    public StdChoice(IOptions<AdsbRadarOptions> radarOptions, IAircraftSnapshotStore? aircraftSnapshots, AdsbRadarSessionLimiter? radarSessionLimiter = null, ICitySearchService? citySearch = null)
+        => (_radarOptions, _aircraftSnapshots, _radarSessionLimiter, _citySearch) = (radarOptions, aircraftSnapshots, radarSessionLimiter ?? new AdsbRadarSessionLimiter(), citySearch);
 
     public override async Task DoLoopAsync(CancellationToken cancellationToken = default)
     {
@@ -89,7 +90,7 @@ public sealed class StdChoice : PetsciiThread
 
             if ((choice is "R" or "RADAR" or "ADSB") && _radarOptions.Value.Enabled && _aircraftSnapshots is not null)
             {
-                await LaunchAsync(new AdsbRadarPetscii(_radarOptions, _aircraftSnapshots, _radarSessionLimiter), cancellationToken).ConfigureAwait(false);
+                await LaunchAsync(new AdsbRadarPetscii(_radarOptions, _aircraftSnapshots, _radarSessionLimiter, _citySearch), cancellationToken).ConfigureAwait(false);
                 continue;
             }
 

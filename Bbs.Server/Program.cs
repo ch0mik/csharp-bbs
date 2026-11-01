@@ -74,12 +74,20 @@ internal static class Program
             client.Timeout = TimeSpan.FromSeconds(geolocation.RequestTimeoutSeconds);
         });
         builder.Services.AddSingleton<IClientGeolocationService, ClientGeolocationService>();
+        builder.Services.AddOptions<CitySearchOptions>()
+            .Bind(builder.Configuration.GetSection(CitySearchOptions.SectionName))
+            .ValidateOnStart();
+        builder.Services.AddSingleton<IValidateOptions<CitySearchOptions>, CitySearchOptionsValidator>();
+        builder.Services.AddHttpClient("city-search")
+            .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler { AllowAutoRedirect = false });
+        builder.Services.AddSingleton<ICitySearchService, CitySearchService>();
 
         using var host = builder.Build();
         try
         {
             _ = host.Services.GetRequiredService<IOptions<AdsbRadarOptions>>().Value;
             _ = host.Services.GetRequiredService<IOptions<ClientGeolocationOptions>>().Value;
+            _ = host.Services.GetRequiredService<IOptions<CitySearchOptions>>().Value;
         }
         catch (OptionsValidationException exception)
         {

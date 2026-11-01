@@ -34,6 +34,7 @@ services:
       - AdsbRadar__ShowGroundAircraft=${ADSB_RADAR_SHOW_GROUND_AIRCRAFT:-false}
       - AdsbRadar__ShowVectors=${ADSB_RADAR_SHOW_VECTORS:-true}
       - ClientGeolocation__Enabled=${CLIENT_GEOLOCATION_ENABLED:-true}
+      - ClientGeolocation__UseHostGeoForPrivateAddress=${CLIENT_GEOLOCATION_USE_HOST_GEO_FOR_PRIVATE_ADDRESS:-true}
       - ClientGeolocation__EndpointTemplate=${CLIENT_GEOLOCATION_ENDPOINT_TEMPLATE:-https://ipwho.is/{ip}}
       - ClientGeolocation__PrivateAddressFallbackEndpoint=${CLIENT_GEOLOCATION_PRIVATE_ADDRESS_FALLBACK_ENDPOINT:-https://ipwho.is/}
       - ClientGeolocation__RequestTimeoutSeconds=${CLIENT_GEOLOCATION_TIMEOUT_SECONDS:-2}

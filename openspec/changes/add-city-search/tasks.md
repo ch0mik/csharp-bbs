@@ -1,0 +1,5 @@
+- [x] Add validated city search options, bounded HTTP service and DI registration.
+- [x] Add S search, disambiguation and coordinate confirmation with session storage.
+- [x] Document provider attribution, configuration and shared feed coverage limits.
+- [x] Verify parsing, bounds, unsafe input, provider failure and cancellation with tests.
+- [x] Verify city selection, administrative fields and coordinate confirmation in a TCP session test.

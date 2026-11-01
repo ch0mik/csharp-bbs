@@ -85,6 +85,22 @@ feed URL, a supported provider, a valid range preset, and a request timeout shor
 the polling interval. In the radar use `+/-` for range, `N/P` to select an aircraft, and
 `Q` to return. The screen follows a sonar-style circular grid inspired by the
 [ESP32 Plane Radar](https://github.com/MatixYo/ESP32-Plane-Radar).
+
+Before starting the radar, confirm the displayed center with Enter, use `M` to enter
+coordinates, or `S` (Search) to find a city by name. Search lists up to five matches
+with country, state/voivodeship and county (a missing administrative level is shown as `-`).
+Selecting one returns to the coordinate confirmation screen;
+the chosen center is kept for the current session. Empty input cancels search.
+Search changes the display center; aircraft availability still depends on the geographic
+coverage of the shared configured feed.
+
+City search uses [Open-Meteo Geocoding](https://open-meteo.com/en/docs/geocoding-api)
+(GeoNames data; attribution: GeoNames via Open-Meteo.com). The public API's free tier
+is for non-commercial use. Configuration uses validated `IOptions<CitySearchOptions>`
+in the `CitySearch` section, overridable using `CitySearch__Endpoint` and
+`CitySearch__RequestTimeoutSeconds` (default 5, allowed 1–10). Requests encode the city
+as data, disable redirects, cap the response at 64 KiB and propagate session cancellation.
+
 ### Docker Compose
 
 #### 1) Simple (`inmemory`, no Redis)

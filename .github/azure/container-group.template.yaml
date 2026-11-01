@@ -50,6 +50,10 @@ properties:
             value: "4"
           - name: ClientGeolocation__Enabled
             value: "true"
+          # ACI supplies a private proxy address for raw TCP clients; using its egress IP
+          # would point the radar at Azure, not at the Telnet user.
+          - name: ClientGeolocation__UseHostGeoForPrivateAddress
+            value: "false"
         volumeMounts:
           - name: petscii
             mountPath: /app/petscii-art-gallery
