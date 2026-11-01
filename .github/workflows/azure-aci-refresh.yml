@@ -54,7 +54,16 @@ jobs:
             : "${AZURE_STORAGE_ACCOUNT_KEY:?Set production secret ACI_STORAGE_ACCOUNT_KEY}"
 
             umask 077
-            envsubst < .github/azure/container-group.template.yaml > aci-deployment.yaml
+            python3 - <<'PY'
+            import os
+            from pathlib import Path
+            from string import Template
+
+            template = Path(".github/azure/container-group.template.yaml").read_text(encoding="utf-8")
+            Path("aci-deployment.yaml").write_text(
+                Template(template).substitute(os.environ),
+                encoding="utf-8")
+            PY
 
             az container create \
               --resource-group "$ACI_RESOURCE_GROUP" \
