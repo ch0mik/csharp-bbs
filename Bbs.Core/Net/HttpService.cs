@@ -49,7 +49,7 @@ public sealed class HttpService : IHttpService
         {
             AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate | DecompressionMethods.Brotli,
             AllowAutoRedirect = true,
-            MaxAutomaticRedirections = 8
+            MaxAutomaticRedirections = 25
         };
 
         return new HttpClient(handler)

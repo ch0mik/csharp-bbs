@@ -18,10 +18,32 @@ services:
       - REDIS_PASSWORD=${REDIS_PASSWORD}
       - BBS_INSTANCE_ID=${HOSTNAME:-csharp-bbs}
       - BBS_DEBUG=true
+      # ADS-B: public adsb.fi feed centred on Warsaw; override the URL/provider for a local receiver.
+      - AdsbRadar__Enabled=${ADSB_RADAR_ENABLED:-true}
+      - AdsbRadar__Provider=${ADSB_RADAR_PROVIDER:-adsbfi}
+      - AdsbRadar__FeedUrl=${ADSB_RADAR_FEED_URL:-https://opendata.adsb.fi/api/v3/lat/52.2297/lon/21.0122/dist/75}
+      - AdsbRadar__CenterLatitude=${ADSB_RADAR_LAT:-52.2297}
+      - AdsbRadar__CenterLongitude=${ADSB_RADAR_LON:-21.0122}
+      - AdsbRadar__DefaultRangeKm=${ADSB_RADAR_DEFAULT_RANGE_KM:-25}
+      - AdsbRadar__PollIntervalSeconds=${ADSB_RADAR_POLL_INTERVAL_SECONDS:-15}
+      - AdsbRadar__RequestTimeoutSeconds=${ADSB_RADAR_REQUEST_TIMEOUT_SECONDS:-4}
+      - AdsbRadar__StaleAfterSeconds=${ADSB_RADAR_STALE_AFTER_SECONDS:-30}
+      - AdsbRadar__ExpireAfterSeconds=${ADSB_RADAR_EXPIRE_AFTER_SECONDS:-120}
+      - AdsbRadar__MaxDisplayedAircraft=${ADSB_RADAR_MAX_DISPLAYED_AIRCRAFT:-12}
+      - AdsbRadar__MaxConcurrentSessions=${ADSB_RADAR_MAX_CONCURRENT_SESSIONS:-100}
+      - AdsbRadar__ShowGroundAircraft=${ADSB_RADAR_SHOW_GROUND_AIRCRAFT:-false}
+      - AdsbRadar__ShowVectors=${ADSB_RADAR_SHOW_VECTORS:-true}
+      - ClientGeolocation__Enabled=${CLIENT_GEOLOCATION_ENABLED:-true}
+      - ClientGeolocation__EndpointTemplate=${CLIENT_GEOLOCATION_ENDPOINT_TEMPLATE:-https://ipwho.is/{ip}}
+      - ClientGeolocation__PrivateAddressFallbackEndpoint=${CLIENT_GEOLOCATION_PRIVATE_ADDRESS_FALLBACK_ENDPOINT:-https://ipwho.is/}
+      - ClientGeolocation__RequestTimeoutSeconds=${CLIENT_GEOLOCATION_TIMEOUT_SECONDS:-2}
+      - C64_ARCHIVE_MAX_BYTES=${C64_ARCHIVE_MAX_BYTES:-104857600}
     volumes:
       - ./petscii-art-gallery:/app/petscii-art-gallery:ro
       - ./zmpp:/app/zmpp:ro
       - ./quiz-packs:/app/quiz-packs:ro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     networks:
       - bbs_net
       - redis_net

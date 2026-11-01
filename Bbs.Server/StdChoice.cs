@@ -1,5 +1,7 @@
 using Bbs.Core;
+using Bbs.Server.Adsb;
 using Bbs.Terminals;
+using Microsoft.Extensions.Options;
 using Tenant = Bbs.Tenants;
 
 namespace Bbs.Server;
@@ -8,6 +10,14 @@ public sealed class StdChoice : PetsciiThread
 {
     private const string SessionInlineImagesKey = "session:inline-petscii-images";
     private static readonly Lazy<byte[]?> HeaderSeq = new(LoadHeaderSeq);
+    private readonly IOptions<AdsbRadarOptions> _radarOptions;
+    private readonly IAircraftSnapshotStore? _aircraftSnapshots;
+    private readonly AdsbRadarSessionLimiter _radarSessionLimiter;
+
+    public StdChoice() : this(Options.Create(new AdsbRadarOptions()), null, new AdsbRadarSessionLimiter()) { }
+
+    public StdChoice(IOptions<AdsbRadarOptions> radarOptions, IAircraftSnapshotStore? aircraftSnapshots, AdsbRadarSessionLimiter? radarSessionLimiter = null)
+        => (_radarOptions, _aircraftSnapshots, _radarSessionLimiter) = (radarOptions, aircraftSnapshots, radarSessionLimiter ?? new AdsbRadarSessionLimiter());
 
     public override async Task DoLoopAsync(CancellationToken cancellationToken = default)
     {
@@ -23,6 +33,7 @@ public sealed class StdChoice : PetsciiThread
             Println("5) Commodore News");
             Println("B) 8-Bitz blog (polish)");
             Println("G) Games");
+            if (_radarOptions.Value.Enabled) Println("R) ADS-B Radar");
             Println($"I) Inline IMG: {(IsSessionInlineImagesEnabled() ? "ON" : "OFF")}");
             Println("Q) Quit");
             Println();
@@ -73,6 +84,12 @@ public sealed class StdChoice : PetsciiThread
             if (choice is "G" or "GAME" or "GAMES")
             {
                 await ShowGamesMenuAsync(cancellationToken).ConfigureAwait(false);
+                continue;
+            }
+
+            if ((choice is "R" or "RADAR" or "ADSB") && _radarOptions.Value.Enabled && _aircraftSnapshots is not null)
+            {
+                await LaunchAsync(new AdsbRadarPetscii(_radarOptions, _aircraftSnapshots, _radarSessionLimiter), cancellationToken).ConfigureAwait(false);
                 continue;
             }
 

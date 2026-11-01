@@ -6,4 +6,5 @@
   <Project Path="Bbs.Server/Bbs.Server.csproj" />
   <Project Path="Bbs.Tenants/Bbs.Tenants.csproj" />
   <Project Path="Bbs.Terminals/Bbs.Terminals.csproj" />
+  <Project Path="Bbs.Tests/Bbs.Tests.csproj" />
 </Solution>

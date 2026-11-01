@@ -3,6 +3,7 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
 # Copy project files first for better layer caching
+COPY Directory.Packages.props ./
 COPY Bbs.Core/Bbs.Core.csproj Bbs.Core/
 COPY Bbs.Terminals/Bbs.Terminals.csproj Bbs.Terminals/
 COPY Bbs.Persistence/Bbs.Persistence.csproj Bbs.Persistence/
@@ -34,7 +35,9 @@ RUN cp -a Bbs.Petsciiator/bin/Debug/net10.0/. /app/build/ \
     && cp -a Bbs.Core/bin/Debug/net10.0/. /app/build/ \
     && cp -a Bbs.Persistence/bin/Debug/net10.0/. /app/build/
 
-FROM mcr.microsoft.com/dotnet/runtime:10.0 AS runtime
+# Bbs.Server references Microsoft.AspNetCore.App for hosting, options and HttpClientFactory.
+# The plain runtime image only ships Microsoft.NETCore.App.
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y --no-install-recommends frotz && rm -rf /var/lib/apt/lists/*

@@ -65,7 +65,7 @@ public class WordpressProxyPetscii : PetsciiThread
             }
 
             Println();
-            Print("# open, N+/N-, R, . > ");
+            Print("ENTER=newest, # open, N+/N-, R, . > ");
             await FlushAsync(cancellationToken).ConfigureAwait(false);
 
             var input = (await ReadLineAsync(maxLength: 24, cancellationToken: cancellationToken).ConfigureAwait(false)).Trim();
@@ -88,6 +88,16 @@ public class WordpressProxyPetscii : PetsciiThread
 
             if (string.Equals(input, "r", StringComparison.OrdinalIgnoreCase) || string.Equals(input, "reload", StringComparison.OrdinalIgnoreCase))
             {
+                continue;
+            }
+
+            if (input.Length == 0)
+            {
+                if (posts.Count > 0)
+                {
+                    await ShowPostAsync(posts[0].Id, cancellationToken).ConfigureAwait(false);
+                }
+
                 continue;
             }
 

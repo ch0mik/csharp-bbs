@@ -9,6 +9,18 @@ namespace Bbs.Tests;
 public class ContentAndTransferTests
 {
     [Fact]
+    public void C64DownloadPayloadNormalizer_RejectsGzipOutputAboveConfiguredLimit()
+    {
+        var source = Enumerable.Repeat((byte)0x42, 1024).ToArray();
+        using var compressed = new MemoryStream();
+        using (var gzip = new GZipStream(compressed, CompressionMode.Compress, leaveOpen: true))
+            gzip.Write(source);
+
+        Assert.Throws<InvalidDataException>(() =>
+            C64DownloadPayloadNormalizer.Normalize("too-large.prg.gz", compressed.ToArray(), "https://example.test/file", 100));
+    }
+
+    [Fact]
     public void C64DownloadPayloadNormalizer_ShouldExtractPreferredEntryFromZip()
     {
         var zipBytes = BuildZip(

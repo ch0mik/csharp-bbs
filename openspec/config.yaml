@@ -1,0 +1,5 @@
+schema: spec-driven
+project: csharp-bbs
+context:
+  - .NET 10 PETSCII BBS
+  - Configuration is typed and validated on startup

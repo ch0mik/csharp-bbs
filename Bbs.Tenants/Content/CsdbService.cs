@@ -69,7 +69,7 @@ public class CsdbService : ICsdbService
 
                 var content = await _http.GetBytesAsync(downloadUrl, cancellationToken: cancellationToken).ConfigureAwait(false);
                 var fileName = Path.GetFileName(new Uri(downloadUrl).LocalPath);
-                return new DownloadPayload(fileName, content, downloadUrl);
+                return C64DownloadPayloadNormalizer.Normalize(fileName, content, downloadUrl);
             }
             catch (Exception ex)
             {
@@ -81,7 +81,7 @@ public class CsdbService : ICsdbService
         {
             var content = await _http.GetBytesAsync(item.DownloadLink, cancellationToken: cancellationToken).ConfigureAwait(false);
             var fileName = Path.GetFileName(new Uri(item.DownloadLink).LocalPath);
-            return new DownloadPayload(fileName, content, item.DownloadLink);
+            return C64DownloadPayloadNormalizer.Normalize(fileName, content, item.DownloadLink);
         }
         catch (Exception ex)
         {

@@ -30,6 +30,7 @@ The current setup runs in PETSCII-only mode and exposes:
   - Global per-session toggle from main menu to disable inline PETSCII images (`I`)
 - Optional Redis cache for online PETSCII images (TTL: 7 days)
 - Dockerized runtime with `docker compose`
+- Optional live ADS-B sonar radar from readsb, tar1090, or Virtual Radar Server feeds
 
 ## Configuration
 
@@ -63,6 +64,27 @@ Main runtime configuration is passed by command-line arguments and environment v
 - `BBS_WORDPRESS_INLINE_PETSCII_IMAGES`
   - WordPress / 8-bitz-specific override
   - Default: inherited from `BBS_INLINE_PETSCII_IMAGES`
+
+### ADS-B radar
+
+The `R` menu item appears when `AdsbRadar__Enabled=true`. The radar reads one shared
+network feed, so each connected C64 does not create another poller. Supported formats are
+`readsb`/`tar1090` (`aircraft.json`) and `virtualradar` (`AircraftList.json`).
+
+```env
+ADSB_RADAR_ENABLED=true
+ADSB_RADAR_PROVIDER=readsb
+ADSB_RADAR_FEED_URL=http://readsb.local/tar1090/data/aircraft.json
+ADSB_RADAR_LAT=52.2297
+ADSB_RADAR_LON=21.0122
+```
+
+Configuration is bound from the `AdsbRadar` section in `Bbs.Server/appsettings.json`.
+It is validated before the BBS begins accepting clients: a live radar requires an HTTP(S)
+feed URL, a supported provider, a valid range preset, and a request timeout shorter than
+the polling interval. In the radar use `+/-` for range, `N/P` to select an aircraft, and
+`Q` to return. The screen follows a sonar-style circular grid inspired by the
+[ESP32 Plane Radar](https://github.com/MatixYo/ESP32-Plane-Radar).
 ### Docker Compose
 
 #### 1) Simple (`inmemory`, no Redis)

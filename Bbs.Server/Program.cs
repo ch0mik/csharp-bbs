@@ -1,4 +1,9 @@
 using Bbs.Core;
+using Bbs.Server.Adsb;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+using System.Collections.Concurrent;
 using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
@@ -10,10 +15,78 @@ internal static class Program
 {
     private sealed record EndPointSpec(Type BbsType, int Port);
 
+    private sealed class SessionTracker
+    {
+        private readonly ConcurrentDictionary<long, Task> _sessions = new();
+        private long _nextId;
+
+        public long NextId() => Interlocked.Increment(ref _nextId);
+        public void Add(long id, Task task) => _sessions[id] = task;
+        public void Remove(long id) => _sessions.TryRemove(id, out _);
+
+        public async Task WaitForCompletionAsync(TimeSpan timeout)
+        {
+            var sessions = _sessions.Values.ToArray();
+            if (sessions.Length == 0) return;
+            try
+            {
+                await Task.WhenAll(sessions).WaitAsync(timeout).ConfigureAwait(false);
+            }
+            catch (TimeoutException)
+            {
+                Console.Error.WriteLine($"Timed out waiting for {_sessions.Count} BBS session(s) to stop.");
+            }
+        }
+    }
+
     private static Dictionary<string, Type> TenantMap = new(StringComparer.OrdinalIgnoreCase);
     private static RedisSessionStore? SessionStore;
     public static async Task<int> Main(string[] args)
     {
+        var builder = Host.CreateApplicationBuilder(new HostApplicationBuilderSettings
+        {
+            Args = args,
+            ContentRootPath = AppContext.BaseDirectory
+        });
+        builder.Services
+            .AddOptions<AdsbRadarOptions>()
+            .Bind(builder.Configuration.GetSection(AdsbRadarOptions.SectionName))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+        builder.Services.AddSingleton<IValidateOptions<AdsbRadarOptions>, AdsbRadarOptionsValidator>();
+        builder.Services
+            .AddOptions<ClientGeolocationOptions>()
+            .Bind(builder.Configuration.GetSection(ClientGeolocationOptions.SectionName))
+            .ValidateOnStart();
+        builder.Services.AddSingleton<IValidateOptions<ClientGeolocationOptions>, ClientGeolocationOptionsValidator>();
+        builder.Services.AddHttpClient("adsb", (serviceProvider, client) =>
+        {
+            var radar = serviceProvider.GetRequiredService<IOptions<AdsbRadarOptions>>().Value;
+            client.Timeout = TimeSpan.FromSeconds(radar.RequestTimeoutSeconds);
+        });
+        builder.Services.AddSingleton<IAdsbFeedClient, AdsbFeedClient>();
+        builder.Services.AddSingleton<IAircraftSnapshotStore, AircraftSnapshotStore>();
+        builder.Services.AddSingleton<AdsbRadarSessionLimiter>();
+        builder.Services.AddHostedService<AdsbPollingService>();
+        builder.Services.AddHttpClient("client-geolocation", (serviceProvider, client) =>
+        {
+            var geolocation = serviceProvider.GetRequiredService<IOptions<ClientGeolocationOptions>>().Value;
+            client.Timeout = TimeSpan.FromSeconds(geolocation.RequestTimeoutSeconds);
+        });
+        builder.Services.AddSingleton<IClientGeolocationService, ClientGeolocationService>();
+
+        using var host = builder.Build();
+        try
+        {
+            _ = host.Services.GetRequiredService<IOptions<AdsbRadarOptions>>().Value;
+            _ = host.Services.GetRequiredService<IOptions<ClientGeolocationOptions>>().Value;
+        }
+        catch (OptionsValidationException exception)
+        {
+            foreach (var failure in exception.Failures) Console.Error.WriteLine($"Configuration error: {failure}");
+            return 2;
+        }
+
         LoadReferencedAssemblies();
         TenantMap = DiscoverTenants();
 
@@ -35,8 +108,13 @@ internal static class Program
         }
 
         ConfigureSessionStore();
+        await host.StartAsync().ConfigureAwait(false);
 
         using var cts = new CancellationTokenSource();
+        using var stoppingRegistration = host.Services
+            .GetRequiredService<IHostApplicationLifetime>()
+            .ApplicationStopping
+            .Register(cts.Cancel);
         Console.CancelKeyPress += (_, e) =>
         {
             e.Cancel = true;
@@ -51,17 +129,26 @@ internal static class Program
         }
 
         var tasks = new List<Task>();
+        var sessionTracker = new SessionTracker();
         foreach (var endpoint in endpoints)
         {
-            tasks.Add(Task.Run(() => RunEndpointAsync(endpoint, timeout, cts.Token), cts.Token));
+            tasks.Add(Task.Run(() => RunEndpointAsync(endpoint, timeout, host.Services, sessionTracker, cts.Token), cts.Token));
         }
 
         if (servicePort > 0)
         {
-            tasks.Add(Task.Run(() => RunServicePortAsync(servicePort, cts.Token), cts.Token));
+            tasks.Add(Task.Run(() => RunServicePortAsync(servicePort, sessionTracker, cts.Token), cts.Token));
         }
 
-        await Task.WhenAll(tasks).ConfigureAwait(false);
+        try
+        {
+            await Task.WhenAll(tasks).ConfigureAwait(false);
+        }
+        finally
+        {
+            await sessionTracker.WaitForCompletionAsync(TimeSpan.FromSeconds(10)).ConfigureAwait(false);
+            await host.StopAsync().ConfigureAwait(false);
+        }
         return 0;
     }
 
@@ -124,7 +211,12 @@ internal static class Program
         }
     }
 
-    private static async Task RunEndpointAsync(EndPointSpec endpoint, TimeSpan timeout, CancellationToken cancellationToken)
+    private static async Task RunEndpointAsync(
+        EndPointSpec endpoint,
+        TimeSpan timeout,
+        IServiceProvider services,
+        SessionTracker sessionTracker,
+        CancellationToken cancellationToken)
     {
         var listener = new TcpListener(IPAddress.Any, endpoint.Port);
         listener.Start();
@@ -144,27 +236,14 @@ internal static class Program
                 client.ReceiveTimeout = (int)timeout.TotalMilliseconds;
                 client.SendTimeout = (int)timeout.TotalMilliseconds;
 
-                _ = Task.Run(async () =>
-                {
-                    var startedAt = DateTimeOffset.UtcNow;
-                    ServerMetrics.SessionStarted(endpointName, endpoint.BbsType.Name);
-                    var instance = (BbsThread)Activator.CreateInstance(endpoint.BbsType)!;
-                    Console.WriteLine($"Session started: {endpointName}, clientId=pending");
-
-                    try
-                    {
-                        await instance.RunSessionAsync(client, timeout, cancellationToken).ConfigureAwait(false);
-                        var duration = DateTimeOffset.UtcNow - startedAt;
-                        ServerMetrics.SessionCompleted(endpointName, endpoint.BbsType.Name, duration);
-                        Console.WriteLine($"Session ended: {endpointName}, clientId={instance.ClientId}, name={instance.ClientName}, duration={duration:c}");
-                    }
-                    catch (Exception ex)
-                    {
-                        var duration = DateTimeOffset.UtcNow - startedAt;
-                        ServerMetrics.SessionFailed(endpointName, endpoint.BbsType.Name, duration);
-                        Console.Error.WriteLine($"Session failed: {endpointName}, duration={duration:c}, error={ex.Message}");
-                    }
-                }, cancellationToken);
+                var sessionId = sessionTracker.NextId();
+                var sessionTask = RunClientSessionAsync(endpoint, endpointName, client, timeout, services, cancellationToken);
+                sessionTracker.Add(sessionId, sessionTask);
+                _ = sessionTask.ContinueWith(
+                    _ => sessionTracker.Remove(sessionId),
+                    CancellationToken.None,
+                    TaskContinuationOptions.ExecuteSynchronously,
+                    TaskScheduler.Default);
             }
         }
         catch (OperationCanceledException)
@@ -177,7 +256,45 @@ internal static class Program
         }
     }
 
-    private static async Task RunServicePortAsync(int servicePort, CancellationToken cancellationToken)
+    private static async Task RunClientSessionAsync(
+        EndPointSpec endpoint,
+        string endpointName,
+        TcpClient client,
+        TimeSpan timeout,
+        IServiceProvider services,
+        CancellationToken cancellationToken)
+    {
+        using (client)
+        {
+            var startedAt = DateTimeOffset.UtcNow;
+            ServerMetrics.SessionStarted(endpointName, endpoint.BbsType.Name);
+
+            try
+            {
+                var instance = (BbsThread)ActivatorUtilities.CreateInstance(services, endpoint.BbsType);
+                var remote = (IPEndPoint?)client.Client.RemoteEndPoint;
+                if (remote is not null)
+                {
+                    var location = await services.GetRequiredService<IClientGeolocationService>()
+                        .LocateAsync(remote.Address, cancellationToken).ConfigureAwait(false);
+                    if (location is not null) instance.SetCustomObject(ClientLocation.SessionKey, location);
+                }
+                Console.WriteLine($"Session started: {endpointName}, clientId=pending");
+                await instance.RunSessionAsync(client, timeout, cancellationToken).ConfigureAwait(false);
+                var duration = DateTimeOffset.UtcNow - startedAt;
+                ServerMetrics.SessionCompleted(endpointName, endpoint.BbsType.Name, duration);
+                Console.WriteLine($"Session ended: {endpointName}, clientId={instance.ClientId}, name={instance.ClientName}, duration={duration:c}");
+            }
+            catch (Exception ex)
+            {
+                var duration = DateTimeOffset.UtcNow - startedAt;
+                ServerMetrics.SessionFailed(endpointName, endpoint.BbsType.Name, duration);
+                Console.Error.WriteLine($"Session failed: {endpointName}, duration={duration:c}, error={ex.Message}");
+            }
+        }
+    }
+
+    private static async Task RunServicePortAsync(int servicePort, SessionTracker sessionTracker, CancellationToken cancellationToken)
     {
         var listener = new TcpListener(IPAddress.Any, servicePort);
         listener.Start();
@@ -189,15 +306,14 @@ internal static class Program
             while (!cancellationToken.IsCancellationRequested)
             {
                 var client = await listener.AcceptTcpClientAsync(cancellationToken).ConfigureAwait(false);
-                _ = Task.Run(async () =>
-                {
-                    await using var stream = client.GetStream();
-                    var payload = await BuildServiceResponseAsync(stream, cancellationToken).ConfigureAwait(false);
-                    var body = Encoding.Latin1.GetBytes(payload);
-                    await stream.WriteAsync(body, cancellationToken).ConfigureAwait(false);
-                    await stream.FlushAsync(cancellationToken).ConfigureAwait(false);
-                    client.Close();
-                }, cancellationToken);
+                var requestId = sessionTracker.NextId();
+                var requestTask = RunServiceRequestAsync(client, cancellationToken);
+                sessionTracker.Add(requestId, requestTask);
+                _ = requestTask.ContinueWith(
+                    _ => sessionTracker.Remove(requestId),
+                    CancellationToken.None,
+                    TaskContinuationOptions.ExecuteSynchronously,
+                    TaskScheduler.Default);
             }
         }
         catch (OperationCanceledException)
@@ -207,6 +323,29 @@ internal static class Program
         finally
         {
             listener.Stop();
+        }
+    }
+
+    private static async Task RunServiceRequestAsync(TcpClient client, CancellationToken cancellationToken)
+    {
+        using (client)
+        {
+            try
+            {
+                await using var stream = client.GetStream();
+                var payload = await BuildServiceResponseAsync(stream, cancellationToken).ConfigureAwait(false);
+                var body = Encoding.Latin1.GetBytes(payload);
+                await stream.WriteAsync(body, cancellationToken).ConfigureAwait(false);
+                await stream.FlushAsync(cancellationToken).ConfigureAwait(false);
+            }
+            catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+            {
+                // normal shutdown
+            }
+            catch (Exception exception)
+            {
+                Console.Error.WriteLine($"Diagnostic request failed: {exception.Message}");
+            }
         }
     }
 
