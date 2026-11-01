@@ -1,0 +1,86 @@
+apiVersion: 2021-09-01
+location: ${ACI_LOCATION}
+name: ${ACI_NAME}
+properties:
+  osType: Linux
+  restartPolicy: OnFailure
+  containers:
+    - name: csharp-bbs
+      properties:
+        image: ${ACI_IMAGE}
+        resources:
+          requests:
+            cpu: 0.5
+            memoryInGb: 1.0
+        ports:
+          - port: 6510
+          - port: 9090
+        environmentVariables:
+          - name: PETSCII_GALLERY_ROOT
+            value: /app/petscii-art-gallery
+          - name: ZMACHINE_STORY_ROOT
+            value: /app/zmpp
+          - name: QUIZ_PACKS_ROOT
+            value: /app/quiz-packs
+          - name: ZMACHINE_COLUMNS
+            value: "39"
+          - name: BBS_SESSION_STORE
+            value: inmemory
+          - name: BBS_INSTANCE_ID
+            value: csharp-bbs
+          - name: REDIS_HOST
+            value: "${REDIS_HOST}"
+          - name: REDIS_PORT
+            value: "6379"
+          - name: REDIS_PASSWORD
+            secureValue: "${REDIS_PASSWORD}"
+          - name: AdsbRadar__Enabled
+            value: "true"
+          - name: AdsbRadar__Provider
+            value: adsbfi
+          - name: AdsbRadar__FeedUrl
+            value: https://opendata.adsb.fi/api/v3/lat/52.2297/lon/21.0122/dist/75
+          - name: AdsbRadar__CenterLatitude
+            value: "52.2297"
+          - name: AdsbRadar__CenterLongitude
+            value: "21.0122"
+          - name: AdsbRadar__PollIntervalSeconds
+            value: "15"
+          - name: AdsbRadar__RequestTimeoutSeconds
+            value: "4"
+          - name: ClientGeolocation__Enabled
+            value: "true"
+        volumeMounts:
+          - name: petscii
+            mountPath: /app/petscii-art-gallery
+            readOnly: true
+          - name: zmpp
+            mountPath: /app/zmpp
+            readOnly: true
+          - name: quiz-packs
+            mountPath: /app/quiz-packs
+            readOnly: true
+  ipAddress:
+    type: Public
+    dnsNameLabel: 8-bitz
+    ports:
+      - protocol: TCP
+        port: 6510
+      - protocol: TCP
+        port: 9090
+  volumes:
+    - name: petscii
+      azureFile:
+        shareName: petscii-art-gallery
+        storageAccountName: sa4bbs
+        storageAccountKey: "${AZURE_STORAGE_ACCOUNT_KEY}"
+    - name: zmpp
+      azureFile:
+        shareName: zmpp
+        storageAccountName: sa4bbs
+        storageAccountKey: "${AZURE_STORAGE_ACCOUNT_KEY}"
+    - name: quiz-packs
+      azureFile:
+        shareName: quiz-packs
+        storageAccountName: sa4bbs
+        storageAccountKey: "${AZURE_STORAGE_ACCOUNT_KEY}"

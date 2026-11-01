@@ -1,0 +1,82 @@
+name: Refresh Azure Container Instance
+
+on:
+  workflow_run:
+    workflows:
+      - Docker Publish
+    types:
+      - completed
+  workflow_dispatch:
+
+concurrency:
+  group: azure-aci-refresh-production
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Sign in to Azure using OIDC
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Checkout deployment template
+        uses: actions/checkout@v4
+
+      - name: Deploy ACI and wait for running state
+        uses: azure/cli@v2
+        env:
+          ACI_RESOURCE_GROUP: ${{ vars.ACI_RESOURCE_GROUP }}
+          ACI_NAME: ${{ vars.ACI_NAME || 'csharp-bbs' }}
+          ACI_LOCATION: ${{ vars.ACI_LOCATION || 'swedencentral' }}
+          ACI_IMAGE: ${{ vars.ACI_IMAGE || 'docker.io/sq7mru/petsciibbs:latest' }}
+          REDIS_HOST: ${{ vars.REDIS_HOST }}
+          REDIS_PASSWORD: ${{ secrets.ACI_REDIS_PASSWORD }}
+          AZURE_STORAGE_ACCOUNT_KEY: ${{ secrets.ACI_STORAGE_ACCOUNT_KEY }}
+        with:
+          azcliversion: latest
+          inlineScript: |
+            set -euo pipefail
+            : "${ACI_RESOURCE_GROUP:?Set production variable ACI_RESOURCE_GROUP}"
+            : "${ACI_LOCATION:?Set production variable ACI_LOCATION}"
+            : "${ACI_IMAGE:?Set production variable ACI_IMAGE}"
+            : "${REDIS_HOST:?Set production variable REDIS_HOST}"
+            : "${REDIS_PASSWORD:?Set production secret ACI_REDIS_PASSWORD}"
+            : "${AZURE_STORAGE_ACCOUNT_KEY:?Set production secret ACI_STORAGE_ACCOUNT_KEY}"
+
+            umask 077
+            envsubst < .github/azure/container-group.template.yaml > aci-deployment.yaml
+
+            az container create \
+              --resource-group "$ACI_RESOURCE_GROUP" \
+              --file aci-deployment.yaml
+
+            for attempt in $(seq 1 18); do
+              state="$(az container show \
+                --resource-group "$ACI_RESOURCE_GROUP" \
+                --name "$ACI_NAME" \
+                --query 'containers[0].instanceView.currentState.state' \
+                --output tsv)"
+              echo "ACI state: $state (attempt $attempt/18)"
+              if [ "$state" = "Running" ]; then
+                az container show \
+                  --resource-group "$ACI_RESOURCE_GROUP" \
+                  --name "$ACI_NAME" \
+                  --query '{fqdn:ipAddress.fqdn,ip:ipAddress.ip,provisioningState:provisioningState}' \
+                  --output yaml
+                exit 0
+              fi
+              sleep 10
+            done
+
+            echo "ACI did not reach the Running state within 180 seconds." >&2
+            exit 1

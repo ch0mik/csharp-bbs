@@ -181,6 +181,42 @@ BBS_SESSION_STORE=redis
 REDIS_PASSWORD=change_me_to_a_long_random_value
 ```
 
+### Azure Container Instances deployment
+
+The separate **Refresh Azure Container Instance** workflow runs after a successful Docker
+publication and redeploys `csharp-bbs` from
+[`.github/azure/container-group.template.yaml`](.github/azure/container-group.template.yaml).
+It can also be run manually. The template is committed without secrets; the workflow renders
+a temporary deployment file from GitHub Environment secrets.
+
+Create a protected GitHub Environment named `production` and configure these secrets:
+
+```text
+AZURE_CLIENT_ID
+AZURE_TENANT_ID
+AZURE_SUBSCRIPTION_ID
+```
+
+Configure this environment variable:
+
+```text
+ACI_RESOURCE_GROUP=<resource-group-containing-csharp-bbs>
+ACI_LOCATION=swedencentral
+ACI_IMAGE=docker.io/sq7mru/petsciibbs:latest
+REDIS_HOST=redis-bbs.redis.cache.windows.net
+```
+
+Add these Environment secrets for the template:
+
+```text
+ACI_REDIS_PASSWORD
+ACI_STORAGE_ACCOUNT_KEY
+```
+
+Optional variable: `ACI_NAME` (defaults to `csharp-bbs`). The Entra application used by
+`AZURE_CLIENT_ID` must have an OIDC federated credential for this repository/environment and
+a role permitting container-group create/update on the resource group.
+
 ## Run
 
 ### 1. Build and start
